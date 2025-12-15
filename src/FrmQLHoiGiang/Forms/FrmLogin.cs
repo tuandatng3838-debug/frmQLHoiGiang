@@ -47,4 +47,9 @@ public partial class FrmLogin : Form
     {
 
     }
+
+    private void panelRoot_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
 }

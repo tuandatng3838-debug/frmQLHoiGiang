@@ -239,7 +239,7 @@ partial class FrmMain
         // 
         // panelContainer
         // 
-        panelContainer.Dock = DockStyle.Top;
+        panelContainer.Dock = DockStyle.Fill;
         panelContainer.FillColor = Color.White;
         panelContainer.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
         panelContainer.Location = new Point(265, 105);
