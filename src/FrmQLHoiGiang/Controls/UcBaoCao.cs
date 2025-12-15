@@ -36,4 +36,9 @@ public partial class UcBaoCao : UserControl
     {
 
     }
+
+    private void gridTietGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+
+    }
 }

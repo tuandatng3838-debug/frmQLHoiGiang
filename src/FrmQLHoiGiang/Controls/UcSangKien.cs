@@ -137,4 +137,14 @@ public partial class UcSangKien : UserControl
             LoadData();
         }
     }
+
+    private void panelRight_Paint(object sender, PaintEventArgs e)
+    {
+        
+    }
+
+    private void UcSangKien_Load(object sender, EventArgs e)
+    {
+
+    }
 }

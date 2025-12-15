@@ -42,4 +42,9 @@ public partial class FrmLogin : Form
     {
 
     }
+
+    private void controlBoxClose_Click(object sender, EventArgs e)
+    {
+
+    }
 }
