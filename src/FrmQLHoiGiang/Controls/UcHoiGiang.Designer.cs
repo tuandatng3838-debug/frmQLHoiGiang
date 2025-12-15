@@ -13,7 +13,7 @@ partial class UcHoiGiang
 
         base.Dispose(disposing);
     }
-
+    
     #region Component Designer generated code
 
     private void InitializeComponent()
@@ -76,11 +76,12 @@ partial class UcHoiGiang
         panelLeft.Dock = DockStyle.Left;
         panelLeft.FillColor = Color.White;
         panelLeft.Location = new Point(0, 0);
-        panelLeft.Margin = new Padding(4, 5, 4, 5);
+        panelLeft.Margin = new Padding(3, 4, 3, 4);
         panelLeft.Name = "panelLeft";
-        panelLeft.Padding = new Padding(23, 27, 23, 27);
-        panelLeft.Size = new Size(1351, 1067);
+        panelLeft.Padding = new Padding(18, 22, 18, 22);
+        panelLeft.Size = new Size(1159, 854);
         panelLeft.TabIndex = 0;
+        panelLeft.Paint += panelLeft_Paint;
         // 
         // btnRefreshHoiGiang
         // 
@@ -88,10 +89,10 @@ partial class UcHoiGiang
         btnRefreshHoiGiang.FillColor = Color.FromArgb(31, 122, 224);
         btnRefreshHoiGiang.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         btnRefreshHoiGiang.ForeColor = Color.White;
-        btnRefreshHoiGiang.Location = new Point(23, 27);
-        btnRefreshHoiGiang.Margin = new Padding(4, 5, 4, 5);
+        btnRefreshHoiGiang.Location = new Point(13, 13);
+        btnRefreshHoiGiang.Margin = new Padding(3, 4, 3, 4);
         btnRefreshHoiGiang.Name = "btnRefreshHoiGiang";
-        btnRefreshHoiGiang.Size = new Size(171, 60);
+        btnRefreshHoiGiang.Size = new Size(156, 52);
         btnRefreshHoiGiang.TabIndex = 1;
         btnRefreshHoiGiang.Text = "Làm mới";
         btnRefreshHoiGiang.Click += btnRefreshHoiGiang_Click;
@@ -101,8 +102,13 @@ partial class UcHoiGiang
         gridHoiGiang.AllowUserToAddRows = false;
         gridHoiGiang.AllowUserToDeleteRows = false;
         dataGridViewCellStyle1.BackColor = Color.White;
+        dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
+        dataGridViewCellStyle1.ForeColor = Color.Black;
+        dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(192, 192, 255);
+        dataGridViewCellStyle1.SelectionForeColor = Color.Black;
         gridHoiGiang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
         gridHoiGiang.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        gridHoiGiang.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
         dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
         dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -111,7 +117,7 @@ partial class UcHoiGiang
         dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
         dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
         gridHoiGiang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-        gridHoiGiang.ColumnHeadersHeight = 36;
+        gridHoiGiang.ColumnHeadersHeight = 45;
         gridHoiGiang.Columns.AddRange(new DataGridViewColumn[] { colTenBai, colGiangVien, colThoiGian, colCap });
         dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle3.BackColor = Color.White;
@@ -122,15 +128,15 @@ partial class UcHoiGiang
         dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
         gridHoiGiang.DefaultCellStyle = dataGridViewCellStyle3;
         gridHoiGiang.GridColor = Color.FromArgb(231, 229, 255);
-        gridHoiGiang.Location = new Point(23, 120);
-        gridHoiGiang.Margin = new Padding(4, 5, 4, 5);
+        gridHoiGiang.Location = new Point(13, 82);
+        gridHoiGiang.Margin = new Padding(3, 4, 3, 4);
         gridHoiGiang.MultiSelect = false;
         gridHoiGiang.Name = "gridHoiGiang";
         gridHoiGiang.ReadOnly = true;
         gridHoiGiang.RowHeadersVisible = false;
         gridHoiGiang.RowHeadersWidth = 62;
         gridHoiGiang.RowTemplate.Height = 32;
-        gridHoiGiang.Size = new Size(1324, 920);
+        gridHoiGiang.Size = new Size(1126, 736);
         gridHoiGiang.TabIndex = 0;
         gridHoiGiang.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
         gridHoiGiang.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -140,11 +146,11 @@ partial class UcHoiGiang
         gridHoiGiang.ThemeStyle.BackColor = Color.White;
         gridHoiGiang.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridHoiGiang.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-        gridHoiGiang.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+        gridHoiGiang.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.Sunken;
         gridHoiGiang.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
         gridHoiGiang.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridHoiGiang.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-        gridHoiGiang.ThemeStyle.HeaderStyle.Height = 36;
+        gridHoiGiang.ThemeStyle.HeaderStyle.Height = 45;
         gridHoiGiang.ThemeStyle.ReadOnly = true;
         gridHoiGiang.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridHoiGiang.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -154,11 +160,12 @@ partial class UcHoiGiang
         gridHoiGiang.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
         gridHoiGiang.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
         gridHoiGiang.CellClick += gridHoiGiang_CellClick;
+        gridHoiGiang.CellContentClick += gridHoiGiang_CellContentClick;
         // 
         // colTenBai
         // 
         colTenBai.DataPropertyName = "TenBai";
-        colTenBai.HeaderText = "Tên bài";
+        colTenBai.HeaderText = "TÊN BÀI";
         colTenBai.MinimumWidth = 8;
         colTenBai.Name = "colTenBai";
         colTenBai.ReadOnly = true;
@@ -166,7 +173,7 @@ partial class UcHoiGiang
         // colGiangVien
         // 
         colGiangVien.DataPropertyName = "GiangVien";
-        colGiangVien.HeaderText = "Giảng viên";
+        colGiangVien.HeaderText = "GIẢNG VIÊN";
         colGiangVien.MinimumWidth = 8;
         colGiangVien.Name = "colGiangVien";
         colGiangVien.ReadOnly = true;
@@ -174,7 +181,7 @@ partial class UcHoiGiang
         // colThoiGian
         // 
         colThoiGian.DataPropertyName = "ThoiGian";
-        colThoiGian.HeaderText = "Thời gian";
+        colThoiGian.HeaderText = "THỜI GIAN";
         colThoiGian.MinimumWidth = 8;
         colThoiGian.Name = "colThoiGian";
         colThoiGian.ReadOnly = true;
@@ -182,7 +189,7 @@ partial class UcHoiGiang
         // colCap
         // 
         colCap.DataPropertyName = "CapThucHien";
-        colCap.HeaderText = "Cấp";
+        colCap.HeaderText = "CẤP";
         colCap.MinimumWidth = 8;
         colCap.Name = "colCap";
         colCap.ReadOnly = true;
@@ -193,11 +200,13 @@ partial class UcHoiGiang
         tabMain.Controls.Add(tabHoiDong);
         tabMain.Controls.Add(tabKetQua);
         tabMain.Dock = DockStyle.Fill;
-        tabMain.Location = new Point(1351, 0);
-        tabMain.Margin = new Padding(4, 5, 4, 5);
+        tabMain.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+        tabMain.ItemSize = new Size(100, 40);
+        tabMain.Location = new Point(1159, 0);
+        tabMain.Margin = new Padding(3, 4, 3, 4);
         tabMain.Name = "tabMain";
         tabMain.SelectedIndex = 0;
-        tabMain.Size = new Size(820, 1067);
+        tabMain.Size = new Size(578, 854);
         tabMain.TabIndex = 1;
         // 
         // tabDangKy
@@ -214,24 +223,25 @@ partial class UcHoiGiang
         tabDangKy.Controls.Add(txtGiangVienCapBac);
         tabDangKy.Controls.Add(txtGiangVienDonVi);
         tabDangKy.Controls.Add(cboGiangVien);
-        tabDangKy.Location = new Point(4, 34);
-        tabDangKy.Margin = new Padding(4, 5, 4, 5);
+        tabDangKy.Location = new Point(4, 44);
+        tabDangKy.Margin = new Padding(3, 4, 3, 4);
         tabDangKy.Name = "tabDangKy";
-        tabDangKy.Padding = new Padding(23, 27, 23, 27);
-        tabDangKy.Size = new Size(812, 1029);
+        tabDangKy.Padding = new Padding(18, 22, 18, 22);
+        tabDangKy.Size = new Size(570, 806);
         tabDangKy.TabIndex = 0;
         tabDangKy.Text = "Đăng ký";
+        tabDangKy.Click += tabDangKy_Click;
         // 
         // btnLuuHoiGiang
         // 
         btnLuuHoiGiang.BorderRadius = 8;
         btnLuuHoiGiang.FillColor = Color.FromArgb(31, 122, 224);
-        btnLuuHoiGiang.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnLuuHoiGiang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
         btnLuuHoiGiang.ForeColor = Color.White;
-        btnLuuHoiGiang.Location = new Point(23, 753);
-        btnLuuHoiGiang.Margin = new Padding(4, 5, 4, 5);
+        btnLuuHoiGiang.Location = new Point(21, 587);
+        btnLuuHoiGiang.Margin = new Padding(3, 4, 3, 4);
         btnLuuHoiGiang.Name = "btnLuuHoiGiang";
-        btnLuuHoiGiang.Size = new Size(200, 75);
+        btnLuuHoiGiang.Size = new Size(160, 60);
         btnLuuHoiGiang.TabIndex = 6;
         btnLuuHoiGiang.Text = "Thêm mới";
         btnLuuHoiGiang.Click += btnLuuHoiGiang_Click;
@@ -248,10 +258,10 @@ partial class UcHoiGiang
         cboCapThucHien.FormattingEnabled = true;
         cboCapThucHien.ItemHeight = 30;
         cboCapThucHien.Items.AddRange(new object[] { "Học viện", "Bộ" });
-        cboCapThucHien.Location = new Point(23, 660);
-        cboCapThucHien.Margin = new Padding(4, 5, 4, 5);
+        cboCapThucHien.Location = new Point(19, 528);
+        cboCapThucHien.Margin = new Padding(3, 4, 3, 4);
         cboCapThucHien.Name = "cboCapThucHien";
-        cboCapThucHien.Size = new Size(364, 36);
+        cboCapThucHien.Size = new Size(292, 36);
         cboCapThucHien.TabIndex = 5;
         // 
         // dtThoiGian
@@ -261,12 +271,12 @@ partial class UcHoiGiang
         dtThoiGian.CustomFormat = "dd/MM/yyyy HH:mm";
         dtThoiGian.Font = new Font("Segoe UI", 9F);
         dtThoiGian.Format = DateTimePickerFormat.Custom;
-        dtThoiGian.Location = new Point(23, 573);
-        dtThoiGian.Margin = new Padding(4, 5, 4, 5);
+        dtThoiGian.Location = new Point(18, 456);
+        dtThoiGian.Margin = new Padding(3, 4, 3, 4);
         dtThoiGian.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
         dtThoiGian.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
         dtThoiGian.Name = "dtThoiGian";
-        dtThoiGian.Size = new Size(366, 60);
+        dtThoiGian.Size = new Size(293, 48);
         dtThoiGian.TabIndex = 4;
         dtThoiGian.Value = new DateTime(2025, 12, 10, 21, 3, 16, 278);
         // 
@@ -275,13 +285,13 @@ partial class UcHoiGiang
         txtLop.BorderRadius = 8;
         txtLop.DefaultText = "";
         txtLop.Font = new Font("Segoe UI", 9F);
-        txtLop.Location = new Point(23, 485);
-        txtLop.Margin = new Padding(6, 8, 6, 8);
+        txtLop.Location = new Point(16, 386);
+        txtLop.Margin = new Padding(5, 6, 5, 6);
         txtLop.Name = "txtLop";
         txtLop.PasswordChar = '\0';
         txtLop.PlaceholderText = "Thực hiện tại lớp";
         txtLop.SelectedText = "";
-        txtLop.Size = new Size(503, 75);
+        txtLop.Size = new Size(402, 60);
         txtLop.TabIndex = 3;
         // 
         // txtTenBai
@@ -289,13 +299,13 @@ partial class UcHoiGiang
         txtTenBai.BorderRadius = 8;
         txtTenBai.DefaultText = "";
         txtTenBai.Font = new Font("Segoe UI", 9F);
-        txtTenBai.Location = new Point(23, 397);
-        txtTenBai.Margin = new Padding(6, 8, 6, 8);
+        txtTenBai.Location = new Point(17, 314);
+        txtTenBai.Margin = new Padding(5, 6, 5, 6);
         txtTenBai.Name = "txtTenBai";
         txtTenBai.PasswordChar = '\0';
         txtTenBai.PlaceholderText = "Tên bài";
         txtTenBai.SelectedText = "";
-        txtTenBai.Size = new Size(503, 75);
+        txtTenBai.Size = new Size(402, 60);
         txtTenBai.TabIndex = 2;
         // 
         // cboHocPhan
@@ -308,10 +318,10 @@ partial class UcHoiGiang
         cboHocPhan.Font = new Font("Segoe UI", 10F);
         cboHocPhan.ForeColor = Color.FromArgb(68, 88, 112);
         cboHocPhan.ItemHeight = 30;
-        cboHocPhan.Location = new Point(23, 320);
-        cboHocPhan.Margin = new Padding(4, 5, 4, 5);
+        cboHocPhan.Location = new Point(16, 268);
+        cboHocPhan.Margin = new Padding(3, 4, 3, 4);
         cboHocPhan.Name = "cboHocPhan";
-        cboHocPhan.Size = new Size(364, 36);
+        cboHocPhan.Size = new Size(292, 36);
         cboHocPhan.TabIndex = 1;
         // 
         // txtGiangVienChucDanh
@@ -319,14 +329,13 @@ partial class UcHoiGiang
         txtGiangVienChucDanh.BorderRadius = 8;
         txtGiangVienChucDanh.DefaultText = "";
         txtGiangVienChucDanh.Font = new Font("Segoe UI", 9F);
-        txtGiangVienChucDanh.Location = new Point(23, 253);
-        txtGiangVienChucDanh.Margin = new Padding(6, 8, 6, 8);
+        txtGiangVienChucDanh.Location = new Point(17, 204);
+        txtGiangVienChucDanh.Margin = new Padding(5, 6, 5, 6);
         txtGiangVienChucDanh.Name = "txtGiangVienChucDanh";
         txtGiangVienChucDanh.PasswordChar = '\0';
         txtGiangVienChucDanh.PlaceholderText = "Chức danh giảng dạy";
-        txtGiangVienChucDanh.ReadOnly = true;
         txtGiangVienChucDanh.SelectedText = "";
-        txtGiangVienChucDanh.Size = new Size(503, 67);
+        txtGiangVienChucDanh.Size = new Size(402, 54);
         txtGiangVienChucDanh.TabIndex = 9;
         // 
         // txtGiangVienCapBac
@@ -334,14 +343,13 @@ partial class UcHoiGiang
         txtGiangVienCapBac.BorderRadius = 8;
         txtGiangVienCapBac.DefaultText = "";
         txtGiangVienCapBac.Font = new Font("Segoe UI", 9F);
-        txtGiangVienCapBac.Location = new Point(23, 177);
-        txtGiangVienCapBac.Margin = new Padding(6, 8, 6, 8);
+        txtGiangVienCapBac.Location = new Point(18, 138);
+        txtGiangVienCapBac.Margin = new Padding(5, 6, 5, 6);
         txtGiangVienCapBac.Name = "txtGiangVienCapBac";
         txtGiangVienCapBac.PasswordChar = '\0';
         txtGiangVienCapBac.PlaceholderText = "Cấp bậc";
-        txtGiangVienCapBac.ReadOnly = true;
         txtGiangVienCapBac.SelectedText = "";
-        txtGiangVienCapBac.Size = new Size(503, 67);
+        txtGiangVienCapBac.Size = new Size(402, 54);
         txtGiangVienCapBac.TabIndex = 8;
         // 
         // txtGiangVienDonVi
@@ -349,14 +357,13 @@ partial class UcHoiGiang
         txtGiangVienDonVi.BorderRadius = 8;
         txtGiangVienDonVi.DefaultText = "";
         txtGiangVienDonVi.Font = new Font("Segoe UI", 9F);
-        txtGiangVienDonVi.Location = new Point(23, 100);
-        txtGiangVienDonVi.Margin = new Padding(6, 8, 6, 8);
+        txtGiangVienDonVi.Location = new Point(16, 72);
+        txtGiangVienDonVi.Margin = new Padding(5, 6, 5, 6);
         txtGiangVienDonVi.Name = "txtGiangVienDonVi";
         txtGiangVienDonVi.PasswordChar = '\0';
         txtGiangVienDonVi.PlaceholderText = "Đơn vị công tác";
-        txtGiangVienDonVi.ReadOnly = true;
         txtGiangVienDonVi.SelectedText = "";
-        txtGiangVienDonVi.Size = new Size(503, 67);
+        txtGiangVienDonVi.Size = new Size(402, 54);
         txtGiangVienDonVi.TabIndex = 7;
         // 
         // cboGiangVien
@@ -369,10 +376,10 @@ partial class UcHoiGiang
         cboGiangVien.Font = new Font("Segoe UI", 10F);
         cboGiangVien.ForeColor = Color.FromArgb(68, 88, 112);
         cboGiangVien.ItemHeight = 30;
-        cboGiangVien.Location = new Point(23, 27);
-        cboGiangVien.Margin = new Padding(4, 5, 4, 5);
+        cboGiangVien.Location = new Point(16, 26);
+        cboGiangVien.Margin = new Padding(3, 4, 3, 4);
         cboGiangVien.Name = "cboGiangVien";
-        cboGiangVien.Size = new Size(501, 36);
+        cboGiangVien.Size = new Size(402, 36);
         cboGiangVien.TabIndex = 0;
         // 
         // tabHoiDong
@@ -387,11 +394,11 @@ partial class UcHoiGiang
         tabHoiDong.Controls.Add(cboThanhVien2);
         tabHoiDong.Controls.Add(cboThanhVien1);
         tabHoiDong.Controls.Add(cboHoiDongBai);
-        tabHoiDong.Location = new Point(4, 34);
-        tabHoiDong.Margin = new Padding(4, 5, 4, 5);
+        tabHoiDong.Location = new Point(4, 44);
+        tabHoiDong.Margin = new Padding(3, 4, 3, 4);
         tabHoiDong.Name = "tabHoiDong";
-        tabHoiDong.Padding = new Padding(23, 27, 23, 27);
-        tabHoiDong.Size = new Size(812, 1029);
+        tabHoiDong.Padding = new Padding(18, 22, 18, 22);
+        tabHoiDong.Size = new Size(570, 806);
         tabHoiDong.TabIndex = 1;
         tabHoiDong.Text = "Hội đồng";
         // 
@@ -399,12 +406,12 @@ partial class UcHoiGiang
         // 
         btnLuuHoiDong.BorderRadius = 8;
         btnLuuHoiDong.FillColor = Color.FromArgb(31, 122, 224);
-        btnLuuHoiDong.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnLuuHoiDong.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
         btnLuuHoiDong.ForeColor = Color.White;
-        btnLuuHoiDong.Location = new Point(23, 600);
-        btnLuuHoiDong.Margin = new Padding(4, 5, 4, 5);
+        btnLuuHoiDong.Location = new Point(18, 480);
+        btnLuuHoiDong.Margin = new Padding(3, 4, 3, 4);
         btnLuuHoiDong.Name = "btnLuuHoiDong";
-        btnLuuHoiDong.Size = new Size(200, 75);
+        btnLuuHoiDong.Size = new Size(160, 60);
         btnLuuHoiDong.TabIndex = 8;
         btnLuuHoiDong.Text = "Lưu";
         btnLuuHoiDong.Click += btnLuuHoiDong_Click;
@@ -413,12 +420,12 @@ partial class UcHoiGiang
         // 
         btnHoiDongLoad.BorderRadius = 8;
         btnHoiDongLoad.FillColor = Color.Gray;
-        btnHoiDongLoad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnHoiDongLoad.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
         btnHoiDongLoad.ForeColor = Color.White;
-        btnHoiDongLoad.Location = new Point(560, 27);
-        btnHoiDongLoad.Margin = new Padding(4, 5, 4, 5);
+        btnHoiDongLoad.Location = new Point(21, 564);
+        btnHoiDongLoad.Margin = new Padding(3, 4, 3, 4);
         btnHoiDongLoad.Name = "btnHoiDongLoad";
-        btnHoiDongLoad.Size = new Size(171, 60);
+        btnHoiDongLoad.Size = new Size(157, 60);
         btnHoiDongLoad.TabIndex = 7;
         btnHoiDongLoad.Text = "Tải dữ liệu";
         btnHoiDongLoad.Click += btnHoiDongLoad_Click;
@@ -428,13 +435,13 @@ partial class UcHoiGiang
         txtTenHoiDong.BorderRadius = 8;
         txtTenHoiDong.DefaultText = "";
         txtTenHoiDong.Font = new Font("Segoe UI", 9F);
-        txtTenHoiDong.Location = new Point(23, 117);
-        txtTenHoiDong.Margin = new Padding(6, 8, 6, 8);
+        txtTenHoiDong.Location = new Point(18, 94);
+        txtTenHoiDong.Margin = new Padding(5, 6, 5, 6);
         txtTenHoiDong.Name = "txtTenHoiDong";
         txtTenHoiDong.PasswordChar = '\0';
         txtTenHoiDong.PlaceholderText = "Tên hội đồng";
         txtTenHoiDong.SelectedText = "";
-        txtTenHoiDong.Size = new Size(469, 75);
+        txtTenHoiDong.Size = new Size(375, 60);
         txtTenHoiDong.TabIndex = 6;
         // 
         // cboThanhVien5
@@ -447,10 +454,10 @@ partial class UcHoiGiang
         cboThanhVien5.Font = new Font("Segoe UI", 10F);
         cboThanhVien5.ForeColor = Color.FromArgb(68, 88, 112);
         cboThanhVien5.ItemHeight = 30;
-        cboThanhVien5.Location = new Point(23, 513);
-        cboThanhVien5.Margin = new Padding(4, 5, 4, 5);
+        cboThanhVien5.Location = new Point(18, 410);
+        cboThanhVien5.Margin = new Padding(3, 4, 3, 4);
         cboThanhVien5.Name = "cboThanhVien5";
-        cboThanhVien5.Size = new Size(467, 36);
+        cboThanhVien5.Size = new Size(374, 36);
         cboThanhVien5.TabIndex = 5;
         // 
         // cboThanhVien4
@@ -463,10 +470,10 @@ partial class UcHoiGiang
         cboThanhVien4.Font = new Font("Segoe UI", 10F);
         cboThanhVien4.ForeColor = Color.FromArgb(68, 88, 112);
         cboThanhVien4.ItemHeight = 30;
-        cboThanhVien4.Location = new Point(23, 443);
-        cboThanhVien4.Margin = new Padding(4, 5, 4, 5);
+        cboThanhVien4.Location = new Point(18, 354);
+        cboThanhVien4.Margin = new Padding(3, 4, 3, 4);
         cboThanhVien4.Name = "cboThanhVien4";
-        cboThanhVien4.Size = new Size(467, 36);
+        cboThanhVien4.Size = new Size(374, 36);
         cboThanhVien4.TabIndex = 4;
         // 
         // cboThanhVien3
@@ -479,10 +486,10 @@ partial class UcHoiGiang
         cboThanhVien3.Font = new Font("Segoe UI", 10F);
         cboThanhVien3.ForeColor = Color.FromArgb(68, 88, 112);
         cboThanhVien3.ItemHeight = 30;
-        cboThanhVien3.Location = new Point(23, 373);
-        cboThanhVien3.Margin = new Padding(4, 5, 4, 5);
+        cboThanhVien3.Location = new Point(18, 298);
+        cboThanhVien3.Margin = new Padding(3, 4, 3, 4);
         cboThanhVien3.Name = "cboThanhVien3";
-        cboThanhVien3.Size = new Size(467, 36);
+        cboThanhVien3.Size = new Size(374, 36);
         cboThanhVien3.TabIndex = 3;
         // 
         // cboThanhVien2
@@ -495,10 +502,10 @@ partial class UcHoiGiang
         cboThanhVien2.Font = new Font("Segoe UI", 10F);
         cboThanhVien2.ForeColor = Color.FromArgb(68, 88, 112);
         cboThanhVien2.ItemHeight = 30;
-        cboThanhVien2.Location = new Point(23, 303);
-        cboThanhVien2.Margin = new Padding(4, 5, 4, 5);
+        cboThanhVien2.Location = new Point(18, 242);
+        cboThanhVien2.Margin = new Padding(3, 4, 3, 4);
         cboThanhVien2.Name = "cboThanhVien2";
-        cboThanhVien2.Size = new Size(467, 36);
+        cboThanhVien2.Size = new Size(374, 36);
         cboThanhVien2.TabIndex = 2;
         // 
         // cboThanhVien1
@@ -511,10 +518,10 @@ partial class UcHoiGiang
         cboThanhVien1.Font = new Font("Segoe UI", 10F);
         cboThanhVien1.ForeColor = Color.FromArgb(68, 88, 112);
         cboThanhVien1.ItemHeight = 30;
-        cboThanhVien1.Location = new Point(23, 233);
-        cboThanhVien1.Margin = new Padding(4, 5, 4, 5);
+        cboThanhVien1.Location = new Point(18, 186);
+        cboThanhVien1.Margin = new Padding(3, 4, 3, 4);
         cboThanhVien1.Name = "cboThanhVien1";
-        cboThanhVien1.Size = new Size(467, 36);
+        cboThanhVien1.Size = new Size(374, 36);
         cboThanhVien1.TabIndex = 1;
         // 
         // cboHoiDongBai
@@ -527,10 +534,10 @@ partial class UcHoiGiang
         cboHoiDongBai.Font = new Font("Segoe UI", 10F);
         cboHoiDongBai.ForeColor = Color.FromArgb(68, 88, 112);
         cboHoiDongBai.ItemHeight = 30;
-        cboHoiDongBai.Location = new Point(23, 27);
-        cboHoiDongBai.Margin = new Padding(4, 5, 4, 5);
+        cboHoiDongBai.Location = new Point(18, 22);
+        cboHoiDongBai.Margin = new Padding(3, 4, 3, 4);
         cboHoiDongBai.Name = "cboHoiDongBai";
-        cboHoiDongBai.Size = new Size(513, 36);
+        cboHoiDongBai.Size = new Size(411, 36);
         cboHoiDongBai.TabIndex = 0;
         // 
         // tabKetQua
@@ -545,11 +552,11 @@ partial class UcHoiGiang
         tabKetQua.Controls.Add(txtDiemHoSo);
         tabKetQua.Controls.Add(txtDiemHieuBiet);
         tabKetQua.Controls.Add(cboKetQuaBai);
-        tabKetQua.Location = new Point(4, 34);
-        tabKetQua.Margin = new Padding(4, 5, 4, 5);
+        tabKetQua.Location = new Point(4, 44);
+        tabKetQua.Margin = new Padding(3, 4, 3, 4);
         tabKetQua.Name = "tabKetQua";
-        tabKetQua.Padding = new Padding(23, 27, 23, 27);
-        tabKetQua.Size = new Size(812, 1029);
+        tabKetQua.Padding = new Padding(18, 22, 18, 22);
+        tabKetQua.Size = new Size(570, 806);
         tabKetQua.TabIndex = 2;
         tabKetQua.Text = "Kết quả";
         // 
@@ -557,12 +564,12 @@ partial class UcHoiGiang
         // 
         btnLuuKetQua.BorderRadius = 8;
         btnLuuKetQua.FillColor = Color.FromArgb(31, 122, 224);
-        btnLuuKetQua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnLuuKetQua.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
         btnLuuKetQua.ForeColor = Color.White;
-        btnLuuKetQua.Location = new Point(274, 600);
-        btnLuuKetQua.Margin = new Padding(4, 5, 4, 5);
+        btnLuuKetQua.Location = new Point(190, 527);
+        btnLuuKetQua.Margin = new Padding(3, 4, 3, 4);
         btnLuuKetQua.Name = "btnLuuKetQua";
-        btnLuuKetQua.Size = new Size(171, 75);
+        btnLuuKetQua.Size = new Size(137, 60);
         btnLuuKetQua.TabIndex = 8;
         btnLuuKetQua.Text = "Lưu";
         btnLuuKetQua.Click += btnLuuKetQua_Click;
@@ -571,12 +578,12 @@ partial class UcHoiGiang
         // 
         btnTinhKetQua.BorderRadius = 8;
         btnTinhKetQua.FillColor = Color.SeaGreen;
-        btnTinhKetQua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnTinhKetQua.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
         btnTinhKetQua.ForeColor = Color.White;
-        btnTinhKetQua.Location = new Point(23, 600);
-        btnTinhKetQua.Margin = new Padding(4, 5, 4, 5);
+        btnTinhKetQua.Location = new Point(18, 527);
+        btnTinhKetQua.Margin = new Padding(3, 4, 3, 4);
         btnTinhKetQua.Name = "btnTinhKetQua";
-        btnTinhKetQua.Size = new Size(171, 75);
+        btnTinhKetQua.Size = new Size(150, 60);
         btnTinhKetQua.TabIndex = 7;
         btnTinhKetQua.Text = "Tính điểm";
         btnTinhKetQua.Click += btnTinhKetQua_Click;
@@ -585,12 +592,12 @@ partial class UcHoiGiang
         // 
         btnLoadKetQua.BorderRadius = 8;
         btnLoadKetQua.FillColor = Color.Gray;
-        btnLoadKetQua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnLoadKetQua.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
         btnLoadKetQua.ForeColor = Color.White;
-        btnLoadKetQua.Location = new Point(560, 27);
-        btnLoadKetQua.Margin = new Padding(4, 5, 4, 5);
+        btnLoadKetQua.Location = new Point(18, 613);
+        btnLoadKetQua.Margin = new Padding(3, 4, 3, 4);
         btnLoadKetQua.Name = "btnLoadKetQua";
-        btnLoadKetQua.Size = new Size(171, 60);
+        btnLoadKetQua.Size = new Size(150, 54);
         btnLoadKetQua.TabIndex = 6;
         btnLoadKetQua.Text = "Tải dữ liệu";
         btnLoadKetQua.Click += btnLoadKetQua_Click;
@@ -600,13 +607,13 @@ partial class UcHoiGiang
         txtXepLoai.BorderRadius = 8;
         txtXepLoai.DefaultText = "";
         txtXepLoai.Font = new Font("Segoe UI", 9F);
-        txtXepLoai.Location = new Point(23, 512);
-        txtXepLoai.Margin = new Padding(6, 8, 6, 8);
+        txtXepLoai.Location = new Point(18, 427);
+        txtXepLoai.Margin = new Padding(5, 6, 5, 6);
         txtXepLoai.Name = "txtXepLoai";
         txtXepLoai.PasswordChar = '\0';
         txtXepLoai.PlaceholderText = "Xếp loại";
         txtXepLoai.SelectedText = "";
-        txtXepLoai.Size = new Size(331, 75);
+        txtXepLoai.Size = new Size(265, 60);
         txtXepLoai.TabIndex = 5;
         // 
         // txtTongDiem
@@ -614,13 +621,13 @@ partial class UcHoiGiang
         txtTongDiem.BorderRadius = 8;
         txtTongDiem.DefaultText = "";
         txtTongDiem.Font = new Font("Segoe UI", 9F);
-        txtTongDiem.Location = new Point(23, 423);
-        txtTongDiem.Margin = new Padding(6, 8, 6, 8);
+        txtTongDiem.Location = new Point(18, 338);
+        txtTongDiem.Margin = new Padding(5, 6, 5, 6);
         txtTongDiem.Name = "txtTongDiem";
         txtTongDiem.PasswordChar = '\0';
         txtTongDiem.PlaceholderText = "Tổng điểm";
         txtTongDiem.SelectedText = "";
-        txtTongDiem.Size = new Size(331, 75);
+        txtTongDiem.Size = new Size(265, 60);
         txtTongDiem.TabIndex = 4;
         // 
         // txtDiemThucHanh
@@ -628,13 +635,13 @@ partial class UcHoiGiang
         txtDiemThucHanh.BorderRadius = 8;
         txtDiemThucHanh.DefaultText = "";
         txtDiemThucHanh.Font = new Font("Segoe UI", 9F);
-        txtDiemThucHanh.Location = new Point(23, 335);
-        txtDiemThucHanh.Margin = new Padding(6, 8, 6, 8);
+        txtDiemThucHanh.Location = new Point(18, 248);
+        txtDiemThucHanh.Margin = new Padding(5, 6, 5, 6);
         txtDiemThucHanh.Name = "txtDiemThucHanh";
         txtDiemThucHanh.PasswordChar = '\0';
         txtDiemThucHanh.PlaceholderText = "Điểm thực hành (TB 5 phiếu)";
         txtDiemThucHanh.SelectedText = "";
-        txtDiemThucHanh.Size = new Size(469, 75);
+        txtDiemThucHanh.Size = new Size(375, 60);
         txtDiemThucHanh.TabIndex = 3;
         // 
         // txtDiemHoSo
@@ -642,13 +649,13 @@ partial class UcHoiGiang
         txtDiemHoSo.BorderRadius = 8;
         txtDiemHoSo.DefaultText = "";
         txtDiemHoSo.Font = new Font("Segoe UI", 9F);
-        txtDiemHoSo.Location = new Point(23, 247);
-        txtDiemHoSo.Margin = new Padding(6, 8, 6, 8);
+        txtDiemHoSo.Location = new Point(18, 161);
+        txtDiemHoSo.Margin = new Padding(5, 6, 5, 6);
         txtDiemHoSo.Name = "txtDiemHoSo";
         txtDiemHoSo.PasswordChar = '\0';
         txtDiemHoSo.PlaceholderText = "Điểm hồ sơ";
         txtDiemHoSo.SelectedText = "";
-        txtDiemHoSo.Size = new Size(331, 75);
+        txtDiemHoSo.Size = new Size(265, 60);
         txtDiemHoSo.TabIndex = 2;
         // 
         // txtDiemHieuBiet
@@ -656,13 +663,13 @@ partial class UcHoiGiang
         txtDiemHieuBiet.BorderRadius = 8;
         txtDiemHieuBiet.DefaultText = "";
         txtDiemHieuBiet.Font = new Font("Segoe UI", 9F);
-        txtDiemHieuBiet.Location = new Point(23, 158);
-        txtDiemHieuBiet.Margin = new Padding(6, 8, 6, 8);
+        txtDiemHieuBiet.Location = new Point(18, 79);
+        txtDiemHieuBiet.Margin = new Padding(5, 6, 5, 6);
         txtDiemHieuBiet.Name = "txtDiemHieuBiet";
         txtDiemHieuBiet.PasswordChar = '\0';
         txtDiemHieuBiet.PlaceholderText = "Điểm hiểu biết";
         txtDiemHieuBiet.SelectedText = "";
-        txtDiemHieuBiet.Size = new Size(331, 75);
+        txtDiemHieuBiet.Size = new Size(265, 60);
         txtDiemHieuBiet.TabIndex = 1;
         // 
         // cboKetQuaBai
@@ -675,10 +682,10 @@ partial class UcHoiGiang
         cboKetQuaBai.Font = new Font("Segoe UI", 10F);
         cboKetQuaBai.ForeColor = Color.FromArgb(68, 88, 112);
         cboKetQuaBai.ItemHeight = 30;
-        cboKetQuaBai.Location = new Point(23, 27);
-        cboKetQuaBai.Margin = new Padding(4, 5, 4, 5);
+        cboKetQuaBai.Location = new Point(18, 22);
+        cboKetQuaBai.Margin = new Padding(3, 4, 3, 4);
         cboKetQuaBai.Name = "cboKetQuaBai";
-        cboKetQuaBai.Size = new Size(513, 36);
+        cboKetQuaBai.Size = new Size(411, 36);
         cboKetQuaBai.TabIndex = 0;
         // 
         // dialog
@@ -692,13 +699,12 @@ partial class UcHoiGiang
         // 
         // UcHoiGiang
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
-        AutoScaleMode = AutoScaleMode.Font;
+        AutoScaleMode = AutoScaleMode.None;
         Controls.Add(tabMain);
         Controls.Add(panelLeft);
-        Margin = new Padding(4, 5, 4, 5);
+        Margin = new Padding(3, 4, 3, 4);
         Name = "UcHoiGiang";
-        Size = new Size(2171, 1067);
+        Size = new Size(1737, 854);
         panelLeft.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)gridHoiGiang).EndInit();
         tabMain.ResumeLayout(false);
@@ -713,10 +719,6 @@ partial class UcHoiGiang
     private Siticone.Desktop.UI.WinForms.SiticonePanel panelLeft;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnRefreshHoiGiang;
     private Siticone.Desktop.UI.WinForms.SiticoneDataGridView gridHoiGiang;
-    private DataGridViewTextBoxColumn colTenBai;
-    private DataGridViewTextBoxColumn colGiangVien;
-    private DataGridViewTextBoxColumn colThoiGian;
-    private DataGridViewTextBoxColumn colCap;
     private TabControl tabMain;
     private TabPage tabDangKy;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnLuuHoiGiang;
@@ -750,4 +752,8 @@ partial class UcHoiGiang
     private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtDiemHieuBiet;
     private Siticone.Desktop.UI.WinForms.SiticoneComboBox cboKetQuaBai;
     private Siticone.Desktop.UI.WinForms.SiticoneMessageDialog dialog;
+    private DataGridViewTextBoxColumn colTenBai;
+    private DataGridViewTextBoxColumn colGiangVien;
+    private DataGridViewTextBoxColumn colThoiGian;
+    private DataGridViewTextBoxColumn colCap;
 }
