@@ -18,7 +18,9 @@ partial class UcSangKien
 
     private void InitializeComponent()
     {
-        components = new System.ComponentModel.Container();
+        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
         gridSangKien = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
         colTenSangKien = new DataGridViewTextBoxColumn();
         colGiangVien = new DataGridViewTextBoxColumn();
@@ -42,59 +44,105 @@ partial class UcSangKien
         dialog = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog();
         ((System.ComponentModel.ISupportInitialize)gridSangKien).BeginInit();
         panelRight.SuspendLayout();
+        panelLeft.SuspendLayout();
         SuspendLayout();
         // 
         // gridSangKien
         // 
         gridSangKien.AllowUserToAddRows = false;
         gridSangKien.AllowUserToDeleteRows = false;
-        gridSangKien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        gridSangKien.BackgroundColor = Color.White;
-        gridSangKien.BorderStyle = BorderStyle.None;
-        gridSangKien.ColumnHeadersHeight = 36;
-        gridSangKien.Columns.AddRange(new DataGridViewColumn[] { colTenSangKien, colGiangVien, colNamHoc, colLoai });
+        dataGridViewCellStyle1.BackColor = Color.White;
+        gridSangKien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
         gridSangKien.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        gridSangKien.Location = new Point(16, 88);
+        gridSangKien.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+        dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+        dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle2.ForeColor = Color.White;
+        dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+        gridSangKien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+        gridSangKien.ColumnHeadersHeight = 45;
+        gridSangKien.Columns.AddRange(new DataGridViewColumn[] { colTenSangKien, colGiangVien, colNamHoc, colLoai });
+        dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle3.BackColor = Color.White;
+        dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+        dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+        dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+        dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+        gridSangKien.DefaultCellStyle = dataGridViewCellStyle3;
+        gridSangKien.GridColor = Color.FromArgb(231, 229, 255);
+        gridSangKien.Location = new Point(13, 82);
+        gridSangKien.Margin = new Padding(3, 4, 3, 4);
         gridSangKien.MultiSelect = false;
         gridSangKien.Name = "gridSangKien";
         gridSangKien.ReadOnly = true;
         gridSangKien.RowHeadersVisible = false;
+        gridSangKien.RowHeadersWidth = 51;
         gridSangKien.RowTemplate.Height = 32;
-        gridSangKien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        gridSangKien.Size = new Size(608, 536);
+        gridSangKien.Size = new Size(1126, 736);
         gridSangKien.TabIndex = 0;
+        gridSangKien.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+        gridSangKien.ThemeStyle.AlternatingRowsStyle.Font = null;
+        gridSangKien.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+        gridSangKien.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+        gridSangKien.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+        gridSangKien.ThemeStyle.BackColor = Color.White;
+        gridSangKien.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+        gridSangKien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+        gridSangKien.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+        gridSangKien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridSangKien.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+        gridSangKien.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        gridSangKien.ThemeStyle.HeaderStyle.Height = 45;
+        gridSangKien.ThemeStyle.ReadOnly = true;
+        gridSangKien.ThemeStyle.RowsStyle.BackColor = Color.White;
+        gridSangKien.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        gridSangKien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridSangKien.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+        gridSangKien.ThemeStyle.RowsStyle.Height = 32;
+        gridSangKien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+        gridSangKien.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
         gridSangKien.CellClick += gridSangKien_CellClick;
         // 
         // colTenSangKien
         // 
         colTenSangKien.DataPropertyName = "TenSangKien";
-        colTenSangKien.HeaderText = "Tên sáng kiến";
+        colTenSangKien.HeaderText = "TÊN SÁNG KIẾN";
+        colTenSangKien.MinimumWidth = 6;
         colTenSangKien.Name = "colTenSangKien";
         colTenSangKien.ReadOnly = true;
         // 
         // colGiangVien
         // 
         colGiangVien.DataPropertyName = "GiangVien";
-        colGiangVien.HeaderText = "Giảng viên";
+        colGiangVien.HeaderText = "GIẢNG VIÊN";
+        colGiangVien.MinimumWidth = 6;
         colGiangVien.Name = "colGiangVien";
         colGiangVien.ReadOnly = true;
         // 
         // colNamHoc
         // 
         colNamHoc.DataPropertyName = "NamHoc";
-        colNamHoc.HeaderText = "Năm học";
+        colNamHoc.HeaderText = "NĂM HỌC";
+        colNamHoc.MinimumWidth = 6;
         colNamHoc.Name = "colNamHoc";
         colNamHoc.ReadOnly = true;
         // 
         // colLoai
         // 
         colLoai.DataPropertyName = "Loai";
-        colLoai.HeaderText = "Loại";
+        colLoai.HeaderText = "LOẠI";
+        colLoai.MinimumWidth = 6;
         colLoai.Name = "colLoai";
         colLoai.ReadOnly = true;
         // 
         // panelRight
         // 
+        panelRight.AutoSize = true;
+        panelRight.BackColor = Color.White;
         panelRight.Controls.Add(cboXepLoai);
         panelRight.Controls.Add(txtDiaDiem);
         panelRight.Controls.Add(txtThoiGian);
@@ -107,13 +155,14 @@ partial class UcSangKien
         panelRight.Controls.Add(btnXoa);
         panelRight.Controls.Add(btnHuy);
         panelRight.Controls.Add(btnLuu);
-        panelRight.Dock = DockStyle.Fill;
         panelRight.FillColor = Color.White;
-        panelRight.Location = new Point(640, 0);
+        panelRight.Location = new Point(1166, 4);
+        panelRight.Margin = new Padding(3, 4, 3, 4);
         panelRight.Name = "panelRight";
-        panelRight.Padding = new Padding(16);
-        panelRight.Size = new Size(880, 640);
+        panelRight.Padding = new Padding(18, 21, 18, 21);
+        panelRight.Size = new Size(900, 1082);
         panelRight.TabIndex = 1;
+        panelRight.Paint += panelRight_Paint;
         // 
         // cboXepLoai
         // 
@@ -121,47 +170,71 @@ partial class UcSangKien
         cboXepLoai.BorderRadius = 8;
         cboXepLoai.DrawMode = DrawMode.OwnerDrawFixed;
         cboXepLoai.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboXepLoai.FocusedColor = Color.Empty;
+        cboXepLoai.Font = new Font("Segoe UI", 10F);
+        cboXepLoai.ForeColor = Color.FromArgb(68, 88, 112);
         cboXepLoai.ItemHeight = 30;
         cboXepLoai.Items.AddRange(new object[] { "Khá", "Tốt", "Xuất sắc" });
-        cboXepLoai.Location = new Point(16, 376);
+        cboXepLoai.Location = new Point(21, 572);
+        cboXepLoai.Margin = new Padding(3, 4, 3, 4);
         cboXepLoai.Name = "cboXepLoai";
-        cboXepLoai.Size = new Size(280, 36);
+        cboXepLoai.Size = new Size(319, 36);
         cboXepLoai.TabIndex = 10;
         // 
         // txtDiaDiem
         // 
         txtDiaDiem.BorderRadius = 8;
-        txtDiaDiem.Location = new Point(16, 323);
+        txtDiaDiem.DefaultText = "";
+        txtDiaDiem.Font = new Font("Segoe UI", 9F);
+        txtDiaDiem.Location = new Point(21, 490);
+        txtDiaDiem.Margin = new Padding(3, 5, 3, 5);
         txtDiaDiem.Name = "txtDiaDiem";
+        txtDiaDiem.PasswordChar = '\0';
         txtDiaDiem.PlaceholderText = "Địa điểm / phạm vi";
-        txtDiaDiem.Size = new Size(360, 45);
+        txtDiaDiem.SelectedText = "";
+        txtDiaDiem.Size = new Size(411, 60);
         txtDiaDiem.TabIndex = 9;
         // 
         // txtThoiGian
         // 
         txtThoiGian.BorderRadius = 8;
-        txtThoiGian.Location = new Point(16, 270);
+        txtThoiGian.DefaultText = "";
+        txtThoiGian.Font = new Font("Segoe UI", 9F);
+        txtThoiGian.Location = new Point(21, 419);
+        txtThoiGian.Margin = new Padding(3, 5, 3, 5);
         txtThoiGian.Name = "txtThoiGian";
+        txtThoiGian.PasswordChar = '\0';
         txtThoiGian.PlaceholderText = "Thời gian thực hiện";
-        txtThoiGian.Size = new Size(360, 45);
+        txtThoiGian.SelectedText = "";
+        txtThoiGian.Size = new Size(411, 60);
         txtThoiGian.TabIndex = 8;
         // 
         // txtNamHoc
         // 
         txtNamHoc.BorderRadius = 8;
-        txtNamHoc.Location = new Point(16, 217);
+        txtNamHoc.DefaultText = "";
+        txtNamHoc.Font = new Font("Segoe UI", 9F);
+        txtNamHoc.Location = new Point(21, 348);
+        txtNamHoc.Margin = new Padding(3, 5, 3, 5);
         txtNamHoc.Name = "txtNamHoc";
+        txtNamHoc.PasswordChar = '\0';
         txtNamHoc.PlaceholderText = "Năm học";
-        txtNamHoc.Size = new Size(168, 45);
+        txtNamHoc.SelectedText = "";
+        txtNamHoc.Size = new Size(192, 60);
         txtNamHoc.TabIndex = 7;
         // 
         // txtLinhVuc
         // 
         txtLinhVuc.BorderRadius = 8;
-        txtLinhVuc.Location = new Point(16, 164);
+        txtLinhVuc.DefaultText = "";
+        txtLinhVuc.Font = new Font("Segoe UI", 9F);
+        txtLinhVuc.Location = new Point(21, 278);
+        txtLinhVuc.Margin = new Padding(3, 5, 3, 5);
         txtLinhVuc.Name = "txtLinhVuc";
+        txtLinhVuc.PasswordChar = '\0';
         txtLinhVuc.PlaceholderText = "Lĩnh vực";
-        txtLinhVuc.Size = new Size(360, 45);
+        txtLinhVuc.SelectedText = "";
+        txtLinhVuc.Size = new Size(411, 60);
         txtLinhVuc.TabIndex = 6;
         // 
         // cboLoai
@@ -170,11 +243,15 @@ partial class UcSangKien
         cboLoai.BorderRadius = 8;
         cboLoai.DrawMode = DrawMode.OwnerDrawFixed;
         cboLoai.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboLoai.FocusedColor = Color.Empty;
+        cboLoai.Font = new Font("Segoe UI", 10F);
+        cboLoai.ForeColor = Color.FromArgb(68, 88, 112);
         cboLoai.ItemHeight = 30;
         cboLoai.Items.AddRange(new object[] { "Sáng kiến", "Cải tiến" });
-        cboLoai.Location = new Point(220, 118);
+        cboLoai.Location = new Point(254, 216);
+        cboLoai.Margin = new Padding(3, 4, 3, 4);
         cboLoai.Name = "cboLoai";
-        cboLoai.Size = new Size(156, 36);
+        cboLoai.Size = new Size(178, 36);
         cboLoai.TabIndex = 5;
         // 
         // cboTuCach
@@ -183,11 +260,15 @@ partial class UcSangKien
         cboTuCach.BorderRadius = 8;
         cboTuCach.DrawMode = DrawMode.OwnerDrawFixed;
         cboTuCach.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboTuCach.FocusedColor = Color.Empty;
+        cboTuCach.Font = new Font("Segoe UI", 10F);
+        cboTuCach.ForeColor = Color.FromArgb(68, 88, 112);
         cboTuCach.ItemHeight = 30;
         cboTuCach.Items.AddRange(new object[] { "Tác giả", "Đồng tác giả" });
-        cboTuCach.Location = new Point(16, 118);
+        cboTuCach.Location = new Point(21, 216);
+        cboTuCach.Margin = new Padding(3, 4, 3, 4);
         cboTuCach.Name = "cboTuCach";
-        cboTuCach.Size = new Size(180, 36);
+        cboTuCach.Size = new Size(205, 36);
         cboTuCach.TabIndex = 4;
         // 
         // cboGiangVien
@@ -196,30 +277,40 @@ partial class UcSangKien
         cboGiangVien.BorderRadius = 8;
         cboGiangVien.DrawMode = DrawMode.OwnerDrawFixed;
         cboGiangVien.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboGiangVien.FocusedColor = Color.Empty;
+        cboGiangVien.Font = new Font("Segoe UI", 10F);
+        cboGiangVien.ForeColor = Color.FromArgb(68, 88, 112);
         cboGiangVien.ItemHeight = 30;
-        cboGiangVien.Location = new Point(16, 70);
+        cboGiangVien.Location = new Point(21, 152);
+        cboGiangVien.Margin = new Padding(3, 4, 3, 4);
         cboGiangVien.Name = "cboGiangVien";
-        cboGiangVien.Size = new Size(360, 36);
+        cboGiangVien.Size = new Size(411, 36);
         cboGiangVien.TabIndex = 3;
         // 
         // txtTenSangKien
         // 
         txtTenSangKien.BorderRadius = 8;
-        txtTenSangKien.Location = new Point(16, 17);
+        txtTenSangKien.DefaultText = "";
+        txtTenSangKien.Font = new Font("Segoe UI", 9F);
+        txtTenSangKien.Location = new Point(21, 82);
+        txtTenSangKien.Margin = new Padding(3, 5, 3, 5);
         txtTenSangKien.Name = "txtTenSangKien";
+        txtTenSangKien.PasswordChar = '\0';
         txtTenSangKien.PlaceholderText = "Tên sáng kiến";
-        txtTenSangKien.Size = new Size(360, 45);
+        txtTenSangKien.SelectedText = "";
+        txtTenSangKien.Size = new Size(411, 60);
         txtTenSangKien.TabIndex = 2;
         // 
         // btnXoa
         // 
         btnXoa.BorderRadius = 8;
         btnXoa.FillColor = Color.FromArgb(250, 60, 76);
-        btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         btnXoa.ForeColor = Color.White;
-        btnXoa.Location = new Point(288, 440);
+        btnXoa.Location = new Point(202, 647);
+        btnXoa.Margin = new Padding(3, 4, 3, 4);
         btnXoa.Name = "btnXoa";
-        btnXoa.Size = new Size(88, 45);
+        btnXoa.Size = new Size(160, 60);
         btnXoa.TabIndex = 1;
         btnXoa.Text = "Xóa";
         btnXoa.Click += btnXoa_Click;
@@ -228,11 +319,12 @@ partial class UcSangKien
         // 
         btnHuy.BorderRadius = 8;
         btnHuy.FillColor = Color.Gray;
-        btnHuy.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        btnHuy.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         btnHuy.ForeColor = Color.White;
-        btnHuy.Location = new Point(184, 440);
+        btnHuy.Location = new Point(374, 647);
+        btnHuy.Margin = new Padding(3, 4, 3, 4);
         btnHuy.Name = "btnHuy";
-        btnHuy.Size = new Size(88, 45);
+        btnHuy.Size = new Size(160, 60);
         btnHuy.TabIndex = 0;
         btnHuy.Text = "Hủy";
         btnHuy.Visible = false;
@@ -242,11 +334,12 @@ partial class UcSangKien
         // 
         btnLuu.BorderRadius = 8;
         btnLuu.FillColor = Color.FromArgb(31, 122, 224);
-        btnLuu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        btnLuu.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         btnLuu.ForeColor = Color.White;
-        btnLuu.Location = new Point(80, 440);
+        btnLuu.Location = new Point(21, 647);
+        btnLuu.Margin = new Padding(3, 4, 3, 4);
         btnLuu.Name = "btnLuu";
-        btnLuu.Size = new Size(88, 45);
+        btnLuu.Size = new Size(160, 60);
         btnLuu.TabIndex = 0;
         btnLuu.Text = "Thêm mới";
         btnLuu.Click += btnLuu_Click;
@@ -255,11 +348,12 @@ partial class UcSangKien
         // 
         btnLamMoi.BorderRadius = 8;
         btnLamMoi.FillColor = Color.FromArgb(31, 122, 224);
-        btnLamMoi.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        btnLamMoi.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         btnLamMoi.ForeColor = Color.White;
-        btnLamMoi.Location = new Point(16, 4);
+        btnLamMoi.Location = new Point(13, 13);
+        btnLamMoi.Margin = new Padding(3, 4, 3, 4);
         btnLamMoi.Name = "btnLamMoi";
-        btnLamMoi.Size = new Size(120, 40);
+        btnLamMoi.Size = new Size(156, 52);
         btnLamMoi.TabIndex = 2;
         btnLamMoi.Text = "Làm mới";
         btnLamMoi.Click += btnLamMoi_Click;
@@ -271,8 +365,9 @@ partial class UcSangKien
         panelLeft.Dock = DockStyle.Left;
         panelLeft.FillColor = Color.FromArgb(245, 247, 250);
         panelLeft.Location = new Point(0, 0);
+        panelLeft.Margin = new Padding(3, 4, 3, 4);
         panelLeft.Name = "panelLeft";
-        panelLeft.Size = new Size(640, 640);
+        panelLeft.Size = new Size(1160, 1000);
         panelLeft.TabIndex = 3;
         // 
         // dialog
@@ -280,30 +375,29 @@ partial class UcSangKien
         dialog.Buttons = Siticone.Desktop.UI.WinForms.MessageDialogButtons.OK;
         dialog.Caption = "Thông báo";
         dialog.Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Warning;
+        dialog.Parent = null;
         dialog.Style = Siticone.Desktop.UI.WinForms.MessageDialogStyle.Light;
         dialog.Text = "message";
         // 
         // UcSangKien
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
+        AutoScaleMode = AutoScaleMode.None;
         Controls.Add(panelRight);
         Controls.Add(panelLeft);
+        Margin = new Padding(3, 4, 3, 4);
         Name = "UcSangKien";
-        Size = new Size(1520, 640);
+        Size = new Size(1889, 1000);
+        Load += UcSangKien_Load;
         ((System.ComponentModel.ISupportInitialize)gridSangKien).EndInit();
         panelRight.ResumeLayout(false);
         panelLeft.ResumeLayout(false);
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
 
     private Siticone.Desktop.UI.WinForms.SiticoneDataGridView gridSangKien;
-    private DataGridViewTextBoxColumn colTenSangKien;
-    private DataGridViewTextBoxColumn colGiangVien;
-    private DataGridViewTextBoxColumn colNamHoc;
-    private DataGridViewTextBoxColumn colLoai;
     private Siticone.Desktop.UI.WinForms.SiticonePanel panelRight;
     private Siticone.Desktop.UI.WinForms.SiticoneComboBox cboXepLoai;
     private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtDiaDiem;
@@ -320,4 +414,8 @@ partial class UcSangKien
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnLamMoi;
     private Siticone.Desktop.UI.WinForms.SiticonePanel panelLeft;
     private Siticone.Desktop.UI.WinForms.SiticoneMessageDialog dialog;
+    private DataGridViewTextBoxColumn colTenSangKien;
+    private DataGridViewTextBoxColumn colGiangVien;
+    private DataGridViewTextBoxColumn colNamHoc;
+    private DataGridViewTextBoxColumn colLoai;
 }
