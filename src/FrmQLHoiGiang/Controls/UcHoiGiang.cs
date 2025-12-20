@@ -33,6 +33,12 @@ public partial class UcHoiGiang : UserControl
         AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        dialog.Parent = FindForm();
+    }
+
     private void btnRefreshHoiGiang_Click(object sender, EventArgs e)
     {
         LoadHoiGiang();
@@ -87,43 +93,6 @@ public partial class UcHoiGiang : UserControl
 
         cboCapThucHien.Items.AddRange(capValues.Cast<object>().ToArray());
         cboCapThucHien.SelectedIndex = cboCapThucHien.Items.Count > 0 ? 0 : -1;
-    }
-
-    private void HandleGiangVienChanged()
-    {
-        var selectedMain = GetSelectedId(cboGiangVien);
-        var memberCombos = new[] { cboThanhVien1, cboThanhVien2, cboThanhVien3, cboThanhVien4, cboThanhVien5 };
-        var selectedMembers = memberCombos.ToDictionary(combo => combo, GetSelectedId);
-
-        _giangVien.Clear();
-        _giangVien.AddRange(AppServices.GiangVien.GetGiangVien());
-        cboGiangVien.DataSource = _giangVien.ToList();
-        cboGiangVien.DisplayMember = "HoTen";
-        cboGiangVien.ValueMember = "GiangVienId";
-
-        var gvSource = _giangVien.Select(g => new { g.GiangVienId, g.HoTen }).ToList();
-        foreach (var combo in memberCombos)
-        {
-            combo.DataSource = gvSource.ToList();
-            combo.DisplayMember = "HoTen";
-            combo.ValueMember = "GiangVienId";
-        }
-
-        if (selectedMain.HasValue)
-        {
-            cboGiangVien.SelectedValue = selectedMain.Value;
-        }
-
-        foreach (var combo in memberCombos)
-        {
-            var value = selectedMembers[combo];
-            if (value.HasValue)
-            {
-                combo.SelectedValue = value.Value;
-            }
-        }
-
-        UpdateGiangVienInfo();
     }
 
     private void HandleGiangVienChanged()
@@ -264,8 +233,7 @@ public partial class UcHoiGiang : UserControl
     {
         if (cboGiangVien.SelectedValue == null || string.IsNullOrWhiteSpace(txtTenBai.Text))
         {
-            dialog.Text = "Chon giang vien va nhap ten bai.";
-            dialog.Show();
+            dialog.Show("Chon giang vien va nhap ten bai.");
             return;
         }
 
@@ -290,8 +258,7 @@ public partial class UcHoiGiang : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Text = $"Khong the luu bai hoi giang: {ex.Message}";
-            dialog.Show();
+            dialog.Show($"Khong the luu bai hoi giang: {ex.Message}");
         }
     }
 
@@ -342,8 +309,7 @@ public partial class UcHoiGiang : UserControl
     {
         if (cboHoiDongBai.SelectedValue == null)
         {
-            dialog.Text = "Chon bai hoi giang truoc khi gan hoi dong.";
-            dialog.Show();
+            dialog.Show("Chon bai hoi giang truoc khi gan hoi dong.");
             return;
         }
 
@@ -358,16 +324,14 @@ public partial class UcHoiGiang : UserControl
 
         if (selections.Any(x => x.Combo.SelectedValue == null))
         {
-            dialog.Text = "Can du 5 thanh vien theo co cau.";
-            dialog.Show();
+            dialog.Show("Can du 5 thanh vien theo co cau.");
             return;
         }
 
         var selectedIds = selections.Select(x => (int)x.Combo.SelectedValue!).ToList();
         if (selectedIds.Distinct().Count() != selectedIds.Count)
         {
-            dialog.Text = "Moi thanh vien chi duoc chon mot lan.";
-            dialog.Show();
+            dialog.Show("Moi thanh vien chi duoc chon mot lan.");
             return;
         }
 
@@ -391,14 +355,12 @@ public partial class UcHoiGiang : UserControl
         {
             AppServices.HoiGiang.SaveHoiDong(hoiDong);
             dialog.Icon = MessageDialogIcon.Information;
-            dialog.Text = "Da luu hoi dong.";
-            dialog.Show();
+            dialog.Show("Da luu hoi dong.");
         }
         catch (Exception ex)
         {
             dialog.Icon = MessageDialogIcon.Error;
-            dialog.Text = $"Khong the luu hoi dong: {ex.Message}";
-            dialog.Show();
+            dialog.Show($"Khong the luu hoi dong: {ex.Message}");
         }
     }
 
@@ -437,8 +399,7 @@ public partial class UcHoiGiang : UserControl
         if (!decimal.TryParse(txtDiemHieuBiet.Text, out var hieuBiet) ||
             !decimal.TryParse(txtDiemHoSo.Text, out var hoSo))
         {
-            dialog.Text = "Diem hien biet va ho so khong hop le.";
-            dialog.Show();
+            dialog.Show("Diem hien biet va ho so khong hop le.");
             return;
         }
 
@@ -477,8 +438,7 @@ public partial class UcHoiGiang : UserControl
         {
             if (!decimal.TryParse(box.Text, out var diem))
             {
-                dialog.Text = "Nhap diem cho moi thanh vien hoi dong.";
-                dialog.Show();
+                dialog.Show("Nhap diem cho moi thanh vien hoi dong.");
                 return false;
             }
 
@@ -493,8 +453,7 @@ public partial class UcHoiGiang : UserControl
     {
         if (cboKetQuaBai.SelectedValue == null)
         {
-            dialog.Text = "Chon bai hoi giang.";
-            dialog.Show();
+            dialog.Show("Chon bai hoi giang.");
             return;
         }
 
@@ -503,8 +462,7 @@ public partial class UcHoiGiang : UserControl
             !decimal.TryParse(txtDiemThucHanh.Text, out var thucHanh) ||
             !decimal.TryParse(txtTongDiem.Text, out var tong))
         {
-            dialog.Text = "Vui long tinh diem truoc khi luu.";
-            dialog.Show();
+            dialog.Show("Vui long tinh diem truoc khi luu.");
             return;
         }
 
@@ -523,15 +481,13 @@ public partial class UcHoiGiang : UserControl
         {
             AppServices.HoiGiang.SaveKetQua(ketQua);
             dialog.Icon = MessageDialogIcon.Information;
-            dialog.Text = "Da luu ket qua.";
-            dialog.Show();
+            dialog.Show("Da luu ket qua.");
             LoadHoiGiang();
         }
         catch (Exception ex)
         {
             dialog.Icon = MessageDialogIcon.Error;
-            dialog.Text = $"Khong the luu ket qua: {ex.Message}";
-            dialog.Show();
+            dialog.Show($"Khong the luu ket qua: {ex.Message}");
         }
     }
 

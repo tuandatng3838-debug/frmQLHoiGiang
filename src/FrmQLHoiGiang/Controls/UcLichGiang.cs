@@ -20,6 +20,12 @@ public partial class UcLichGiang : UserControl
         AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        dialog.Parent = FindForm();
+    }
+
     private void LoadLookups()
     {
         _giangVien = AppServices.GiangVien.GetGiangVien();
@@ -118,8 +124,7 @@ public partial class UcLichGiang : UserControl
     {
         if (cboGiangVien.SelectedValue == null || string.IsNullOrWhiteSpace(txtTenMon.Text))
         {
-            dialog.Text = "Chọn giảng viên và nhập tên môn.";
-            dialog.Show();
+            dialog.Show("Chọn giảng viên và nhập tên môn.");
             return;
         }
 
@@ -133,15 +138,13 @@ public partial class UcLichGiang : UserControl
         entity.PhongHoc = txtPhong.Text.Trim();
         if (!int.TryParse(txtSoTiet.Text, out var soTiet))
         {
-            dialog.Text = "Số tiết không hợp lệ.";
-            dialog.Show();
+            dialog.Show("Số tiết không hợp lệ.");
             return;
         }
 
         if (!int.TryParse(txtSiSo.Text, out var siSo))
         {
-            dialog.Text = "Sĩ số không hợp lệ.";
-            dialog.Show();
+            dialog.Show("Sĩ số không hợp lệ.");
             return;
         }
 
@@ -151,8 +154,7 @@ public partial class UcLichGiang : UserControl
         var result = AppServices.LichGiang.Save(entity);
         if (!result.Success)
         {
-            dialog.Text = result.Error ?? "Không thể lưu.";
-            dialog.Show();
+            dialog.Show(result.Error ?? "Không thể lưu.");
             return;
         }
 
@@ -168,8 +170,7 @@ public partial class UcLichGiang : UserControl
     {
         if (_current == null)
         {
-            dialog.Text = "Chọn lịch cần xóa.";
-            dialog.Show();
+            dialog.Show("Chọn lịch cần xóa.");
             return;
         }
 

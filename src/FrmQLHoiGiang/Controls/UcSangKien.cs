@@ -19,6 +19,12 @@ public partial class UcSangKien : UserControl
         AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        dialog.Parent = FindForm();
+    }
+
     private void LoadLookups()
     {
         var gv = AppServices.GiangVien.GetGiangVien();
@@ -111,8 +117,7 @@ public partial class UcSangKien : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtTenSangKien.Text) || cboGiangVien.SelectedValue == null)
         {
-            dialog.Text = "Nhập tên sáng kiến và chọn giảng viên.";
-            dialog.Show();
+            dialog.Show("Nhập tên sáng kiến và chọn giảng viên.");
             return;
         }
 
@@ -134,9 +139,8 @@ public partial class UcSangKien : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Text = $"Không thể lưu sáng kiến: {ex.Message}";
             dialog.Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Error;
-            dialog.Show();
+            dialog.Show($"Không thể lưu sáng kiến: {ex.Message}");
         }
     }
 
@@ -144,8 +148,7 @@ public partial class UcSangKien : UserControl
     {
         if (_current == null)
         {
-            dialog.Text = "Chọn sáng kiến cần xóa.";
-            dialog.Show();
+            dialog.Show("Chọn sáng kiến cần xóa.");
             return;
         }
 

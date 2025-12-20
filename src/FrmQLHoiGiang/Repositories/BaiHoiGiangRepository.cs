@@ -10,6 +10,7 @@ public class BaiHoiGiangRepository : RepositoryBase
         const string sql = """
             SELECT DISTINCT CapThucHien
             FROM BaiHoiGiang
+            WHERE CapThucHien IS NOT NULL
             ORDER BY CapThucHien
             """;
         var values = new List<string>();
@@ -18,10 +19,7 @@ public class BaiHoiGiangRepository : RepositoryBase
         using var reader = cmd.ExecuteReader();
         while (reader.Read())
         {
-            if (!reader.IsDBNull(0))
-            {
-                values.Add(reader.GetString(0));
-            }
+            values.Add(reader.GetString(0));
         }
 
         return values;

@@ -258,7 +258,7 @@ partial class UcHoiGiang
         btnTaoMoiHoiGiang.Name = "btnTaoMoiHoiGiang";
         btnTaoMoiHoiGiang.Size = new Size(160, 60);
         btnTaoMoiHoiGiang.TabIndex = 7;
-        btnTaoMoiHoiGiang.Text = "Tao moi";
+        btnTaoMoiHoiGiang.Text = "Tạo mới";
         btnTaoMoiHoiGiang.Click += btnTaoMoiHoiGiang_Click;
         // 
         // btnThemNhanhHoiGiang
@@ -272,7 +272,7 @@ partial class UcHoiGiang
         btnThemNhanhHoiGiang.Name = "btnThemNhanhHoiGiang";
         btnThemNhanhHoiGiang.Size = new Size(160, 60);
         btnThemNhanhHoiGiang.TabIndex = 8;
-        btnThemNhanhHoiGiang.Text = "Them nhanh";
+        btnThemNhanhHoiGiang.Text = "Thêm";
         btnThemNhanhHoiGiang.Click += btnThemNhanhHoiGiang_Click;
         // 
         // cboCapThucHien

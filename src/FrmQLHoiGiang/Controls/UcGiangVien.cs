@@ -21,6 +21,12 @@ public partial class UcGiangVien : UserControl
         LoadData();
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        messageDialog.Parent = FindForm();
+    }
+
     private void LoadLookups()
     {
         cboDonVi.DataSource = AppServices.Lookup.GetDonVi();
@@ -136,8 +142,7 @@ public partial class UcGiangVien : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtMaSo.Text) || string.IsNullOrWhiteSpace(txtHoTen.Text))
         {
-            messageDialog.Text = "Vui lòng nhập Mã số và Họ tên.";
-            messageDialog.Show();
+            messageDialog.Show("Vui lòng nhập Mã số và Họ tên.");
             return;
         }
 
@@ -170,8 +175,7 @@ public partial class UcGiangVien : UserControl
         }
         catch (Exception ex)
         {
-            messageDialog.Text = $"Không thể lưu giảng viên: {ex.Message}";
-            messageDialog.Show();
+            messageDialog.Show($"Không thể lưu giảng viên: {ex.Message}");
         }
     }
 
@@ -179,8 +183,7 @@ public partial class UcGiangVien : UserControl
     {
         if (_current == null)
         {
-            messageDialog.Text = "Chọn một giảng viên để xóa.";
-            messageDialog.Show();
+            messageDialog.Show("Chọn một giảng viên để xóa.");
             return;
         }
 
@@ -201,8 +204,7 @@ public partial class UcGiangVien : UserControl
             }
             catch (Exception ex)
             {
-                messageDialog.Text = $"Không thể xóa: {ex.Message}";
-                messageDialog.Show();
+                messageDialog.Show($"Không thể xóa: {ex.Message}");
             }
         }
     }
