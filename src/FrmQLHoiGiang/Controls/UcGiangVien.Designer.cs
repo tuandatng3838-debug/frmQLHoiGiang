@@ -71,7 +71,7 @@ partial class UcGiangVien
         gridGiangVien.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
         dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle2.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle2.ForeColor = Color.White;
         dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
@@ -81,21 +81,21 @@ partial class UcGiangVien
         gridGiangVien.Columns.AddRange(new DataGridViewColumn[] { colMaSo, colHoTen, colSoDienThoai, colEmail });
         dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle3.BackColor = Color.White;
-        dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle3.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
         gridGiangVien.DefaultCellStyle = dataGridViewCellStyle3;
         gridGiangVien.GridColor = Color.FromArgb(231, 229, 255);
-        gridGiangVien.Location = new Point(13, 82);
+        gridGiangVien.Location = new Point(13, 73);
         gridGiangVien.Margin = new Padding(3, 4, 3, 4);
         gridGiangVien.Name = "gridGiangVien";
         gridGiangVien.ReadOnly = true;
         gridGiangVien.RowHeadersVisible = false;
         gridGiangVien.RowHeadersWidth = 62;
         gridGiangVien.RowTemplate.Height = 32;
-        gridGiangVien.Size = new Size(853, 1457);
+        gridGiangVien.Size = new Size(1007, 1466);
         gridGiangVien.TabIndex = 0;
         gridGiangVien.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
         gridGiangVien.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -106,14 +106,14 @@ partial class UcGiangVien
         gridGiangVien.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridGiangVien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridGiangVien.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-        gridGiangVien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridGiangVien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridGiangVien.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridGiangVien.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridGiangVien.ThemeStyle.HeaderStyle.Height = 45;
         gridGiangVien.ThemeStyle.ReadOnly = true;
         gridGiangVien.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridGiangVien.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridGiangVien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridGiangVien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridGiangVien.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridGiangVien.ThemeStyle.RowsStyle.Height = 32;
         gridGiangVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
@@ -183,18 +183,18 @@ partial class UcGiangVien
         panelRight.Controls.Add(txtMaSo);
         panelRight.Dock = DockStyle.Fill;
         panelRight.FillColor = Color.White;
-        panelRight.Location = new Point(0, 0);
+        panelRight.Location = new Point(1071, 24);
         panelRight.Margin = new Padding(24, 0, 0, 0);
         panelRight.Name = "panelRight";
         panelRight.Padding = new Padding(18, 22, 18, 22);
-        panelRight.Size = new Size(667, 824);
+        panelRight.Size = new Size(659, 824);
         panelRight.TabIndex = 1;
         // 
         // txtNamDayGioi
         // 
         txtNamDayGioi.BorderRadius = 8;
         txtNamDayGioi.DefaultText = "";
-        txtNamDayGioi.Font = new Font("Segoe UI", 9F);
+        txtNamDayGioi.Font = new Font("Segoe UI", 16F);
         txtNamDayGioi.Location = new Point(395, 494);
         txtNamDayGioi.Margin = new Padding(5, 6, 5, 6);
         txtNamDayGioi.Name = "txtNamDayGioi";
@@ -208,7 +208,7 @@ partial class UcGiangVien
         // 
         txtLinhVuc.BorderRadius = 8;
         txtLinhVuc.DefaultText = "";
-        txtLinhVuc.Font = new Font("Segoe UI", 9F);
+        txtLinhVuc.Font = new Font("Segoe UI", 16F);
         txtLinhVuc.Location = new Point(395, 432);
         txtLinhVuc.Margin = new Padding(5, 6, 5, 6);
         txtLinhVuc.Name = "txtLinhVuc";
@@ -222,7 +222,7 @@ partial class UcGiangVien
         // 
         txtChucVu.BorderRadius = 8;
         txtChucVu.DefaultText = "";
-        txtChucVu.Font = new Font("Segoe UI", 9F);
+        txtChucVu.Font = new Font("Segoe UI", 16F);
         txtChucVu.Location = new Point(395, 370);
         txtChucVu.Margin = new Padding(5, 6, 5, 6);
         txtChucVu.Name = "txtChucVu";
@@ -239,7 +239,7 @@ partial class UcGiangVien
         cboDonVi.DrawMode = DrawMode.OwnerDrawFixed;
         cboDonVi.DropDownStyle = ComboBoxStyle.DropDownList;
         cboDonVi.FocusedColor = Color.Empty;
-        cboDonVi.Font = new Font("Segoe UI", 10F);
+        cboDonVi.Font = new Font("Segoe UI", 16F);
         cboDonVi.ForeColor = Color.FromArgb(68, 88, 112);
         cboDonVi.ItemHeight = 30;
         cboDonVi.Location = new Point(395, 310);
@@ -255,7 +255,7 @@ partial class UcGiangVien
         cboHocVi.DrawMode = DrawMode.OwnerDrawFixed;
         cboHocVi.DropDownStyle = ComboBoxStyle.DropDownList;
         cboHocVi.FocusedColor = Color.Empty;
-        cboHocVi.Font = new Font("Segoe UI", 10F);
+        cboHocVi.Font = new Font("Segoe UI", 16F);
         cboHocVi.ForeColor = Color.FromArgb(68, 88, 112);
         cboHocVi.ItemHeight = 30;
         cboHocVi.Location = new Point(395, 248);
@@ -271,7 +271,7 @@ partial class UcGiangVien
         cboHocHam.DrawMode = DrawMode.OwnerDrawFixed;
         cboHocHam.DropDownStyle = ComboBoxStyle.DropDownList;
         cboHocHam.FocusedColor = Color.Empty;
-        cboHocHam.Font = new Font("Segoe UI", 10F);
+        cboHocHam.Font = new Font("Segoe UI", 16F);
         cboHocHam.ForeColor = Color.FromArgb(68, 88, 112);
         cboHocHam.ItemHeight = 30;
         cboHocHam.Location = new Point(395, 186);
@@ -287,7 +287,7 @@ partial class UcGiangVien
         cboChucDanh.DrawMode = DrawMode.OwnerDrawFixed;
         cboChucDanh.DropDownStyle = ComboBoxStyle.DropDownList;
         cboChucDanh.FocusedColor = Color.Empty;
-        cboChucDanh.Font = new Font("Segoe UI", 10F);
+        cboChucDanh.Font = new Font("Segoe UI", 16F);
         cboChucDanh.ForeColor = Color.FromArgb(68, 88, 112);
         cboChucDanh.ItemHeight = 30;
         cboChucDanh.Location = new Point(395, 126);
@@ -300,7 +300,7 @@ partial class UcGiangVien
         // 
         txtHeSoLuong.BorderRadius = 8;
         txtHeSoLuong.DefaultText = "";
-        txtHeSoLuong.Font = new Font("Segoe UI", 9F);
+        txtHeSoLuong.Font = new Font("Segoe UI", 16F);
         txtHeSoLuong.Location = new Point(395, 64);
         txtHeSoLuong.Margin = new Padding(5, 6, 5, 6);
         txtHeSoLuong.Name = "txtHeSoLuong";
@@ -317,7 +317,7 @@ partial class UcGiangVien
         cboCapBac.DrawMode = DrawMode.OwnerDrawFixed;
         cboCapBac.DropDownStyle = ComboBoxStyle.DropDownList;
         cboCapBac.FocusedColor = Color.Empty;
-        cboCapBac.Font = new Font("Segoe UI", 10F);
+        cboCapBac.Font = new Font("Segoe UI", 16F);
         cboCapBac.ForeColor = Color.FromArgb(68, 88, 112);
         cboCapBac.ItemHeight = 30;
         cboCapBac.Location = new Point(23, 678);
@@ -333,7 +333,7 @@ partial class UcGiangVien
         cboTrinhDoLLCT.DrawMode = DrawMode.OwnerDrawFixed;
         cboTrinhDoLLCT.DropDownStyle = ComboBoxStyle.DropDownList;
         cboTrinhDoLLCT.FocusedColor = Color.Empty;
-        cboTrinhDoLLCT.Font = new Font("Segoe UI", 10F);
+        cboTrinhDoLLCT.Font = new Font("Segoe UI", 16F);
         cboTrinhDoLLCT.ForeColor = Color.FromArgb(68, 88, 112);
         cboTrinhDoLLCT.ItemHeight = 30;
         cboTrinhDoLLCT.Location = new Point(23, 616);
@@ -349,7 +349,7 @@ partial class UcGiangVien
         cboTrinhDoCM.DrawMode = DrawMode.OwnerDrawFixed;
         cboTrinhDoCM.DropDownStyle = ComboBoxStyle.DropDownList;
         cboTrinhDoCM.FocusedColor = Color.Empty;
-        cboTrinhDoCM.Font = new Font("Segoe UI", 10F);
+        cboTrinhDoCM.Font = new Font("Segoe UI", 16F);
         cboTrinhDoCM.ForeColor = Color.FromArgb(68, 88, 112);
         cboTrinhDoCM.ItemHeight = 30;
         cboTrinhDoCM.Location = new Point(23, 554);
@@ -362,7 +362,7 @@ partial class UcGiangVien
         // 
         txtTonGiao.BorderRadius = 8;
         txtTonGiao.DefaultText = "";
-        txtTonGiao.Font = new Font("Segoe UI", 9F);
+        txtTonGiao.Font = new Font("Segoe UI", 16F);
         txtTonGiao.Location = new Point(23, 494);
         txtTonGiao.Margin = new Padding(5, 6, 5, 6);
         txtTonGiao.Name = "txtTonGiao";
@@ -376,7 +376,7 @@ partial class UcGiangVien
         // 
         txtDanToc.BorderRadius = 8;
         txtDanToc.DefaultText = "";
-        txtDanToc.Font = new Font("Segoe UI", 9F);
+        txtDanToc.Font = new Font("Segoe UI", 16F);
         txtDanToc.Location = new Point(23, 432);
         txtDanToc.Margin = new Padding(5, 6, 5, 6);
         txtDanToc.Name = "txtDanToc";
@@ -390,28 +390,28 @@ partial class UcGiangVien
         // 
         txtQueQuanTinh.BorderRadius = 8;
         txtQueQuanTinh.DefaultText = "";
-        txtQueQuanTinh.Font = new Font("Segoe UI", 9F);
-        txtQueQuanTinh.Location = new Point(210, 370);
-        txtQueQuanTinh.Margin = new Padding(5, 6, 5, 6);
+        txtQueQuanTinh.Font = new Font("Segoe UI", 15F);
+        txtQueQuanTinh.Location = new Point(194, 370);
+        txtQueQuanTinh.Margin = new Padding(8, 11, 8, 11);
         txtQueQuanTinh.Name = "txtQueQuanTinh";
         txtQueQuanTinh.PasswordChar = '\0';
         txtQueQuanTinh.PlaceholderText = "Quê quán - Tỉnh";
         txtQueQuanTinh.SelectedText = "";
-        txtQueQuanTinh.Size = new Size(155, 54);
+        txtQueQuanTinh.Size = new Size(172, 54);
         txtQueQuanTinh.TabIndex = 12;
         // 
         // txtQueQuanXa
         // 
         txtQueQuanXa.BorderRadius = 8;
         txtQueQuanXa.DefaultText = "";
-        txtQueQuanXa.Font = new Font("Segoe UI", 9F);
+        txtQueQuanXa.Font = new Font("Segoe UI", 16F);
         txtQueQuanXa.Location = new Point(23, 370);
         txtQueQuanXa.Margin = new Padding(5, 6, 5, 6);
         txtQueQuanXa.Name = "txtQueQuanXa";
         txtQueQuanXa.PasswordChar = '\0';
         txtQueQuanXa.PlaceholderText = "Quê quán - Xã";
         txtQueQuanXa.SelectedText = "";
-        txtQueQuanXa.Size = new Size(155, 54);
+        txtQueQuanXa.Size = new Size(169, 54);
         txtQueQuanXa.TabIndex = 11;
         // 
         // label1
@@ -420,7 +420,7 @@ partial class UcGiangVien
         label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
         label1.Location = new Point(18, 22);
         label1.Name = "label1";
-        label1.Size = new Size(169, 28);
+        label1.Size = new Size(134, 21);
         label1.TabIndex = 0;
         label1.Text = "Thông tin chi tiết";
         // 
@@ -428,7 +428,7 @@ partial class UcGiangVien
         // 
         btnXoa.BorderRadius = 8;
         btnXoa.FillColor = Color.FromArgb(250, 60, 76);
-        btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnXoa.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnXoa.ForeColor = Color.White;
         btnXoa.Location = new Point(230, 769);
         btnXoa.Margin = new Padding(3, 4, 3, 4);
@@ -442,7 +442,7 @@ partial class UcGiangVien
         // 
         btnHuy.BorderRadius = 8;
         btnHuy.FillColor = Color.Gray;
-        btnHuy.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnHuy.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnHuy.ForeColor = Color.White;
         btnHuy.Location = new Point(439, 769);
         btnHuy.Margin = new Padding(3, 4, 3, 4);
@@ -457,7 +457,7 @@ partial class UcGiangVien
         // 
         btnLuu.BorderRadius = 8;
         btnLuu.FillColor = Color.FromArgb(31, 122, 224);
-        btnLuu.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnLuu.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnLuu.ForeColor = Color.White;
         btnLuu.Location = new Point(21, 769);
         btnLuu.Margin = new Padding(3, 4, 3, 4);
@@ -471,7 +471,7 @@ partial class UcGiangVien
         // 
         txtSoDienThoai.BorderRadius = 8;
         txtSoDienThoai.DefaultText = "";
-        txtSoDienThoai.Font = new Font("Segoe UI", 9F);
+        txtSoDienThoai.Font = new Font("Segoe UI", 16F);
         txtSoDienThoai.Location = new Point(23, 310);
         txtSoDienThoai.Margin = new Padding(5, 6, 5, 6);
         txtSoDienThoai.Name = "txtSoDienThoai";
@@ -485,7 +485,7 @@ partial class UcGiangVien
         // 
         txtEmail.BorderRadius = 8;
         txtEmail.DefaultText = "";
-        txtEmail.Font = new Font("Segoe UI", 9F);
+        txtEmail.Font = new Font("Segoe UI", 16F);
         txtEmail.Location = new Point(23, 248);
         txtEmail.Margin = new Padding(5, 6, 5, 6);
         txtEmail.Name = "txtEmail";
@@ -500,7 +500,7 @@ partial class UcGiangVien
         dtNgaySinh.BorderRadius = 8;
         dtNgaySinh.Checked = true;
         dtNgaySinh.FillColor = Color.WhiteSmoke;
-        dtNgaySinh.Font = new Font("Segoe UI", 9F);
+        dtNgaySinh.Font = new Font("Segoe UI", 16F);
         dtNgaySinh.Format = DateTimePickerFormat.Short;
         dtNgaySinh.Location = new Point(210, 186);
         dtNgaySinh.Margin = new Padding(3, 4, 3, 4);
@@ -518,7 +518,7 @@ partial class UcGiangVien
         cboGioiTinh.DrawMode = DrawMode.OwnerDrawFixed;
         cboGioiTinh.DropDownStyle = ComboBoxStyle.DropDownList;
         cboGioiTinh.FocusedColor = Color.Empty;
-        cboGioiTinh.Font = new Font("Segoe UI", 10F);
+        cboGioiTinh.Font = new Font("Segoe UI", 16F);
         cboGioiTinh.ForeColor = Color.FromArgb(68, 88, 112);
         cboGioiTinh.ItemHeight = 30;
         cboGioiTinh.Items.AddRange(new object[] { "Nữ", "Nam" });
@@ -532,7 +532,7 @@ partial class UcGiangVien
         // 
         txtHoTen.BorderRadius = 8;
         txtHoTen.DefaultText = "";
-        txtHoTen.Font = new Font("Segoe UI", 9F);
+        txtHoTen.Font = new Font("Segoe UI", 16F);
         txtHoTen.Location = new Point(23, 126);
         txtHoTen.Margin = new Padding(5, 6, 5, 6);
         txtHoTen.Name = "txtHoTen";
@@ -546,7 +546,7 @@ partial class UcGiangVien
         // 
         txtMaSo.BorderRadius = 8;
         txtMaSo.DefaultText = "";
-        txtMaSo.Font = new Font("Segoe UI", 9F);
+        txtMaSo.Font = new Font("Segoe UI", 16F);
         txtMaSo.Location = new Point(23, 64);
         txtMaSo.Margin = new Padding(5, 6, 5, 6);
         txtMaSo.Name = "txtMaSo";
@@ -560,7 +560,7 @@ partial class UcGiangVien
         // 
         btnLamMoi.BorderRadius = 8;
         btnLamMoi.FillColor = Color.FromArgb(31, 122, 224);
-        btnLamMoi.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnLamMoi.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnLamMoi.ForeColor = Color.White;
         btnLamMoi.Location = new Point(13, 13);
         btnLamMoi.Margin = new Padding(3, 4, 3, 4);
@@ -572,33 +572,17 @@ partial class UcGiangVien
         // 
         // panelLeft
         // 
+        panelLeft.BorderRadius = 12;
         panelLeft.Controls.Add(gridGiangVien);
         panelLeft.Controls.Add(btnLamMoi);
-        panelLeft.BorderRadius = 12;
         panelLeft.Dock = DockStyle.Fill;
         panelLeft.FillColor = Color.White;
         panelLeft.Location = new Point(24, 24);
         panelLeft.Margin = new Padding(0);
         panelLeft.Name = "panelLeft";
         panelLeft.Padding = new Padding(18, 22, 18, 22);
-        panelLeft.Size = new Size(1039, 824);
+        panelLeft.Size = new Size(1023, 824);
         panelLeft.TabIndex = 3;
-        // 
-        // layoutMain
-        // 
-        layoutMain.BackColor = Color.FromArgb(245, 247, 250);
-        layoutMain.ColumnCount = 2;
-        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-        layoutMain.Dock = DockStyle.Fill;
-        layoutMain.Location = new Point(0, 0);
-        layoutMain.Margin = new Padding(0);
-        layoutMain.Name = "layoutMain";
-        layoutMain.Padding = new Padding(24);
-        layoutMain.RowCount = 1;
-        layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        layoutMain.Size = new Size(1754, 872);
-        layoutMain.TabIndex = 4;
         // 
         // messageDialog
         // 
@@ -609,13 +593,29 @@ partial class UcGiangVien
         messageDialog.Style = Siticone.Desktop.UI.WinForms.MessageDialogStyle.Light;
         messageDialog.Text = "message";
         // 
+        // layoutMain
+        // 
+        layoutMain.BackColor = Color.FromArgb(245, 247, 250);
+        layoutMain.ColumnCount = 2;
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+        layoutMain.Controls.Add(panelLeft, 0, 0);
+        layoutMain.Controls.Add(panelRight, 1, 0);
+        layoutMain.Dock = DockStyle.Fill;
+        layoutMain.Location = new Point(0, 0);
+        layoutMain.Margin = new Padding(0);
+        layoutMain.Name = "layoutMain";
+        layoutMain.Padding = new Padding(24);
+        layoutMain.RowCount = 1;
+        layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        layoutMain.Size = new Size(1754, 872);
+        layoutMain.TabIndex = 4;
+        // 
         // UcGiangVien
         // 
         AutoScaleMode = AutoScaleMode.None;
-        layoutMain.Controls.Add(panelLeft, 0, 0);
-        layoutMain.Controls.Add(panelRight, 1, 0);
-        Controls.Add(layoutMain);
         BackColor = Color.FromArgb(245, 247, 250);
+        Controls.Add(layoutMain);
         Margin = new Padding(3, 4, 3, 4);
         Name = "UcGiangVien";
         Size = new Size(1754, 872);

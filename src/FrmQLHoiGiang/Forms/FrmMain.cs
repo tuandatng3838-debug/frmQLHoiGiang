@@ -19,6 +19,8 @@ public partial class FrmMain : Form
     private void RegisterModules()
     {
         _modules["GV"] = new UcGiangVien();
+        _modules["KHOA"] = new UcKhoa();
+        _modules["BM"] = new UcDonVi();
         _modules["HG"] = new UcHoiGiang();
         _modules["SK"] = new UcSangKien();
         _modules["LG"] = new UcLichGiang();
@@ -55,6 +57,8 @@ public partial class FrmMain : Form
     }
 
     private void btnGiangVien_Click(object sender, EventArgs e) => LoadModule("GV");
+    private void btnKhoa_Click(object sender, EventArgs e) => LoadModule("KHOA");
+    private void btnBoMon_Click(object sender, EventArgs e) => LoadModule("BM");
     private void btnHoiGiang_Click(object sender, EventArgs e) => LoadModule("HG");
     private void btnSangKien_Click(object sender, EventArgs e) => LoadModule("SK");
     private void btnLichGiang_Click(object sender, EventArgs e) => LoadModule("LG");

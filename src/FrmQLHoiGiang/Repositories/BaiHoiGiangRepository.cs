@@ -83,6 +83,51 @@ public class BaiHoiGiangRepository : RepositoryBase
         cmd.ExecuteNonQuery();
     }
 
+    public void DeleteCascade(int baiHoiGiangId)
+    {
+        using var conn = OpenConnection();
+        using var tx = conn.BeginTransaction();
+        try
+        {
+            using (var cmd = new SqlCommand("DELETE FROM KetQuaThanhPhan WHERE KetQuaHoiGiangId IN (SELECT KetQuaHoiGiangId FROM KetQuaHoiGiang WHERE BaiHoiGiangId=@BaiHoiGiangId)", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@BaiHoiGiangId", baiHoiGiangId);
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var cmd = new SqlCommand("DELETE FROM KetQuaHoiGiang WHERE BaiHoiGiangId=@BaiHoiGiangId", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@BaiHoiGiangId", baiHoiGiangId);
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var cmd = new SqlCommand("DELETE FROM ThanhVienHoiDong WHERE HoiDongId IN (SELECT HoiDongId FROM HoiDong WHERE BaiHoiGiangId=@BaiHoiGiangId)", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@BaiHoiGiangId", baiHoiGiangId);
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var cmd = new SqlCommand("DELETE FROM HoiDong WHERE BaiHoiGiangId=@BaiHoiGiangId", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@BaiHoiGiangId", baiHoiGiangId);
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var cmd = new SqlCommand("DELETE FROM BaiHoiGiang WHERE BaiHoiGiangId=@BaiHoiGiangId", conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@BaiHoiGiangId", baiHoiGiangId);
+                cmd.ExecuteNonQuery();
+            }
+
+            tx.Commit();
+        }
+        catch
+        {
+            tx.Rollback();
+            throw;
+        }
+    }
+
     public void UpdateTrangThai(int baiHoiGiangId, string trangThai)
     {
         const string sql = "UPDATE BaiHoiGiang SET TrangThai=@TrangThai WHERE BaiHoiGiangId=@BaiHoiGiangId";

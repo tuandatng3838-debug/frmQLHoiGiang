@@ -42,4 +42,9 @@ public class HoiGiangService
         _ketQuaRepository.Upsert(ketQua);
         _baiHoiGiangRepository.UpdateTrangThai(ketQua.BaiHoiGiangId, "Da cham");
     }
+
+    public void DeleteBaiHoiGiang(int baiHoiGiangId)
+    {
+        _baiHoiGiangRepository.DeleteCascade(baiHoiGiangId);
+    }
 }

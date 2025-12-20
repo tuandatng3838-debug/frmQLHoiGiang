@@ -11,6 +11,7 @@ internal static class Program
     private static void Main()
     {
         ApplicationConfiguration.Initialize();
+        Application.SetDefaultFont(new Font("Segoe UI", 16F));
         Application.Run(new FrmMain());
     }
 }

@@ -1,5 +1,7 @@
+using System.Linq;
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
 
@@ -7,6 +9,7 @@ public partial class UcSangKien : UserControl
 {
     private readonly BindingSource _binding = new();
     private List<SangKien> _data = new();
+    private List<GiangVien> _giangVien = new();
     private SangKien? _current;
 
     public UcSangKien()
@@ -15,6 +18,7 @@ public partial class UcSangKien : UserControl
         gridSangKien.AutoGenerateColumns = false;
         gridSangKien.DataSource = _binding;
         LoadLookups();
+        cboGiangVien.SelectedIndexChanged += (_, _) => UpdateGiangVienInfo();
         LoadData();
         AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
@@ -27,8 +31,8 @@ public partial class UcSangKien : UserControl
 
     private void LoadLookups()
     {
-        var gv = AppServices.GiangVien.GetGiangVien();
-        cboGiangVien.DataSource = gv;
+        _giangVien = AppServices.GiangVien.GetGiangVien();
+        cboGiangVien.DataSource = _giangVien.ToList();
         cboGiangVien.DisplayMember = "HoTen";
         cboGiangVien.ValueMember = "GiangVienId";
     }
@@ -41,6 +45,8 @@ public partial class UcSangKien : UserControl
         {
             cboGiangVien.SelectedValue = selectedId.Value;
         }
+
+        UpdateGiangVienInfo();
     }
 
     private static int? GetSelectedId(ComboBox combo)
@@ -79,6 +85,7 @@ public partial class UcSangKien : UserControl
         btnHuy.Visible = false;
         btnLuu.FillColor = Color.FromArgb(31, 122, 224);
         btnLuu.Text = "Thêm mới";
+        UpdateGiangVienInfo();
     }
 
     private void gridSangKien_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -101,6 +108,44 @@ public partial class UcSangKien : UserControl
         btnHuy.Visible = true;
         btnLuu.FillColor = Color.SeaGreen;
         btnLuu.Text = "Cập nhật";
+        UpdateGiangVienInfo();
+    }
+
+    private void UpdateGiangVienInfo()
+    {
+        if (cboGiangVien.SelectedValue is not int id)
+        {
+            txtGiangVienEmail.Text = string.Empty;
+            txtGiangVienDienThoai.Text = string.Empty;
+            txtGiangVienNgaySinh.Text = string.Empty;
+            return;
+        }
+
+        var gv = _giangVien.FirstOrDefault(item => item.GiangVienId == id);
+        if (gv == null)
+        {
+            txtGiangVienEmail.Text = string.Empty;
+            txtGiangVienDienThoai.Text = string.Empty;
+            txtGiangVienNgaySinh.Text = string.Empty;
+            return;
+        }
+
+        txtGiangVienEmail.Text = gv.Email ?? string.Empty;
+        txtGiangVienDienThoai.Text = gv.SoDienThoai ?? string.Empty;
+        txtGiangVienNgaySinh.Text = FormatNgaySinh(gv.NgaySinh);
+    }
+
+    private static string FormatNgaySinh(DateTime ngaySinh)
+    {
+        return ngaySinh == default ? string.Empty : ngaySinh.ToString("dd/MM/yyyy");
+    }
+
+    private void ShowMessage(string message, MessageDialogIcon icon = MessageDialogIcon.Warning)
+    {
+        dialog.Caption = "Thong bao";
+        dialog.Icon = icon;
+        dialog.Text = message;
+        dialog.Show();
     }
 
     private void btnLamMoi_Click(object sender, EventArgs e)
@@ -117,7 +162,7 @@ public partial class UcSangKien : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtTenSangKien.Text) || cboGiangVien.SelectedValue == null)
         {
-            dialog.Show("Nhập tên sáng kiến và chọn giảng viên.");
+            ShowMessage("Nhap ten sang kien va chon giang vien.");
             return;
         }
 
@@ -139,8 +184,7 @@ public partial class UcSangKien : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Error;
-            dialog.Show($"Không thể lưu sáng kiến: {ex.Message}");
+            ShowMessage($"Khong the luu sang kien: {ex.Message}", MessageDialogIcon.Error);
         }
     }
 
@@ -148,7 +192,7 @@ public partial class UcSangKien : UserControl
     {
         if (_current == null)
         {
-            dialog.Show("Chọn sáng kiến cần xóa.");
+            ShowMessage("Chon sang kien can xoa.");
             return;
         }
 
@@ -156,6 +200,7 @@ public partial class UcSangKien : UserControl
         {
             Caption = "Xác nhận",
             Text = $"Xóa sáng kiến {_current.TenSangKien}?",
+            Parent = FindForm(),
             Buttons = Siticone.Desktop.UI.WinForms.MessageDialogButtons.YesNo,
             Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Warning
         };

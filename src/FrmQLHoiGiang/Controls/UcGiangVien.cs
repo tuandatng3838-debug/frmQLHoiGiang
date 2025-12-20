@@ -29,7 +29,7 @@ public partial class UcGiangVien : UserControl
 
     private void LoadLookups()
     {
-        cboDonVi.DataSource = AppServices.Lookup.GetDonVi();
+        cboDonVi.DataSource = AppServices.Lookup.GetKhoa();
         cboDonVi.DisplayMember = "Name";
         cboDonVi.ValueMember = "Id";
 
@@ -119,7 +119,7 @@ public partial class UcGiangVien : UserControl
         SelectComboValue(cboChucDanh, entity.ChucDanhId);
         SelectComboValue(cboHocHam, entity.HocHamId);
         SelectComboValue(cboHocVi, entity.HocViId);
-        SelectComboValue(cboDonVi, entity.DonViId);
+        SelectComboValue(cboDonVi, entity.KhoaId);
         txtChucVu.Text = entity.ChucVu ?? string.Empty;
         txtLinhVuc.Text = entity.LinhVucChuyenMon ?? string.Empty;
         txtNamDayGioi.Text = entity.NamGanNhatDayGioi?.ToString() ?? string.Empty;
@@ -163,7 +163,7 @@ public partial class UcGiangVien : UserControl
         entity.ChucDanhId = GetSelectedId(cboChucDanh);
         entity.HocHamId = GetSelectedId(cboHocHam);
         entity.HocViId = GetSelectedId(cboHocVi);
-        entity.DonViId = GetSelectedId(cboDonVi);
+        entity.KhoaId = GetSelectedId(cboDonVi);
         entity.ChucVu = txtChucVu.Text.Trim();
         entity.LinhVucChuyenMon = txtLinhVuc.Text.Trim();
         entity.NamGanNhatDayGioi = int.TryParse(txtNamDayGioi.Text, out var nam) ? nam : null;
@@ -229,6 +229,7 @@ public partial class UcGiangVien : UserControl
             txtQueQuanTinh.Text = parts[1].Trim();
         }
     }
+
 
     private string? BuildQueQuan()
     {

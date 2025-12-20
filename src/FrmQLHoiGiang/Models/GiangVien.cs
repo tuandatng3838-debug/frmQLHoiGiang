@@ -15,6 +15,7 @@ public class GiangVien
     public int? TrinhDoCMId { get; set; }
     public int? TrinhDoLLCTId { get; set; }
     public int? DonViId { get; set; }
+    public int? KhoaId { get; set; }
     public string? ChucVu { get; set; }
     public int? CapBacId { get; set; }
     public decimal? HeSoLuong { get; set; }
