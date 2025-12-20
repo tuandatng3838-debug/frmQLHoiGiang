@@ -534,17 +534,13 @@ GO
 PRINT N'Da nap 10 mau du lieu thu nghiem.';
 
 ALTER TABLE GiangVien ADD KhoaId INT NULL;
-GO
-
 UPDATE gv
 SET KhoaId = d.KhoaId
 FROM GiangVien gv
 JOIN DonVi d ON gv.DonViId = d.DonViId;
-GO
 
 ALTER TABLE GiangVien
 ADD CONSTRAINT FK_GiangVien_Khoa
 FOREIGN KEY (KhoaId) REFERENCES Khoa(KhoaId);
-GO
 
 

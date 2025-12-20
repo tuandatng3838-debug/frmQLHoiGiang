@@ -48,44 +48,6 @@ public partial class UcHoiGiang : UserControl
         LoadHoiGiang();
     }
 
-    private void btnTaoMoiHoiGiang_Click(object sender, EventArgs e)
-    {
-        ClearHoiGiangForm();
-        gridHoiGiang.ClearSelection();
-    }
-
-    private void btnThemNhanhHoiGiang_Click(object sender, EventArgs e)
-    {
-        _selected = null;
-        btnLuuHoiGiang_Click(sender, e);
-    }
-
-    private void btnXoaHoiGiang_Click(object sender, EventArgs e)
-    {
-        if (_selected == null)
-        {
-            ShowMessage("Chon bai hoi giang can xoa.");
-            return;
-        }
-
-        var confirmed = DialogHelper.Confirm(FindForm(), $"Xoa bai hoi giang {_selected.TenBai}?");
-        if (!confirmed)
-        {
-            return;
-        }
-
-        try
-        {
-            AppServices.HoiGiang.DeleteBaiHoiGiang(_selected.BaiHoiGiangId);
-            LoadHoiGiang();
-            ClearHoiGiangForm();
-        }
-        catch (Exception ex)
-        {
-            ShowMessage($"Khong the xoa bai hoi giang: {ex.Message}", MessageDialogIcon.Error);
-        }
-    }
-
     private void LoadLookups()
     {
         _giangVien.Clear();
@@ -117,51 +79,8 @@ public partial class UcHoiGiang : UserControl
         }
 
         cboCapThucHien.Items.Clear();
-        var capValues = AppServices.HoiGiang.GetCapThucHienValues();
-        if (capValues.Count == 0)
-        {
-            capValues.AddRange(new[] { "Hoc vien", "Cap Bo" });
-        }
-
-        cboCapThucHien.Items.AddRange(capValues.Cast<object>().ToArray());
-        cboCapThucHien.SelectedIndex = cboCapThucHien.Items.Count > 0 ? 0 : -1;
-    }
-
-    private void HandleGiangVienChanged()
-    {
-        var selectedMain = GetSelectedId(cboGiangVien);
-        var memberCombos = new[] { cboThanhVien1, cboThanhVien2, cboThanhVien3, cboThanhVien4, cboThanhVien5 };
-        var selectedMembers = memberCombos.ToDictionary(combo => combo, GetSelectedId);
-
-        _giangVien.Clear();
-        _giangVien.AddRange(AppServices.GiangVien.GetGiangVien());
-        cboGiangVien.DataSource = _giangVien.ToList();
-        cboGiangVien.DisplayMember = "HoTen";
-        cboGiangVien.ValueMember = "GiangVienId";
-
-        var gvSource = _giangVien.Select(g => new { g.GiangVienId, g.HoTen }).ToList();
-        foreach (var combo in memberCombos)
-        {
-            combo.DataSource = gvSource.ToList();
-            combo.DisplayMember = "HoTen";
-            combo.ValueMember = "GiangVienId";
-        }
-
-        if (selectedMain.HasValue)
-        {
-            cboGiangVien.SelectedValue = selectedMain.Value;
-        }
-
-        foreach (var combo in memberCombos)
-        {
-            var value = selectedMembers[combo];
-            if (value.HasValue)
-            {
-                combo.SelectedValue = value.Value;
-            }
-        }
-
-        UpdateGiangVienInfo();
+        cboCapThucHien.Items.AddRange(new object[] { "Hoc vien", "Cap Bo" });
+        cboCapThucHien.SelectedIndex = 0;
     }
 
     private void LoadHoiGiang()
