@@ -59,4 +59,14 @@ public partial class FrmMain : Form
     private void btnSangKien_Click(object sender, EventArgs e) => LoadModule("SK");
     private void btnLichGiang_Click(object sender, EventArgs e) => LoadModule("LG");
     private void btnThongKe_Click(object sender, EventArgs e) => LoadModule("TK");
+
+    private void panelContainer_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void panelMenu_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
 }

@@ -61,11 +61,12 @@ partial class FrmLogin
         panelRoot.Controls.Add(panelLogin);
         panelRoot.Dock = DockStyle.Fill;
         panelRoot.Location = new Point(0, 0);
-        panelRoot.Margin = new Padding(4, 5, 4, 5);
+        panelRoot.Margin = new Padding(3, 4, 3, 4);
         panelRoot.Name = "panelRoot";
-        panelRoot.Padding = new Padding(57, 67, 57, 67);
-        panelRoot.Size = new Size(1029, 700);
+        panelRoot.Padding = new Padding(46, 54, 46, 54);
+        panelRoot.Size = new Size(852, 560);
         panelRoot.TabIndex = 0;
+        // 
         // controlBoxMinimize
         // 
         controlBoxMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -74,9 +75,10 @@ partial class FrmLogin
         controlBoxMinimize.FillColor = Color.White;
         controlBoxMinimize.HoverState.FillColor = Color.FromArgb(236, 242, 255);
         controlBoxMinimize.IconColor = Color.FromArgb(64, 64, 64);
-        controlBoxMinimize.Location = new Point(632, 12);
+        controlBoxMinimize.Location = new Point(728, 11);
+        controlBoxMinimize.Margin = new Padding(2);
         controlBoxMinimize.Name = "controlBoxMinimize";
-        controlBoxMinimize.Size = new Size(45, 35);
+        controlBoxMinimize.Size = new Size(36, 28);
         controlBoxMinimize.TabIndex = 5;
         // 
         // controlBoxClose
@@ -87,20 +89,21 @@ partial class FrmLogin
         controlBoxClose.HoverState.FillColor = Color.FromArgb(240, 85, 68);
         controlBoxClose.HoverState.IconColor = Color.White;
         controlBoxClose.IconColor = Color.FromArgb(64, 64, 64);
-        controlBoxClose.Location = new Point(683, 12);
+        controlBoxClose.Location = new Point(768, 11);
+        controlBoxClose.Margin = new Padding(2);
         controlBoxClose.Name = "controlBoxClose";
-        controlBoxClose.Size = new Size(45, 35);
+        controlBoxClose.Size = new Size(36, 28);
         controlBoxClose.TabIndex = 4;
+        controlBoxClose.Click += controlBoxClose_Click;
         // 
         // label3
         // 
         label3.AutoSize = true;
         label3.Font = new Font("Segoe UI", 12F);
         label3.ForeColor = Color.FromArgb(64, 64, 64);
-        label3.Location = new Point(61, 191);
-        label3.Margin = new Padding(4, 0, 4, 0);
+        label3.Location = new Point(49, 134);
         label3.Name = "label3";
-        label3.Size = new Size(453, 32);
+        label3.Size = new Size(366, 28);
         label3.TabIndex = 2;
         label3.Text = "Quản lý hội giảng, sáng kiến và thống kê";
         // 
@@ -109,10 +112,9 @@ partial class FrmLogin
         label2.AutoSize = true;
         label2.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold);
         label2.ForeColor = Color.FromArgb(31, 122, 224);
-        label2.Location = new Point(28, 107);
-        label2.Margin = new Padding(4, 0, 4, 0);
+        label2.Location = new Point(12, 79);
         label2.Name = "label2";
-        label2.Size = new Size(519, 54);
+        label2.Size = new Size(444, 46);
         label2.TabIndex = 1;
         label2.Text = "Học viện An ninh Nhân dân";
         label2.Click += label2_Click;
@@ -127,11 +129,11 @@ partial class FrmLogin
         panelLogin.Controls.Add(txtPassword);
         panelLogin.Controls.Add(txtUsername);
         panelLogin.FillColor = Color.White;
-        panelLogin.Location = new Point(573, 72);
-        panelLogin.Margin = new Padding(4, 5, 4, 5);
+        panelLogin.Location = new Point(458, 58);
+        panelLogin.Margin = new Padding(3, 4, 3, 4);
         panelLogin.Name = "panelLogin";
-        panelLogin.Padding = new Padding(34, 40, 34, 40);
-        panelLogin.Size = new Size(421, 562);
+        panelLogin.Padding = new Padding(27, 32, 27, 32);
+        panelLogin.Size = new Size(337, 450);
         panelLogin.TabIndex = 0;
         // 
         // label1
@@ -139,10 +141,9 @@ partial class FrmLogin
         label1.AutoSize = true;
         label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
         label1.ForeColor = Color.FromArgb(31, 122, 224);
-        label1.Location = new Point(34, 40);
-        label1.Margin = new Padding(4, 0, 4, 0);
+        label1.Location = new Point(27, 32);
         label1.Name = "label1";
-        label1.Size = new Size(157, 38);
+        label1.Size = new Size(134, 32);
         label1.TabIndex = 3;
         label1.Text = "Đăng nhập";
         // 
@@ -156,10 +157,10 @@ partial class FrmLogin
         btnLogin.FillColor = Color.FromArgb(31, 122, 224);
         btnLogin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
         btnLogin.ForeColor = Color.White;
-        btnLogin.Location = new Point(34, 407);
-        btnLogin.Margin = new Padding(4, 5, 4, 5);
+        btnLogin.Location = new Point(27, 285);
+        btnLogin.Margin = new Padding(3, 4, 3, 4);
         btnLogin.Name = "btnLogin";
-        btnLogin.Size = new Size(349, 75);
+        btnLogin.Size = new Size(279, 60);
         btnLogin.TabIndex = 2;
         btnLogin.Text = "Đăng nhập";
         btnLogin.Click += btnLogin_Click;
@@ -176,13 +177,13 @@ partial class FrmLogin
         txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
         txtPassword.Font = new Font("Segoe UI", 10F);
         txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-        txtPassword.Location = new Point(34, 280);
-        txtPassword.Margin = new Padding(4, 7, 4, 7);
+        txtPassword.Location = new Point(28, 184);
+        txtPassword.Margin = new Padding(3, 6, 3, 6);
         txtPassword.Name = "txtPassword";
         txtPassword.PasswordChar = '●';
         txtPassword.PlaceholderText = "Mật khẩu";
         txtPassword.SelectedText = "";
-        txtPassword.Size = new Size(349, 75);
+        txtPassword.Size = new Size(279, 60);
         txtPassword.TabIndex = 1;
         txtPassword.UseSystemPasswordChar = true;
         // 
@@ -198,13 +199,13 @@ partial class FrmLogin
         txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
         txtUsername.Font = new Font("Segoe UI", 10F);
         txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-        txtUsername.Location = new Point(34, 173);
-        txtUsername.Margin = new Padding(4, 7, 4, 7);
+        txtUsername.Location = new Point(27, 92);
+        txtUsername.Margin = new Padding(3, 6, 3, 6);
         txtUsername.Name = "txtUsername";
         txtUsername.PasswordChar = '\0';
         txtUsername.PlaceholderText = "Tên đăng nhập";
         txtUsername.SelectedText = "";
-        txtUsername.Size = new Size(349, 75);
+        txtUsername.Size = new Size(279, 60);
         txtUsername.TabIndex = 0;
         // 
         // dialog
@@ -218,13 +219,13 @@ partial class FrmLogin
         // 
         // FrmLogin
         // 
-        AutoScaleDimensions = new SizeF(10F, 25F);
+        AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(1029, 700);
+        ClientSize = new Size(852, 560);
         Controls.Add(panelRoot);
         FormBorderStyle = FormBorderStyle.None;
-        Margin = new Padding(4, 5, 4, 5);
+        Margin = new Padding(3, 4, 3, 4);
         Name = "FrmLogin";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "FrmLogin";

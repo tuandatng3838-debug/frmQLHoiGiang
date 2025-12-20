@@ -471,9 +471,24 @@ public partial class UcHoiGiang : UserControl
                 Location = new Point(270, 95 + (53 * i))
             };
             tabKetQua.Controls.Add(box);
-            boxes[i] = box;
+            boxes[i] = box; 
         }
 
         return boxes;
+    }
+
+    private void gridHoiGiang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+
+    }
+
+    private void tabDangKy_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void panelLeft_Paint(object sender, PaintEventArgs e)
+    {
+
     }
 }

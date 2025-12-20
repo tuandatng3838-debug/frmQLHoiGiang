@@ -112,7 +112,7 @@ public class GiangVienRepository : RepositoryBase
         GiangVienId = reader.GetInt32(reader.GetOrdinal("GiangVienId")),
         MaSo = reader.GetString(reader.GetOrdinal("MaSo")),
         HoTen = reader.GetString(reader.GetOrdinal("HoTen")),
-        GioiTinh = reader.GetBoolean(reader.GetOrdinal("GioiTinh")),
+        GioiTinh = Convert.ToInt32(reader["GioiTinh"]) == 1,
         NgaySinh = reader.GetDateTime(reader.GetOrdinal("NgaySinh")),
         QueQuan = reader["QueQuan"] as string,
         DanToc = reader["DanToc"] as string,
