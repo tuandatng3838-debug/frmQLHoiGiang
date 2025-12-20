@@ -25,10 +25,7 @@ partial class UcHoiGiang
         panelLeft = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         btnRefreshHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         gridHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-        colTenBai = new DataGridViewTextBoxColumn();
-        colGiangVien = new DataGridViewTextBoxColumn();
-        colThoiGian = new DataGridViewTextBoxColumn();
-        colCap = new DataGridViewTextBoxColumn();
+        panelRight = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         tabMain = new TabControl();
         tabDangKy = new TabPage();
         btnLuuHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -62,25 +59,33 @@ partial class UcHoiGiang
         txtDiemHieuBiet = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
         cboKetQuaBai = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
         dialog = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog();
+        layoutMain = new TableLayoutPanel();
+        colTenBai = new DataGridViewTextBoxColumn();
+        colGiangVien = new DataGridViewTextBoxColumn();
+        colThoiGian = new DataGridViewTextBoxColumn();
+        colCap = new DataGridViewTextBoxColumn();
         panelLeft.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)gridHoiGiang).BeginInit();
+        panelRight.SuspendLayout();
         tabMain.SuspendLayout();
         tabDangKy.SuspendLayout();
         tabHoiDong.SuspendLayout();
         tabKetQua.SuspendLayout();
+        layoutMain.SuspendLayout();
         SuspendLayout();
         // 
         // panelLeft
         // 
+        panelLeft.BorderRadius = 12;
         panelLeft.Controls.Add(btnRefreshHoiGiang);
         panelLeft.Controls.Add(gridHoiGiang);
-        panelLeft.Dock = DockStyle.Left;
+        panelLeft.Dock = DockStyle.Fill;
         panelLeft.FillColor = Color.White;
-        panelLeft.Location = new Point(0, 0);
-        panelLeft.Margin = new Padding(3, 4, 3, 4);
+        panelLeft.Location = new Point(24, 24);
+        panelLeft.Margin = new Padding(0, 0, 24, 0);
         panelLeft.Name = "panelLeft";
         panelLeft.Padding = new Padding(18, 22, 18, 22);
-        panelLeft.Size = new Size(1159, 854);
+        panelLeft.Size = new Size(1073, 806);
         panelLeft.TabIndex = 0;
         panelLeft.Paint += panelLeft_Paint;
         // 
@@ -102,6 +107,8 @@ partial class UcHoiGiang
         // 
         gridHoiGiang.AllowUserToAddRows = false;
         gridHoiGiang.AllowUserToDeleteRows = false;
+        gridHoiGiang.AllowUserToResizeColumns = false;
+        gridHoiGiang.AllowUserToResizeRows = false;
         dataGridViewCellStyle1.BackColor = Color.White;
         dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
         dataGridViewCellStyle1.ForeColor = Color.FromArgb(71, 69, 94);
@@ -145,7 +152,7 @@ partial class UcHoiGiang
         gridHoiGiang.RowHeadersVisible = false;
         gridHoiGiang.RowHeadersWidth = 62;
         gridHoiGiang.RowTemplate.Height = 32;
-        gridHoiGiang.Size = new Size(1126, 736);
+        gridHoiGiang.Size = new Size(1039, 736);
         gridHoiGiang.TabIndex = 0;
         gridHoiGiang.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
         gridHoiGiang.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -171,37 +178,18 @@ partial class UcHoiGiang
         gridHoiGiang.CellClick += gridHoiGiang_CellClick;
         gridHoiGiang.CellContentClick += gridHoiGiang_CellContentClick;
         // 
-        // colTenBai
+        // panelRight
         // 
-        colTenBai.DataPropertyName = "TenBai";
-        colTenBai.HeaderText = "TÊN BÀI";
-        colTenBai.MinimumWidth = 8;
-        colTenBai.Name = "colTenBai";
-        colTenBai.ReadOnly = true;
-        // 
-        // colGiangVien
-        // 
-        colGiangVien.DataPropertyName = "GiangVien";
-        colGiangVien.HeaderText = "GIẢNG VIÊN";
-        colGiangVien.MinimumWidth = 8;
-        colGiangVien.Name = "colGiangVien";
-        colGiangVien.ReadOnly = true;
-        // 
-        // colThoiGian
-        // 
-        colThoiGian.DataPropertyName = "ThoiGian";
-        colThoiGian.HeaderText = "THỜI GIAN";
-        colThoiGian.MinimumWidth = 8;
-        colThoiGian.Name = "colThoiGian";
-        colThoiGian.ReadOnly = true;
-        // 
-        // colCap
-        // 
-        colCap.DataPropertyName = "CapThucHien";
-        colCap.HeaderText = "CẤP";
-        colCap.MinimumWidth = 8;
-        colCap.Name = "colCap";
-        colCap.ReadOnly = true;
+        panelRight.BorderRadius = 12;
+        panelRight.Controls.Add(tabMain);
+        panelRight.Dock = DockStyle.Fill;
+        panelRight.FillColor = Color.White;
+        panelRight.Location = new Point(1145, 24);
+        panelRight.Margin = new Padding(24, 0, 0, 0);
+        panelRight.Name = "panelRight";
+        panelRight.Padding = new Padding(12);
+        panelRight.Size = new Size(568, 806);
+        panelRight.TabIndex = 2;
         // 
         // tabMain
         // 
@@ -211,11 +199,11 @@ partial class UcHoiGiang
         tabMain.Dock = DockStyle.Fill;
         tabMain.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
         tabMain.ItemSize = new Size(100, 40);
-        tabMain.Location = new Point(1159, 0);
+        tabMain.Location = new Point(12, 12);
         tabMain.Margin = new Padding(3, 4, 3, 4);
         tabMain.Name = "tabMain";
         tabMain.SelectedIndex = 0;
-        tabMain.Size = new Size(578, 854);
+        tabMain.Size = new Size(544, 782);
         tabMain.TabIndex = 1;
         // 
         // tabDangKy
@@ -236,7 +224,7 @@ partial class UcHoiGiang
         tabDangKy.Margin = new Padding(3, 4, 3, 4);
         tabDangKy.Name = "tabDangKy";
         tabDangKy.Padding = new Padding(18, 22, 18, 22);
-        tabDangKy.Size = new Size(570, 806);
+        tabDangKy.Size = new Size(536, 734);
         tabDangKy.TabIndex = 0;
         tabDangKy.Text = "Đăng ký";
         tabDangKy.Click += tabDangKy_Click;
@@ -407,7 +395,7 @@ partial class UcHoiGiang
         tabHoiDong.Margin = new Padding(3, 4, 3, 4);
         tabHoiDong.Name = "tabHoiDong";
         tabHoiDong.Padding = new Padding(18, 22, 18, 22);
-        tabHoiDong.Size = new Size(570, 806);
+        tabHoiDong.Size = new Size(536, 734);
         tabHoiDong.TabIndex = 1;
         tabHoiDong.Text = "Hội đồng";
         // 
@@ -565,7 +553,7 @@ partial class UcHoiGiang
         tabKetQua.Margin = new Padding(3, 4, 3, 4);
         tabKetQua.Name = "tabKetQua";
         tabKetQua.Padding = new Padding(18, 22, 18, 22);
-        tabKetQua.Size = new Size(570, 806);
+        tabKetQua.Size = new Size(536, 734);
         tabKetQua.TabIndex = 2;
         tabKetQua.Text = "Kết quả";
         // 
@@ -706,20 +694,72 @@ partial class UcHoiGiang
         dialog.Style = Siticone.Desktop.UI.WinForms.MessageDialogStyle.Light;
         dialog.Text = "message";
         // 
+        // layoutMain
+        // 
+        layoutMain.BackColor = Color.FromArgb(245, 247, 250);
+        layoutMain.ColumnCount = 2;
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+        layoutMain.Controls.Add(panelLeft, 0, 0);
+        layoutMain.Controls.Add(panelRight, 1, 0);
+        layoutMain.Dock = DockStyle.Fill;
+        layoutMain.Location = new Point(0, 0);
+        layoutMain.Margin = new Padding(0);
+        layoutMain.Name = "layoutMain";
+        layoutMain.Padding = new Padding(24);
+        layoutMain.RowCount = 1;
+        layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        layoutMain.Size = new Size(1737, 854);
+        layoutMain.TabIndex = 3;
+        // 
+        // colTenBai
+        // 
+        colTenBai.DataPropertyName = "TenBai";
+        colTenBai.HeaderText = "TÊN BÀI";
+        colTenBai.MinimumWidth = 50;
+        colTenBai.Name = "colTenBai";
+        colTenBai.ReadOnly = true;
+        // 
+        // colGiangVien
+        // 
+        colGiangVien.DataPropertyName = "GiangVien";
+        colGiangVien.HeaderText = "GIẢNG VIÊN";
+        colGiangVien.MinimumWidth = 50;
+        colGiangVien.Name = "colGiangVien";
+        colGiangVien.ReadOnly = true;
+        // 
+        // colThoiGian
+        // 
+        colThoiGian.DataPropertyName = "ThoiGian";
+        colThoiGian.HeaderText = "THỜI GIAN";
+        colThoiGian.MinimumWidth = 50;
+        colThoiGian.Name = "colThoiGian";
+        colThoiGian.ReadOnly = true;
+        // 
+        // colCap
+        // 
+        colCap.DataPropertyName = "CapThucHien";
+        colCap.HeaderText = "CẤP";
+        colCap.MinimumWidth = 50;
+        colCap.Name = "colCap";
+        colCap.ReadOnly = true;
+        // 
         // UcHoiGiang
         // 
         AutoScaleMode = AutoScaleMode.None;
-        Controls.Add(tabMain);
-        Controls.Add(panelLeft);
+        BackColor = Color.FromArgb(245, 247, 250);
+        Controls.Add(layoutMain);
         Margin = new Padding(3, 4, 3, 4);
         Name = "UcHoiGiang";
         Size = new Size(1737, 854);
         panelLeft.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)gridHoiGiang).EndInit();
+        panelRight.ResumeLayout(false);
         tabMain.ResumeLayout(false);
         tabDangKy.ResumeLayout(false);
         tabHoiDong.ResumeLayout(false);
         tabKetQua.ResumeLayout(false);
+        layoutMain.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -728,6 +768,8 @@ partial class UcHoiGiang
     private Siticone.Desktop.UI.WinForms.SiticonePanel panelLeft;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnRefreshHoiGiang;
     private Siticone.Desktop.UI.WinForms.SiticoneDataGridView gridHoiGiang;
+    private TableLayoutPanel layoutMain;
+    private Siticone.Desktop.UI.WinForms.SiticonePanel panelRight;
     private TabControl tabMain;
     private TabPage tabDangKy;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnLuuHoiGiang;

@@ -42,9 +42,11 @@ partial class UcSangKien
         btnLamMoi = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         panelLeft = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         dialog = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog();
+        layoutMain = new TableLayoutPanel();
         ((System.ComponentModel.ISupportInitialize)gridSangKien).BeginInit();
         panelRight.SuspendLayout();
         panelLeft.SuspendLayout();
+        layoutMain.SuspendLayout();
         SuspendLayout();
         // 
         // gridSangKien
@@ -141,8 +143,9 @@ partial class UcSangKien
         // 
         // panelRight
         // 
-        panelRight.AutoSize = true;
+        panelRight.AutoSize = false;
         panelRight.BackColor = Color.White;
+        panelRight.BorderRadius = 12;
         panelRight.Controls.Add(cboXepLoai);
         panelRight.Controls.Add(txtDiaDiem);
         panelRight.Controls.Add(txtThoiGian);
@@ -156,11 +159,12 @@ partial class UcSangKien
         panelRight.Controls.Add(btnHuy);
         panelRight.Controls.Add(btnLuu);
         panelRight.FillColor = Color.White;
-        panelRight.Location = new Point(1166, 4);
-        panelRight.Margin = new Padding(3, 4, 3, 4);
+        panelRight.Dock = DockStyle.Fill;
+        panelRight.Location = new Point(0, 0);
+        panelRight.Margin = new Padding(24, 0, 0, 0);
         panelRight.Name = "panelRight";
         panelRight.Padding = new Padding(18, 21, 18, 21);
-        panelRight.Size = new Size(900, 1082);
+        panelRight.Size = new Size(681, 952);
         panelRight.TabIndex = 1;
         panelRight.Paint += panelRight_Paint;
         // 
@@ -362,13 +366,31 @@ partial class UcSangKien
         // 
         panelLeft.Controls.Add(gridSangKien);
         panelLeft.Controls.Add(btnLamMoi);
-        panelLeft.Dock = DockStyle.Left;
-        panelLeft.FillColor = Color.FromArgb(245, 247, 250);
-        panelLeft.Location = new Point(0, 0);
-        panelLeft.Margin = new Padding(3, 4, 3, 4);
+        panelLeft.BorderRadius = 12;
+        panelLeft.Dock = DockStyle.Fill;
+        panelLeft.FillColor = Color.White;
+        panelLeft.Location = new Point(24, 24);
+        panelLeft.Margin = new Padding(0);
         panelLeft.Name = "panelLeft";
-        panelLeft.Size = new Size(1160, 1000);
+        panelLeft.Padding = new Padding(18, 22, 18, 22);
+        panelLeft.Size = new Size(1160, 952);
         panelLeft.TabIndex = 3;
+        // 
+        // layoutMain
+        // 
+        layoutMain.BackColor = Color.FromArgb(245, 247, 250);
+        layoutMain.ColumnCount = 2;
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63F));
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37F));
+        layoutMain.Dock = DockStyle.Fill;
+        layoutMain.Location = new Point(0, 0);
+        layoutMain.Margin = new Padding(0);
+        layoutMain.Name = "layoutMain";
+        layoutMain.Padding = new Padding(24);
+        layoutMain.RowCount = 1;
+        layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        layoutMain.Size = new Size(1889, 1000);
+        layoutMain.TabIndex = 4;
         // 
         // dialog
         // 
@@ -382,8 +404,10 @@ partial class UcSangKien
         // UcSangKien
         // 
         AutoScaleMode = AutoScaleMode.None;
-        Controls.Add(panelRight);
-        Controls.Add(panelLeft);
+        layoutMain.Controls.Add(panelLeft, 0, 0);
+        layoutMain.Controls.Add(panelRight, 1, 0);
+        Controls.Add(layoutMain);
+        BackColor = Color.FromArgb(245, 247, 250);
         Margin = new Padding(3, 4, 3, 4);
         Name = "UcSangKien";
         Size = new Size(1889, 1000);
@@ -391,6 +415,7 @@ partial class UcSangKien
         ((System.ComponentModel.ISupportInitialize)gridSangKien).EndInit();
         panelRight.ResumeLayout(false);
         panelLeft.ResumeLayout(false);
+        layoutMain.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -418,4 +443,5 @@ partial class UcSangKien
     private DataGridViewTextBoxColumn colGiangVien;
     private DataGridViewTextBoxColumn colNamHoc;
     private DataGridViewTextBoxColumn colLoai;
+    private TableLayoutPanel layoutMain;
 }

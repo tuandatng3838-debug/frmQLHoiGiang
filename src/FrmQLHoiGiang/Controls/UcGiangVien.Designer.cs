@@ -54,9 +54,11 @@ partial class UcGiangVien
         btnLamMoi = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         panelLeft = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         messageDialog = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog();
+        layoutMain = new TableLayoutPanel();
         ((System.ComponentModel.ISupportInitialize)gridGiangVien).BeginInit();
         panelRight.SuspendLayout();
         panelLeft.SuspendLayout();
+        layoutMain.SuspendLayout();
         SuspendLayout();
         // 
         // gridGiangVien
@@ -153,7 +155,7 @@ partial class UcGiangVien
         // panelRight
         // 
         panelRight.AutoScroll = true;
-        panelRight.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+        panelRight.BorderRadius = 12;
         panelRight.Controls.Add(txtNamDayGioi);
         panelRight.Controls.Add(txtLinhVuc);
         panelRight.Controls.Add(txtChucVu);
@@ -181,11 +183,11 @@ partial class UcGiangVien
         panelRight.Controls.Add(txtMaSo);
         panelRight.Dock = DockStyle.Fill;
         panelRight.FillColor = Color.White;
-        panelRight.Location = new Point(896, 0);
-        panelRight.Margin = new Padding(3, 4, 3, 4);
+        panelRight.Location = new Point(0, 0);
+        panelRight.Margin = new Padding(24, 0, 0, 0);
         panelRight.Name = "panelRight";
         panelRight.Padding = new Padding(18, 22, 18, 22);
-        panelRight.Size = new Size(858, 872);
+        panelRight.Size = new Size(667, 824);
         panelRight.TabIndex = 1;
         // 
         // txtNamDayGioi
@@ -572,13 +574,31 @@ partial class UcGiangVien
         // 
         panelLeft.Controls.Add(gridGiangVien);
         panelLeft.Controls.Add(btnLamMoi);
-        panelLeft.Dock = DockStyle.Left;
-        panelLeft.FillColor = Color.FromArgb(245, 247, 250);
-        panelLeft.Location = new Point(0, 0);
-        panelLeft.Margin = new Padding(3, 4, 3, 4);
+        panelLeft.BorderRadius = 12;
+        panelLeft.Dock = DockStyle.Fill;
+        panelLeft.FillColor = Color.White;
+        panelLeft.Location = new Point(24, 24);
+        panelLeft.Margin = new Padding(0);
         panelLeft.Name = "panelLeft";
-        panelLeft.Size = new Size(896, 872);
+        panelLeft.Padding = new Padding(18, 22, 18, 22);
+        panelLeft.Size = new Size(1039, 824);
         panelLeft.TabIndex = 3;
+        // 
+        // layoutMain
+        // 
+        layoutMain.BackColor = Color.FromArgb(245, 247, 250);
+        layoutMain.ColumnCount = 2;
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+        layoutMain.Dock = DockStyle.Fill;
+        layoutMain.Location = new Point(0, 0);
+        layoutMain.Margin = new Padding(0);
+        layoutMain.Name = "layoutMain";
+        layoutMain.Padding = new Padding(24);
+        layoutMain.RowCount = 1;
+        layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        layoutMain.Size = new Size(1754, 872);
+        layoutMain.TabIndex = 4;
         // 
         // messageDialog
         // 
@@ -592,8 +612,10 @@ partial class UcGiangVien
         // UcGiangVien
         // 
         AutoScaleMode = AutoScaleMode.None;
-        Controls.Add(panelRight);
-        Controls.Add(panelLeft);
+        layoutMain.Controls.Add(panelLeft, 0, 0);
+        layoutMain.Controls.Add(panelRight, 1, 0);
+        Controls.Add(layoutMain);
+        BackColor = Color.FromArgb(245, 247, 250);
         Margin = new Padding(3, 4, 3, 4);
         Name = "UcGiangVien";
         Size = new Size(1754, 872);
@@ -601,6 +623,7 @@ partial class UcGiangVien
         panelRight.ResumeLayout(false);
         panelRight.PerformLayout();
         panelLeft.ResumeLayout(false);
+        layoutMain.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -640,4 +663,5 @@ partial class UcGiangVien
     private DataGridViewTextBoxColumn colHoTen;
     private DataGridViewTextBoxColumn colSoDienThoai;
     private DataGridViewTextBoxColumn colEmail;
+    private TableLayoutPanel layoutMain;
 }

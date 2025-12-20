@@ -9,6 +9,7 @@ public partial class UcBaoCao : UserControl
         InitializeComponent();
         txtNamHoc.Text = DateTime.Now.Year.ToString();
         LoadThongKe();
+        AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
     private void btnTaiBaoCao_Click(object sender, EventArgs e)
@@ -30,6 +31,11 @@ public partial class UcBaoCao : UserControl
         gridGiaiThuong.DataSource = AppServices.ThongKe.GetGiaiThuongTheoKhoa();
         gridHoiDong.DataSource = AppServices.ThongKe.GetThamGiaHoiDong();
         gridHoiGiang.DataSource = AppServices.ThongKe.GetTongHopHoiGiang(namHoc);
+    }
+
+    private void HandleGiangVienChanged()
+    {
+        LoadThongKe();
     }
 
     private void panelTop_Paint(object sender, PaintEventArgs e)

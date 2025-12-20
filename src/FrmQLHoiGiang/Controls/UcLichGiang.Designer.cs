@@ -21,6 +21,7 @@ partial class UcLichGiang
         DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
         DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
         DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+        layoutMain = new TableLayoutPanel();
         panelLeft = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         lblTongTiet = new Label();
         lstLichCaNhan = new ListBox();
@@ -33,6 +34,7 @@ partial class UcLichGiang
         colMon = new DataGridViewTextBoxColumn();
         colLop = new DataGridViewTextBoxColumn();
         panelRight = new Siticone.Desktop.UI.WinForms.SiticonePanel();
+        labelDetail = new Label();
         txtSiSo = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
         txtSoTiet = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
         txtPhong = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -46,26 +48,46 @@ partial class UcLichGiang
         btnHuy = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         btnLuu = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         dialog = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog();
+        layoutMain.SuspendLayout();
         panelLeft.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)gridLichGiang).BeginInit();
         panelRight.SuspendLayout();
         SuspendLayout();
         // 
+        // layoutMain
+        // 
+        layoutMain.BackColor = Color.FromArgb(245, 247, 250);
+        layoutMain.ColumnCount = 2;
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.74867F));
+        layoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.2513313F));
+        layoutMain.Controls.Add(panelLeft, 0, 0);
+        layoutMain.Controls.Add(panelRight, 1, 0);
+        layoutMain.Dock = DockStyle.Fill;
+        layoutMain.Location = new Point(0, 0);
+        layoutMain.Margin = new Padding(0);
+        layoutMain.Name = "layoutMain";
+        layoutMain.Padding = new Padding(24);
+        layoutMain.RowCount = 1;
+        layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        layoutMain.Size = new Size(1739, 947);
+        layoutMain.TabIndex = 0;
+        // 
         // panelLeft
         // 
+        panelLeft.BorderRadius = 12;
         panelLeft.Controls.Add(lblTongTiet);
         panelLeft.Controls.Add(lstLichCaNhan);
         panelLeft.Controls.Add(btnXemLich);
         panelLeft.Controls.Add(cboLocGiangVien);
         panelLeft.Controls.Add(btnLamMoi);
         panelLeft.Controls.Add(gridLichGiang);
-        panelLeft.Dock = DockStyle.Left;
+        panelLeft.Dock = DockStyle.Fill;
         panelLeft.FillColor = Color.White;
-        panelLeft.Location = new Point(0, 0);
-        panelLeft.Margin = new Padding(3, 4, 3, 4);
+        panelLeft.Location = new Point(24, 24);
+        panelLeft.Margin = new Padding(0);
         panelLeft.Name = "panelLeft";
         panelLeft.Padding = new Padding(18, 22, 18, 22);
-        panelLeft.Size = new Size(1170, 947);
+        panelLeft.Size = new Size(1264, 899);
         panelLeft.TabIndex = 0;
         // 
         // lblTongTiet
@@ -74,7 +96,7 @@ partial class UcLichGiang
         lblTongTiet.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
         lblTongTiet.Location = new Point(18, 813);
         lblTongTiet.Name = "lblTongTiet";
-        lblTongTiet.Size = new Size(128, 20);
+        lblTongTiet.Size = new Size(155, 25);
         lblTongTiet.TabIndex = 5;
         lblTongTiet.Text = "Tổng tiết/năm: 0";
         // 
@@ -82,10 +104,11 @@ partial class UcLichGiang
         // 
         lstLichCaNhan.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         lstLichCaNhan.FormattingEnabled = true;
-        lstLichCaNhan.Location = new Point(18, 589);
+        lstLichCaNhan.ItemHeight = 25;
+        lstLichCaNhan.Location = new Point(18, 595);
         lstLichCaNhan.Margin = new Padding(3, 4, 3, 4);
         lstLichCaNhan.Name = "lstLichCaNhan";
-        lstLichCaNhan.Size = new Size(1082, 204);
+        lstLichCaNhan.Size = new Size(1255, 204);
         lstLichCaNhan.TabIndex = 4;
         // 
         // btnXemLich
@@ -137,8 +160,11 @@ partial class UcLichGiang
         // 
         gridLichGiang.AllowUserToAddRows = false;
         gridLichGiang.AllowUserToDeleteRows = false;
+        gridLichGiang.AllowUserToResizeColumns = false;
+        gridLichGiang.AllowUserToResizeRows = false;
         dataGridViewCellStyle1.BackColor = Color.White;
         gridLichGiang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+        gridLichGiang.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         gridLichGiang.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
         dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
@@ -167,7 +193,7 @@ partial class UcLichGiang
         gridLichGiang.RowHeadersVisible = false;
         gridLichGiang.RowHeadersWidth = 62;
         gridLichGiang.RowTemplate.Height = 32;
-        gridLichGiang.Size = new Size(1126, 736);
+        gridLichGiang.Size = new Size(1213, 742);
         gridLichGiang.TabIndex = 0;
         gridLichGiang.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
         gridLichGiang.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -226,6 +252,8 @@ partial class UcLichGiang
         // 
         // panelRight
         // 
+        panelRight.BorderRadius = 12;
+        panelRight.Controls.Add(labelDetail);
         panelRight.Controls.Add(txtSiSo);
         panelRight.Controls.Add(txtSoTiet);
         panelRight.Controls.Add(txtPhong);
@@ -238,14 +266,25 @@ partial class UcLichGiang
         panelRight.Controls.Add(btnXoa);
         panelRight.Controls.Add(btnHuy);
         panelRight.Controls.Add(btnLuu);
+        panelRight.Dock = DockStyle.Fill;
         panelRight.FillColor = Color.White;
-        panelRight.Location = new Point(1176, 4);
-        panelRight.Margin = new Padding(3, 4, 3, 4);
+        panelRight.Location = new Point(1312, 24);
+        panelRight.Margin = new Padding(24, 0, 0, 0);
         panelRight.Name = "panelRight";
         panelRight.Padding = new Padding(18, 22, 18, 22);
-        panelRight.Size = new Size(600, 947);
+        panelRight.Size = new Size(403, 899);
         panelRight.TabIndex = 1;
         panelRight.Paint += panelRight_Paint;
+        // 
+        // labelDetail
+        // 
+        labelDetail.AutoSize = true;
+        labelDetail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+        labelDetail.Location = new Point(23, 22);
+        labelDetail.Name = "labelDetail";
+        labelDetail.Size = new Size(201, 32);
+        labelDetail.TabIndex = 11;
+        labelDetail.Text = "Thong tin chi tiet";
         // 
         // txtSiSo
         // 
@@ -434,15 +473,17 @@ partial class UcLichGiang
         // UcLichGiang
         // 
         AutoScaleMode = AutoScaleMode.None;
-        Controls.Add(panelRight);
-        Controls.Add(panelLeft);
+        BackColor = Color.FromArgb(245, 247, 250);
+        Controls.Add(layoutMain);
         Margin = new Padding(3, 4, 3, 4);
         Name = "UcLichGiang";
         Size = new Size(1739, 947);
+        layoutMain.ResumeLayout(false);
         panelLeft.ResumeLayout(false);
         panelLeft.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)gridLichGiang).EndInit();
         panelRight.ResumeLayout(false);
+        panelRight.PerformLayout();
         ResumeLayout(false);
     }
 
@@ -468,9 +509,11 @@ partial class UcLichGiang
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnXoa;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnHuy;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnLuu;
+    private Label labelDetail;
     private Siticone.Desktop.UI.WinForms.SiticoneMessageDialog dialog;
     private DataGridViewTextBoxColumn colNgay;
     private DataGridViewTextBoxColumn colBuoi;
     private DataGridViewTextBoxColumn colMon;
     private DataGridViewTextBoxColumn colLop;
+    private TableLayoutPanel layoutMain;
 }

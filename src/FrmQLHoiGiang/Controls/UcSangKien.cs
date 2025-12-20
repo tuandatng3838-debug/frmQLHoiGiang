@@ -16,6 +16,7 @@ public partial class UcSangKien : UserControl
         gridSangKien.DataSource = _binding;
         LoadLookups();
         LoadData();
+        AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
     private void LoadLookups()
@@ -24,6 +25,31 @@ public partial class UcSangKien : UserControl
         cboGiangVien.DataSource = gv;
         cboGiangVien.DisplayMember = "HoTen";
         cboGiangVien.ValueMember = "GiangVienId";
+    }
+
+    private void HandleGiangVienChanged()
+    {
+        var selectedId = GetSelectedId(cboGiangVien);
+        LoadLookups();
+        if (selectedId.HasValue)
+        {
+            cboGiangVien.SelectedValue = selectedId.Value;
+        }
+    }
+
+    private static int? GetSelectedId(ComboBox combo)
+    {
+        if (combo.SelectedValue == null)
+        {
+            return null;
+        }
+
+        if (combo.SelectedValue is int value)
+        {
+            return value;
+        }
+
+        return int.TryParse(combo.SelectedValue.ToString(), out var parsed) ? parsed : null;
     }
 
     private void LoadData()

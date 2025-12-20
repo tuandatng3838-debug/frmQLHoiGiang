@@ -1,0 +1,535 @@
+IF DB_ID('QLHoiGiang') IS NULL
+BEGIN
+    CREATE DATABASE QLHoiGiang;
+END
+GO
+USE QLHoiGiang;
+GO
+
+--------------------------------------------------------------------------------
+-- 1. BẢNG DANH MỤC & NGHIỆP VỤ
+--------------------------------------------------------------------------------
+IF OBJECT_ID('dbo.ThanhVienHoiDong', 'U') IS NOT NULL DROP TABLE dbo.ThanhVienHoiDong;
+IF OBJECT_ID('dbo.HoiDong', 'U') IS NOT NULL DROP TABLE dbo.HoiDong;
+IF OBJECT_ID('dbo.KetQuaThanhPhan', 'U') IS NOT NULL DROP TABLE dbo.KetQuaThanhPhan;
+IF OBJECT_ID('dbo.KetQuaHoiGiang', 'U') IS NOT NULL DROP TABLE dbo.KetQuaHoiGiang;
+IF OBJECT_ID('dbo.BaiHoiGiang', 'U') IS NOT NULL DROP TABLE dbo.BaiHoiGiang;
+IF OBJECT_ID('dbo.LichGiang', 'U') IS NOT NULL DROP TABLE dbo.LichGiang;
+IF OBJECT_ID('dbo.SangKien', 'U') IS NOT NULL DROP TABLE dbo.SangKien;
+IF OBJECT_ID('dbo.GiangVien', 'U') IS NOT NULL DROP TABLE dbo.GiangVien;
+IF OBJECT_ID('dbo.HocPhan', 'U') IS NOT NULL DROP TABLE dbo.HocPhan;
+IF OBJECT_ID('dbo.DonVi', 'U') IS NOT NULL DROP TABLE dbo.DonVi;
+IF OBJECT_ID('dbo.Khoa', 'U') IS NOT NULL DROP TABLE dbo.Khoa;
+IF OBJECT_ID('dbo.HocHam', 'U') IS NOT NULL DROP TABLE dbo.HocHam;
+IF OBJECT_ID('dbo.HocVi', 'U') IS NOT NULL DROP TABLE dbo.HocVi;
+IF OBJECT_ID('dbo.TrinhDoChuyenMon', 'U') IS NOT NULL DROP TABLE dbo.TrinhDoChuyenMon;
+IF OBJECT_ID('dbo.TrinhDoLLCT', 'U') IS NOT NULL DROP TABLE dbo.TrinhDoLLCT;
+IF OBJECT_ID('dbo.ChucDanhGiangDay', 'U') IS NOT NULL DROP TABLE dbo.ChucDanhGiangDay;
+IF OBJECT_ID('dbo.CapBac', 'U') IS NOT NULL DROP TABLE dbo.CapBac;
+IF OBJECT_ID('dbo.NguoiDung', 'U') IS NOT NULL DROP TABLE dbo.NguoiDung;
+GO
+
+CREATE TABLE Khoa (
+    KhoaId INT IDENTITY PRIMARY KEY,
+    TenKhoa NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE DonVi (
+    DonViId INT IDENTITY PRIMARY KEY,
+    TenDonVi NVARCHAR(100) NOT NULL,
+    KhoaId INT NOT NULL REFERENCES Khoa(KhoaId),
+    UNIQUE (TenDonVi, KhoaId)
+);
+
+CREATE TABLE HocHam (
+    HocHamId INT IDENTITY PRIMARY KEY,
+    TenHocHam NVARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE HocVi (
+    HocViId INT IDENTITY PRIMARY KEY,
+    TenHocVi NVARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE TrinhDoChuyenMon (
+    TrinhDoCMId INT IDENTITY PRIMARY KEY,
+    TenTrinhDo NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE TrinhDoLLCT (
+    TrinhDoLLCTId INT IDENTITY PRIMARY KEY,
+    TenTrinhDo NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE ChucDanhGiangDay (
+    ChucDanhId INT IDENTITY PRIMARY KEY,
+    TenChucDanh NVARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE CapBac (
+    CapBacId INT IDENTITY PRIMARY KEY,
+    TenCapBac NVARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE GiangVien (
+    GiangVienId INT IDENTITY PRIMARY KEY,
+    MaSo NVARCHAR(20) NOT NULL UNIQUE,
+    HoTen NVARCHAR(150) NOT NULL,
+    GioiTinh BIT NOT NULL,
+    NgaySinh DATE NOT NULL,
+    QueQuan NVARCHAR(200),
+    DanToc NVARCHAR(50),
+    TonGiao NVARCHAR(50),
+    SoDienThoai NVARCHAR(20),
+    Email NVARCHAR(120),
+    TrinhDoCMId INT REFERENCES TrinhDoChuyenMon(TrinhDoCMId),
+    TrinhDoLLCTId INT REFERENCES TrinhDoLLCT(TrinhDoLLCTId),
+    DonViId INT REFERENCES DonVi(DonViId),
+    ChucVu NVARCHAR(100),
+    CapBacId INT REFERENCES CapBac(CapBacId),
+    HeSoLuong DECIMAL(4,2),
+    ChucDanhId INT REFERENCES ChucDanhGiangDay(ChucDanhId),
+    HocHamId INT REFERENCES HocHam(HocHamId),
+    HocViId INT REFERENCES HocVi(HocViId),
+    LinhVucChuyenMon NVARCHAR(200),
+    NamGanNhatDayGioi INT
+);
+
+CREATE TABLE HocPhan (
+    HocPhanId INT IDENTITY PRIMARY KEY,
+    TenHocPhan NVARCHAR(150) NOT NULL,
+    SoTinChi INT NOT NULL DEFAULT 3
+);
+
+CREATE TABLE BaiHoiGiang (
+    BaiHoiGiangId INT IDENTITY PRIMARY KEY,
+    GiangVienId INT NOT NULL REFERENCES GiangVien(GiangVienId),
+    CapBacId INT REFERENCES CapBac(CapBacId),
+    DonViId INT REFERENCES DonVi(DonViId),
+    ChucDanhId INT REFERENCES ChucDanhGiangDay(ChucDanhId),
+    TenBai NVARCHAR(200) NOT NULL,
+    HocPhanId INT REFERENCES HocPhan(HocPhanId),
+    LopThucHien NVARCHAR(100),
+    ThoiGian DATETIME NOT NULL,
+    CapThucHien NVARCHAR(20) NOT NULL CHECK (CapThucHien IN (N'Học viện', N'Bộ')),
+    TrangThai NVARCHAR(30) NOT NULL DEFAULT N'Chưa chấm'
+);
+
+CREATE TABLE HoiDong (
+    HoiDongId INT IDENTITY PRIMARY KEY,
+    BaiHoiGiangId INT NOT NULL UNIQUE REFERENCES BaiHoiGiang(BaiHoiGiangId),
+    TenHoiDong NVARCHAR(200) NOT NULL,
+    NgayLap DATE NOT NULL DEFAULT GETDATE()
+);
+
+CREATE TABLE ThanhVienHoiDong (
+    ThanhVienHoiDongId INT IDENTITY PRIMARY KEY,
+    HoiDongId INT NOT NULL REFERENCES HoiDong(HoiDongId),
+    GiangVienId INT NOT NULL REFERENCES GiangVien(GiangVienId),
+    CapBacId INT REFERENCES CapBac(CapBacId),
+    ChucDanhGiangDayId INT REFERENCES ChucDanhGiangDay(ChucDanhId),
+    VaiTro NVARCHAR(50) NOT NULL CHECK (VaiTro IN (N'Chủ tịch', N'Thành viên', N'Thư ký')),
+    UNIQUE (HoiDongId, GiangVienId)
+);
+
+CREATE TABLE KetQuaHoiGiang (
+    KetQuaHoiGiangId INT IDENTITY PRIMARY KEY,
+    BaiHoiGiangId INT NOT NULL UNIQUE REFERENCES BaiHoiGiang(BaiHoiGiangId),
+    TongDiem DECIMAL(5,2) NOT NULL,
+    XepLoai NVARCHAR(20) NOT NULL
+);
+
+CREATE TABLE KetQuaThanhPhan (
+    KetQuaThanhPhanId INT IDENTITY PRIMARY KEY,
+    KetQuaHoiGiangId INT NOT NULL REFERENCES KetQuaHoiGiang(KetQuaHoiGiangId),
+    TenPhanThi NVARCHAR(100) NOT NULL,
+    Diem DECIMAL(4,2) NOT NULL
+);
+
+CREATE TABLE SangKien (
+    SangKienId INT IDENTITY PRIMARY KEY,
+    TenSangKien NVARCHAR(200) NOT NULL,
+    GiangVienId INT NOT NULL REFERENCES GiangVien(GiangVienId),
+    TuCach NVARCHAR(20) NOT NULL CHECK (TuCach IN (N'Tác giả', N'Đồng tác giả')),
+    Loai NVARCHAR(20) NOT NULL CHECK (Loai IN (N'Sáng kiến', N'Cải tiến')),
+    LinhVuc NVARCHAR(100),
+    NamHoc NVARCHAR(20) NOT NULL,
+    ThoiGianThucHien NVARCHAR(100),
+    DiaDiemPhamVi NVARCHAR(200),
+    XepLoai NVARCHAR(20) CHECK (XepLoai IN (N'Khá', N'Tốt', N'Xuất sắc'))
+);
+
+CREATE TABLE LichGiang (
+    LichGiangId INT IDENTITY PRIMARY KEY,
+    NamHoc NVARCHAR(20) NOT NULL,
+    TenLop NVARCHAR(100) NOT NULL,
+    TenMon NVARCHAR(100) NOT NULL,
+    GiangVienId INT NOT NULL REFERENCES GiangVien(GiangVienId),
+    Buoi NVARCHAR(20) NOT NULL CHECK (Buoi IN (N'Sáng', N'Chiều', N'Tối')),
+    NgayHoc DATE NOT NULL,
+    PhongHoc NVARCHAR(50),
+    SoTiet INT NOT NULL,
+    SoSinhVien INT,
+    UNIQUE (GiangVienId, NgayHoc, Buoi)
+);
+
+CREATE TABLE NguoiDung (
+    NguoiDungId INT IDENTITY PRIMARY KEY,
+    Username NVARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(200) NOT NULL,
+    HoTen NVARCHAR(150),
+    Role NVARCHAR(20) NOT NULL DEFAULT 'Admin'
+);
+GO
+
+--------------------------------------------------------------------------------
+-- 2. DỮ LIỆU MẪU
+--------------------------------------------------------------------------------
+INSERT INTO Khoa (TenKhoa)
+VALUES (N'Khoa Chính trị'), (N'Khoa Khoa học cơ bản');
+
+DECLARE @KhoaChinhTri INT = (SELECT KhoaId FROM Khoa WHERE TenKhoa = N'Khoa Chính trị');
+DECLARE @KhoaCoBan INT = (SELECT KhoaId FROM Khoa WHERE TenKhoa = N'Khoa Khoa học cơ bản');
+
+INSERT INTO DonVi (TenDonVi, KhoaId)
+VALUES (N'Bộ môn Lý luận chính trị', @KhoaChinhTri),
+       (N'Bộ môn Quản trị', @KhoaChinhTri),
+       (N'Bộ môn Toán', @KhoaCoBan),
+       (N'Bộ môn Tin học', @KhoaCoBan);
+
+DECLARE @DonViLyLuan INT = (SELECT DonViId FROM DonVi WHERE TenDonVi = N'Bộ môn Lý luận chính trị');
+DECLARE @DonViQuanTri INT = (SELECT DonViId FROM DonVi WHERE TenDonVi = N'Bộ môn Quản trị');
+DECLARE @DonViToan INT = (SELECT DonViId FROM DonVi WHERE TenDonVi = N'Bộ môn Toán');
+DECLARE @DonViTin INT = (SELECT DonViId FROM DonVi WHERE TenDonVi = N'Bộ môn Tin học');
+
+INSERT INTO HocHam (TenHocHam) VALUES (N'Giáo sư'), (N'Phó Giáo sư'), (N'Chưa có');
+INSERT INTO HocVi (TenHocVi) VALUES (N'Tiến sĩ'), (N'Thạc sĩ'), (N'Cử nhân');
+INSERT INTO TrinhDoChuyenMon (TenTrinhDo) VALUES (N'Đại học'), (N'Thạc sĩ'), (N'Tiến sĩ');
+INSERT INTO TrinhDoLLCT (TenTrinhDo) VALUES (N'Cao cấp'), (N'Trung cấp');
+INSERT INTO ChucDanhGiangDay (TenChucDanh)
+VALUES (N'Chưa có chức danh'), (N'Trợ giảng'), (N'Giảng viên'), (N'Giảng viên chính');
+INSERT INTO CapBac (TenCapBac) VALUES (N'Thiếu tá'), (N'Trung tá'), (N'Đại tá');
+
+DECLARE
+    @HocHamGS INT = (SELECT HocHamId FROM HocHam WHERE TenHocHam=N'Giáo sư'),
+    @HocHamPGS INT = (SELECT HocHamId FROM HocHam WHERE TenHocHam=N'Phó Giáo sư'),
+    @HocHamNone INT = (SELECT HocHamId FROM HocHam WHERE TenHocHam=N'Chưa có'),
+    @HocViTS INT = (SELECT HocViId FROM HocVi WHERE TenHocVi=N'Tiến sĩ'),
+    @HocViThs INT = (SELECT HocViId FROM HocVi WHERE TenHocVi=N'Thạc sĩ'),
+    @HocViCuNhan INT = (SELECT HocViId FROM HocVi WHERE TenHocVi=N'Cử nhân'),
+    @TrinhDoDH INT = (SELECT TrinhDoCMId FROM TrinhDoChuyenMon WHERE TenTrinhDo=N'Đại học'),
+    @TrinhDoThs INT = (SELECT TrinhDoCMId FROM TrinhDoChuyenMon WHERE TenTrinhDo=N'Thạc sĩ'),
+    @TrinhDoTS INT = (SELECT TrinhDoCMId FROM TrinhDoChuyenMon WHERE TenTrinhDo=N'Tiến sĩ'),
+    @LLCTCC INT = (SELECT TrinhDoLLCTId FROM TrinhDoLLCT WHERE TenTrinhDo=N'Cao cấp'),
+    @LLCTTC INT = (SELECT TrinhDoLLCTId FROM TrinhDoLLCT WHERE TenTrinhDo=N'Trung cấp'),
+    @ChucDanhChua INT = (SELECT ChucDanhId FROM ChucDanhGiangDay WHERE TenChucDanh=N'Chưa có chức danh'),
+    @ChucDanhTG INT = (SELECT ChucDanhId FROM ChucDanhGiangDay WHERE TenChucDanh=N'Trợ giảng'),
+    @ChucDanhGV INT = (SELECT ChucDanhId FROM ChucDanhGiangDay WHERE TenChucDanh=N'Giảng viên'),
+    @ChucDanhGVC INT = (SELECT ChucDanhId FROM ChucDanhGiangDay WHERE TenChucDanh=N'Giảng viên chính'),
+    @CapBacThieuTa INT = (SELECT CapBacId FROM CapBac WHERE TenCapBac=N'Thiếu tá'),
+    @CapBacTrungTa INT = (SELECT CapBacId FROM CapBac WHERE TenCapBac=N'Trung tá'),
+    @CapBacDaiTa INT = (SELECT CapBacId FROM CapBac WHERE TenCapBac=N'Đại tá');
+
+INSERT INTO GiangVien
+(MaSo, HoTen, GioiTinh, NgaySinh, QueQuan, DanToc, TonGiao, SoDienThoai, Email,
+ TrinhDoCMId, TrinhDoLLCTId, DonViId, ChucVu, CapBacId, HeSoLuong, ChucDanhId, HocHamId, HocViId,
+ LinhVucChuyenMon, NamGanNhatDayGioi)
+VALUES
+(N'GV001', N'Nguyễn Văn An', 1, '1980-01-05', N'Hà Nội', N'Kinh', N'Không', '0901000001', 'an.nguyen@hv.edu.vn',
+ @TrinhDoTS, @LLCTCC, @DonViLyLuan, N'Trưởng bộ môn', @CapBacDaiTa, 4.35, @ChucDanhGVC, @HocHamGS, @HocViTS,
+ N'Lý luận chính trị', 2024),
+(N'GV002', N'Phạm Thị Bình', 0, '1985-03-18', N'Hải Phòng', N'Kinh', N'Không', '0902000002', 'binh.pham@hv.edu.vn',
+ @TrinhDoThs, @LLCTCC, @DonViQuanTri, N'Phó bộ môn', @CapBacTrungTa, 4.02, @ChucDanhGV, @HocHamPGS, @HocViThs,
+ N'Quản trị học', 2023),
+(N'GV003', N'Lê Minh Cường', 1, '1982-07-21', N'Thanh Hóa', N'Kinh', N'Thiên chúa', '0903000003', 'cuong.le@hv.edu.vn',
+ @TrinhDoThs, @LLCTCC, @DonViToan, N'Giảng viên', @CapBacTrungTa, 3.66, @ChucDanhGV, @HocHamNone, @HocViThs,
+ N'Toán cao cấp', 2022),
+(N'GV004', N'Trần Hồng Dung', 0, '1990-11-02', N'Bắc Ninh', N'Kinh', N'Không', '0904000004', 'dung.tran@hv.edu.vn',
+ @TrinhDoDH, @LLCTTC, @DonViTin, N'Trợ giảng', @CapBacThieuTa, 2.98, @ChucDanhTG, @HocHamNone, @HocViCuNhan,
+ N'Lập trình .NET', NULL),
+(N'GV005', N'Đỗ Quang Em', 1, '1978-05-25', N'Đà Nẵng', N'Kinh', N'Không', '0905000005', 'em.do@hv.edu.vn',
+ @TrinhDoTS, @LLCTCC, @DonViLyLuan, N'Giảng viên chính', @CapBacDaiTa, 4.10, @ChucDanhGVC, @HocHamPGS, @HocViTS,
+ N'Lịch sử Đảng', 2024),
+(N'GV006', N'Vũ Thị Giang', 0, '1988-09-14', N'Nam Định', N'Kinh', N'Không', '0906000006', 'giang.vu@hv.edu.vn',
+ @TrinhDoThs, @LLCTTC, @DonViTin, N'Giảng viên', @CapBacThieuTa, 3.20, @ChucDanhGV, @HocHamNone, @HocViThs,
+ N'CSDL và AI', 2023);
+
+DECLARE
+ @GV1 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo='GV001'),
+ @GV2 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo='GV002'),
+ @GV3 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo='GV003'),
+ @GV4 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo='GV004'),
+ @GV5 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo='GV005'),
+ @GV6 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo='GV006');
+
+INSERT INTO HocPhan (TenHocPhan, SoTinChi)
+VALUES (N'Triết học Mác – Lênin', 3),
+       (N'Quản trị chiến lược', 3),
+       (N'Xác suất thống kê', 4),
+       (N'Lập trình WinForms', 3);
+
+DECLARE
+ @HP1 INT = (SELECT HocPhanId FROM HocPhan WHERE TenHocPhan = N'Triết học Mác – Lênin'),
+ @HP2 INT = (SELECT HocPhanId FROM HocPhan WHERE TenHocPhan = N'Quản trị chiến lược'),
+ @HP3 INT = (SELECT HocPhanId FROM HocPhan WHERE TenHocPhan = N'Xác suất thống kê'),
+ @HP4 INT = (SELECT HocPhanId FROM HocPhan WHERE TenHocPhan = N'Lập trình WinForms');
+
+INSERT INTO BaiHoiGiang
+(GiangVienId, CapBacId, DonViId, ChucDanhId, TenBai, HocPhanId, LopThucHien, ThoiGian, CapThucHien, TrangThai)
+VALUES
+(@GV1, @CapBacDaiTa, @DonViLyLuan, @ChucDanhGVC, N'Ứng dụng tư tưởng Hồ Chí Minh trong giảng dạy', @HP1, N'K44 LLCT', '2025-03-18T08:00:00', N'Học viện', N'Đã chấm'),
+(@GV2, @CapBacTrungTa, @DonViQuanTri, @ChucDanhGV, N'Chiến lược cạnh tranh toàn cầu', @HP2, N'K43 QTKD', '2025-03-18T13:30:00', N'Bộ', N'Đã chấm'),
+(@GV4, @CapBacThieuTa, @DonViTin, @ChucDanhTG, N'Kỹ thuật dựng UI với Siticone', @HP4, N'K45 CNTT', '2025-03-19T08:00:00', N'Học viện', N'Chưa chấm');
+
+DECLARE
+ @BHG1 INT = (SELECT BaiHoiGiangId FROM BaiHoiGiang WHERE TenBai LIKE N'%Hồ Chí Minh%'),
+ @BHG2 INT = (SELECT BaiHoiGiangId FROM BaiHoiGiang WHERE TenBai LIKE N'%Chiến lược%'),
+ @BHG3 INT = (SELECT BaiHoiGiangId FROM BaiHoiGiang WHERE TenBai LIKE N'%Siticone%');
+
+INSERT INTO HoiDong (BaiHoiGiangId, TenHoiDong, NgayLap)
+VALUES
+(@BHG1, N'Hội đồng LLCT đợt 1', '2025-02-15'),
+(@BHG2, N'Hội đồng Quản trị đợt 1', '2025-02-20');
+
+DECLARE @HD1 INT = (SELECT HoiDongId FROM HoiDong WHERE BaiHoiGiangId = @BHG1);
+DECLARE @HD2 INT = (SELECT HoiDongId FROM HoiDong WHERE BaiHoiGiangId = @BHG2);
+
+INSERT INTO ThanhVienHoiDong (HoiDongId, GiangVienId, CapBacId, ChucDanhGiangDayId, VaiTro)
+VALUES
+(@HD1, @GV1, @CapBacDaiTa, @ChucDanhGVC, N'Chủ tịch'),
+(@HD1, @GV5, @CapBacDaiTa, @ChucDanhGVC, N'Thành viên'),
+(@HD1, @GV2, @CapBacTrungTa, @ChucDanhGV, N'Thành viên'),
+(@HD1, @GV3, @CapBacTrungTa, @ChucDanhGV, N'Thành viên'),
+(@HD1, @GV6, @CapBacThieuTa, @ChucDanhGV, N'Thư ký'),
+
+(@HD2, @GV2, @CapBacTrungTa, @ChucDanhGV, N'Chủ tịch'),
+(@HD2, @GV1, @CapBacDaiTa, @ChucDanhGVC, N'Thành viên'),
+(@HD2, @GV3, @CapBacTrungTa, @ChucDanhGV, N'Thành viên'),
+(@HD2, @GV4, @CapBacThieuTa, @ChucDanhTG, N'Thành viên'),
+(@HD2, @GV6, @CapBacThieuTa, @ChucDanhGV, N'Thư ký');
+
+INSERT INTO KetQuaHoiGiang (BaiHoiGiangId, TongDiem, XepLoai)
+VALUES
+(@BHG1, 96.5, N'Nhất'),
+(@BHG2, 92.3, N'Nhì');
+
+DECLARE
+ @KQ1 INT = (SELECT KetQuaHoiGiangId FROM KetQuaHoiGiang WHERE BaiHoiGiangId=@BHG1),
+ @KQ2 INT = (SELECT KetQuaHoiGiangId FROM KetQuaHoiGiang WHERE BaiHoiGiangId=@BHG2);
+
+INSERT INTO KetQuaThanhPhan (KetQuaHoiGiangId, TenPhanThi, Diem)
+VALUES
+(@KQ1, N'Phần thi hiểu biết', 32.0),
+(@KQ1, N'Giới thiệu giảng viên và hồ sơ bài', 32.5),
+(@KQ1, N'Phần thực hành giảng (TB hội đồng)', 32.0),
+(@KQ2, N'Phần thi hiểu biết', 30.0),
+(@KQ2, N'Giới thiệu giảng viên và hồ sơ bài', 30.3),
+(@KQ2, N'Phần thực hành giảng (TB hội đồng)', 32.0);
+
+INSERT INTO SangKien
+(TenSangKien, GiangVienId, TuCach, Loai, LinhVuc, NamHoc, ThoiGianThucHien, DiaDiemPhamVi, XepLoai)
+VALUES
+(N'Nâng cao hiệu quả giảng dạy LLCT bằng tình huống', @GV1, N'Tác giả', N'Sáng kiến', N'LLCT', N'2023-2024', N'9/2023-5/2024', N'Toàn Học viện', N'Xuất sắc'),
+(N'Ứng dụng dữ liệu lớn trong quản trị', @GV2, N'Tác giả', N'Cải tiến', N'Quản trị', N'2022-2023', N'1/2023-6/2023', N'Khoa Chính trị', N'Tốt'),
+(N'Thiết kế hệ thống chấm thi tự động', @GV6, N'Đồng tác giả', N'Sáng kiến', N'Công nghệ', N'2024-2025', N'8/2024-2/2025', N'Khoa Khoa học cơ bản', N'Khá');
+
+INSERT INTO LichGiang
+(NamHoc, TenLop, TenMon, GiangVienId, Buoi, NgayHoc, PhongHoc, SoTiet, SoSinhVien)
+VALUES
+(N'2024-2025', N'K44 LLCT', N'Triết học Mác – Lênin', @GV1, N'Sáng', '2025-03-18', N'A101', 4, 65),
+(N'2024-2025', N'K43 QTKD', N'Quản trị chiến lược', @GV2, N'Chiều', '2025-03-18', N'B202', 4, 58),
+(N'2024-2025', N'K45 CNTT', N'Lập trình WinForms', @GV4, N'Sáng', '2025-03-19', N'C303', 3, 45),
+-- lịch trùng để test cảnh báo cùng buổi/ngày
+(N'2024-2025', N'K44 LLCT bổ sung', N'Thực hành LLCT', @GV1, N'Sáng', '2025-03-18', N'A105', 2, 40);
+
+INSERT INTO NguoiDung (Username, PasswordHash, HoTen, Role)
+VALUES
+(N'1', CONVERT(NVARCHAR(200), HASHBYTES('SHA2_256', CONVERT(VARBINARY(200), N'1')), 1), N'Quản trị viên demo', N'Admin');
+GO
+
+/* 
+    SampleData_10Cases.sql
+    Tạo 10 mẫu dữ liệu nhỏ giúp kiểm tra nhanh toàn bộ chức năng (cán bộ, hội giảng,
+    hội đồng, kết quả, sáng kiến, lịch giảng). Có thể chạy sau khi đã khởi tạo schema
+    bằng file QLHoiGiang.sql.
+*/
+USE QLHoiGiang;
+GO
+
+/* SAMPLE 1 – thêm giảng viên CNTT */
+IF NOT EXISTS (SELECT 1 FROM GiangVien WHERE MaSo = 'GV101')
+BEGIN
+    INSERT INTO GiangVien (MaSo, HoTen, GioiTinh, NgaySinh, QueQuan, DanToc, TonGiao,
+                           SoDienThoai, Email, TrinhDoCMId, TrinhDoLLCTId, DonViId,
+                           ChucVu, CapBacId, HeSoLuong, ChucDanhId, HocHamId, HocViId,
+                           LinhVucChuyenMon, NamGanNhatDayGioi)
+    VALUES (
+        'GV101', N'Phan Huu Khai', 1, '1986-04-18', N'Phuong Linh Tay|TP Thu Duc', N'Kinh', N'Khong',
+        '0909000111', 'khai.phan@demo.edu.vn',
+        (SELECT TrinhDoCMId FROM TrinhDoChuyenMon WHERE TenTrinhDo = N'Thac si'),
+        (SELECT TrinhDoLLCTId FROM TrinhDoLLCT WHERE TenTrinhDo = N'Trung cap'),
+        (SELECT DonViId FROM DonVi WHERE TenDonVi = N'Bo mon CNTT'),
+        N'Giang vien',
+        (SELECT CapBacId FROM CapBac WHERE TenCapBac = N'Thieu ta'),
+        3.55,
+        (SELECT ChucDanhId FROM ChucDanhGiangDay WHERE TenChucDanh = N'Giang vien'),
+        (SELECT HocHamId FROM HocHam WHERE TenHocHam = N'Khong'),
+        (SELECT HocViId FROM HocVi WHERE TenHocVi = N'Thac si'),
+        N'Cong nghe giao duc', 2024
+    );
+END
+GO
+
+/* SAMPLE 2 – thêm giảng viên LLCT */
+IF NOT EXISTS (SELECT 1 FROM GiangVien WHERE MaSo = 'GV102')
+BEGIN
+    INSERT INTO GiangVien (MaSo, HoTen, GioiTinh, NgaySinh, QueQuan, DanToc, TonGiao,
+                           SoDienThoai, Email, TrinhDoCMId, TrinhDoLLCTId, DonViId,
+                           ChucVu, CapBacId, HeSoLuong, ChucDanhId, HocHamId, HocViId,
+                           LinhVucChuyenMon, NamGanNhatDayGioi)
+    VALUES (
+        'GV102', N'Nguyen Thi Thanh Mai', 0, '1981-08-12', N'Phuong Trung Tu|Ha Noi', N'Kinh', N'Khong',
+        '0918222666', 'mai.nguyen@demo.edu.vn',
+        (SELECT TrinhDoCMId FROM TrinhDoChuyenMon WHERE TenTrinhDo = N'Tien si'),
+        (SELECT TrinhDoLLCTId FROM TrinhDoLLCT WHERE TenTrinhDo = N'Cao cap'),
+        (SELECT DonViId FROM DonVi WHERE TenDonVi = N'Bo mon Triet hoc'),
+        N'Pho truong khoa',
+        (SELECT CapBacId FROM CapBac WHERE TenCapBac = N'Thuong ta'),
+        4.60,
+        (SELECT ChucDanhId FROM ChucDanhGiangDay WHERE TenChucDanh = N'Giang vien chinh'),
+        (SELECT HocHamId FROM HocHam WHERE TenHocHam = N'Pho giao su'),
+        (SELECT HocViId FROM HocVi WHERE TenHocVi = N'Tien si'),
+        N'Ly luan chinh tri', 2025
+    );
+END
+GO
+
+/* SAMPLE 3 – tạo bài hội giảng cho GV101 */
+IF NOT EXISTS (SELECT 1 FROM BaiHoiGiang WHERE TenBai = N'Thiết kế học liệu số tương tác')
+BEGIN
+    DECLARE @Gv101 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo = 'GV101');
+    INSERT INTO BaiHoiGiang (GiangVienId, CapBacId, DonViId, ChucDanhId, TenBai,
+                             HocPhanId, LopThucHien, ThoiGian, CapThucHien, TrangThai)
+    SELECT @Gv101, gv.CapBacId, gv.DonViId, gv.ChucDanhId,
+           N'Thiết kế học liệu số tương tác',
+           (SELECT HocPhanId FROM HocPhan WHERE TenHocPhan = N'Ky nang giang day so'),
+           N'K45 CNTT', '2025-05-12T08:00:00', N'Hoc vien', N'Chua cham'
+    FROM GiangVien gv WHERE gv.GiangVienId = @Gv101;
+END
+GO
+
+/* SAMPLE 4 – tạo bài hội giảng cho GV102 */
+IF NOT EXISTS (SELECT 1 FROM BaiHoiGiang WHERE TenBai = N'Vận dụng tư tưởng Hồ Chí Minh trong công tác giảng dạy')
+BEGIN
+    DECLARE @Gv102 INT = (SELECT GiangVienId FROM GiangVien WHERE MaSo = 'GV102');
+    INSERT INTO BaiHoiGiang (GiangVienId, CapBacId, DonViId, ChucDanhId, TenBai,
+                             HocPhanId, LopThucHien, ThoiGian, CapThucHien, TrangThai)
+    SELECT @Gv102, gv.CapBacId, gv.DonViId, gv.ChucDanhId,
+           N'Vận dụng tư tưởng Hồ Chí Minh trong công tác giảng dạy',
+           (SELECT HocPhanId FROM HocPhan WHERE TenHocPhan = N'Tu tuong Ho Chi Minh'),
+           N'LLCT 01', '2025-05-25T13:30:00', N'Cap Bo', N'Dang cham'
+    FROM GiangVien gv WHERE gv.GiangVienId = @Gv102;
+END
+GO
+
+/* SAMPLE 5 – lập hội đồng + thành viên cho bài CNTT */
+DECLARE @BaiCNTT INT = (SELECT BaiHoiGiangId FROM BaiHoiGiang WHERE TenBai = N'Thiết kế học liệu số tương tác');
+IF @BaiCNTT IS NOT NULL AND NOT EXISTS (SELECT 1 FROM HoiDong WHERE BaiHoiGiangId = @BaiCNTT)
+BEGIN
+    INSERT INTO HoiDong (BaiHoiGiangId, TenHoiDong, NgayLap)
+    VALUES (@BaiCNTT, N'Hội đồng CNTT số', '2025-05-01');
+END
+
+DECLARE @HoiDongCNTT INT = (SELECT HoiDongId FROM HoiDong WHERE BaiHoiGiangId = @BaiCNTT);
+IF @HoiDongCNTT IS NOT NULL AND NOT EXISTS (SELECT 1 FROM ThanhVienHoiDong WHERE HoiDongId = @HoiDongCNTT)
+BEGIN
+    INSERT INTO ThanhVienHoiDong (HoiDongId, GiangVienId, CapBacId, ChucDanhGiangDayId, VaiTro)
+    SELECT @HoiDongCNTT, gv.GiangVienId, gv.CapBacId, gv.ChucDanhId, vaiTro
+    FROM (VALUES
+        ('GV102', N'Chu tich Hoi dong'),
+        ('GV001', N'Thanh vien'),
+        ('GV003', N'Thanh vien'),
+        ('GV004', N'Thanh vien'),
+        ('GV006', N'Thu ky')
+    ) AS m(MaSo, vaiTro)
+    JOIN GiangVien gv ON gv.MaSo = m.MaSo;
+END
+GO
+
+/* SAMPLE 6 – lập hội đồng cho bài LLCT */
+DECLARE @BaiLLCT INT = (SELECT BaiHoiGiangId FROM BaiHoiGiang WHERE TenBai = N'Vận dụng tư tưởng Hồ Chí Minh trong công tác giảng dạy');
+IF @BaiLLCT IS NOT NULL AND NOT EXISTS (SELECT 1 FROM HoiDong WHERE BaiHoiGiangId = @BaiLLCT)
+BEGIN
+    INSERT INTO HoiDong (BaiHoiGiangId, TenHoiDong, NgayLap)
+    VALUES (@BaiLLCT, N'Hội đồng Lý luận', '2025-05-10');
+END
+
+DECLARE @HoiDongLLCT INT = (SELECT HoiDongId FROM HoiDong WHERE BaiHoiGiangId = @BaiLLCT);
+IF @HoiDongLLCT IS NOT NULL AND NOT EXISTS (SELECT 1 FROM ThanhVienHoiDong WHERE HoiDongId = @HoiDongLLCT)
+BEGIN
+    INSERT INTO ThanhVienHoiDong (HoiDongId, GiangVienId, CapBacId, ChucDanhGiangDayId, VaiTro)
+    SELECT @HoiDongLLCT, gv.GiangVienId, gv.CapBacId, gv.ChucDanhId, vaiTro
+    FROM (VALUES
+        ('GV101', N'Chu tich Hoi dong'),
+        ('GV002', N'Thanh vien'),
+        ('GV003', N'Thanh vien'),
+        ('GV004', N'Thanh vien'),
+        ('GV005', N'Thu ky')
+    ) AS m(MaSo, vaiTro)
+    JOIN GiangVien gv ON gv.MaSo = m.MaSo;
+END
+GO
+
+/* SAMPLE 7 – chấm điểm hội giảng CNTT */
+IF @BaiCNTT IS NOT NULL AND NOT EXISTS (SELECT 1 FROM KetQuaHoiGiang WHERE BaiHoiGiangId = @BaiCNTT)
+BEGIN
+    INSERT INTO KetQuaHoiGiang (BaiHoiGiangId, TongDiem, XepLoai)
+    VALUES (@BaiCNTT, 91.25, N'Nhi');
+
+    DECLARE @KetQuaCNTT INT = SCOPE_IDENTITY();
+    INSERT INTO KetQuaThanhPhan (KetQuaHoiGiangId, TenPhanThi, Diem) VALUES
+        (@KetQuaCNTT, N'Phan thi hieu biet', 30.25),
+        (@KetQuaCNTT, N'Phan thi gioi thieu giang vien va ho so bai', 30.00),
+        (@KetQuaCNTT, N'Phan thuc hanh giang (TB 5 phieu)', 31.00);
+END
+GO
+
+/* SAMPLE 8 – chấm điểm hội giảng LLCT */
+IF @BaiLLCT IS NOT NULL AND NOT EXISTS (SELECT 1 FROM KetQuaHoiGiang WHERE BaiHoiGiangId = @BaiLLCT)
+BEGIN
+    INSERT INTO KetQuaHoiGiang (BaiHoiGiangId, TongDiem, XepLoai)
+    VALUES (@BaiLLCT, 97.40, N'Nhat');
+
+    DECLARE @KetQuaLLCT INT = SCOPE_IDENTITY();
+    INSERT INTO KetQuaThanhPhan (KetQuaHoiGiangId, TenPhanThi, Diem) VALUES
+        (@KetQuaLLCT, N'Phan thi hieu biet', 31.40),
+        (@KetQuaLLCT, N'Phan thi gioi thieu giang vien va ho so bai', 33.00),
+        (@KetQuaLLCT, N'Phan thuc hanh giang (TB 5 phieu)', 33.00);
+END
+GO
+
+/* SAMPLE 9 – sáng kiến cho giảng viên mới */
+IF NOT EXISTS (SELECT 1 FROM SangKien WHERE TenSangKien = N'Tự động hóa đánh giá học liệu')
+BEGIN
+    INSERT INTO SangKien (TenSangKien, GiangVienId, TuCach, Loai, LinhVuc,
+                          NamHoc, ThoiGianThucHien, DiaDiemPhamVi, XepLoai)
+    SELECT N'Tự động hóa đánh giá học liệu', gv.GiangVienId, N'Tac gia', N'Sang kien',
+           N'CNTT giáo dục', '2024-2025', N'10/2024 - 03/2025', N'Học viện', N'Tot'
+    FROM GiangVien gv WHERE gv.MaSo = 'GV101';
+END
+GO
+
+/* SAMPLE 10 – lịch giảng minh họa cho GV102 */
+IF NOT EXISTS (SELECT 1 FROM LichGiang WHERE GiangVienId = (SELECT GiangVienId FROM GiangVien WHERE MaSo = 'GV102') 
+               AND NgayHoc = '2025-05-18' AND Buoi = N'Sang')
+BEGIN
+    INSERT INTO LichGiang (NamHoc, TenLop, TenMon, GiangVienId, Buoi, NgayHoc,
+                           PhongHoc, SoTiet, SoSinhVien)
+    SELECT '2024-2025', N'LLCT 01', N'Triet hoc Mac - Lenin',
+           gv.GiangVienId, N'Sang', '2025-05-18', N'A305', 4, 95
+    FROM GiangVien gv WHERE gv.MaSo = 'GV102';
+END
+GO
+
+PRINT N'Da nap 10 mau du lieu thu nghiem.';
+
