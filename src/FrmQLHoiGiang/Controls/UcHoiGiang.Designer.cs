@@ -29,6 +29,8 @@ partial class UcHoiGiang
         tabMain = new TabControl();
         tabDangKy = new TabPage();
         btnLuuHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+        btnTaoMoiHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+        btnThemNhanhHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         cboCapThucHien = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
         dtThoiGian = new Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker();
         txtLop = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
@@ -210,6 +212,8 @@ partial class UcHoiGiang
         // 
         tabDangKy.AllowDrop = true;
         tabDangKy.BackColor = Color.White;
+        tabDangKy.Controls.Add(btnThemNhanhHoiGiang);
+        tabDangKy.Controls.Add(btnTaoMoiHoiGiang);
         tabDangKy.Controls.Add(btnLuuHoiGiang);
         tabDangKy.Controls.Add(cboCapThucHien);
         tabDangKy.Controls.Add(dtThoiGian);
@@ -242,6 +246,34 @@ partial class UcHoiGiang
         btnLuuHoiGiang.TabIndex = 6;
         btnLuuHoiGiang.Text = "Thêm mới";
         btnLuuHoiGiang.Click += btnLuuHoiGiang_Click;
+        // 
+        // btnTaoMoiHoiGiang
+        // 
+        btnTaoMoiHoiGiang.BorderRadius = 8;
+        btnTaoMoiHoiGiang.FillColor = Color.Gray;
+        btnTaoMoiHoiGiang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+        btnTaoMoiHoiGiang.ForeColor = Color.White;
+        btnTaoMoiHoiGiang.Location = new Point(195, 587);
+        btnTaoMoiHoiGiang.Margin = new Padding(3, 4, 3, 4);
+        btnTaoMoiHoiGiang.Name = "btnTaoMoiHoiGiang";
+        btnTaoMoiHoiGiang.Size = new Size(160, 60);
+        btnTaoMoiHoiGiang.TabIndex = 7;
+        btnTaoMoiHoiGiang.Text = "Tao moi";
+        btnTaoMoiHoiGiang.Click += btnTaoMoiHoiGiang_Click;
+        // 
+        // btnThemNhanhHoiGiang
+        // 
+        btnThemNhanhHoiGiang.BorderRadius = 8;
+        btnThemNhanhHoiGiang.FillColor = Color.FromArgb(31, 122, 224);
+        btnThemNhanhHoiGiang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+        btnThemNhanhHoiGiang.ForeColor = Color.White;
+        btnThemNhanhHoiGiang.Location = new Point(369, 587);
+        btnThemNhanhHoiGiang.Margin = new Padding(3, 4, 3, 4);
+        btnThemNhanhHoiGiang.Name = "btnThemNhanhHoiGiang";
+        btnThemNhanhHoiGiang.Size = new Size(160, 60);
+        btnThemNhanhHoiGiang.TabIndex = 8;
+        btnThemNhanhHoiGiang.Text = "Them nhanh";
+        btnThemNhanhHoiGiang.Click += btnThemNhanhHoiGiang_Click;
         // 
         // cboCapThucHien
         // 
@@ -773,6 +805,8 @@ partial class UcHoiGiang
     private TabControl tabMain;
     private TabPage tabDangKy;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnLuuHoiGiang;
+    private Siticone.Desktop.UI.WinForms.SiticoneButton btnTaoMoiHoiGiang;
+    private Siticone.Desktop.UI.WinForms.SiticoneButton btnThemNhanhHoiGiang;
     private Siticone.Desktop.UI.WinForms.SiticoneComboBox cboCapThucHien;
     private Siticone.Desktop.UI.WinForms.SiticoneDateTimePicker dtThoiGian;
     private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtLop;

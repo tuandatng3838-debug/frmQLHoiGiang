@@ -11,6 +11,8 @@ public class HoiGiangService
 
     public List<BaiHoiGiang> GetBaiHoiGiang() => _baiHoiGiangRepository.GetAll();
 
+    public List<string> GetCapThucHienValues() => _baiHoiGiangRepository.GetCapThucHienValues();
+
     public void SaveBaiHoiGiang(BaiHoiGiang entity)
     {
         if (entity.BaiHoiGiangId == 0)

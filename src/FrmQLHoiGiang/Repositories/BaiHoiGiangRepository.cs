@@ -5,6 +5,28 @@ namespace FrmQLHoiGiang.Repositories;
 
 public class BaiHoiGiangRepository : RepositoryBase
 {
+    public List<string> GetCapThucHienValues()
+    {
+        const string sql = """
+            SELECT DISTINCT CapThucHien
+            FROM BaiHoiGiang
+            ORDER BY CapThucHien
+            """;
+        var values = new List<string>();
+        using var conn = OpenConnection();
+        using var cmd = new SqlCommand(sql, conn);
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            if (!reader.IsDBNull(0))
+            {
+                values.Add(reader.GetString(0));
+            }
+        }
+
+        return values;
+    }
+
     public List<BaiHoiGiang> GetAll()
     {
         const string sql = """
