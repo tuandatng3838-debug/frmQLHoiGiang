@@ -562,4 +562,8 @@ private void gridHoiGiang_CellClick(object sender, DataGridViewCellEventArgs e)
     {
 
     }
+    private void HandleGiangVienChanged()
+    {
+        LoadLookups();
+    }
 }
