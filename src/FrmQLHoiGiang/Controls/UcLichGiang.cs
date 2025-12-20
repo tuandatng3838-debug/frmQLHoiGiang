@@ -17,6 +17,7 @@ public partial class UcLichGiang : UserControl
         gridLichGiang.DataSource = _binding;
         LoadLookups();
         LoadData();
+        AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
     private void LoadLookups()
@@ -29,6 +30,41 @@ public partial class UcLichGiang : UserControl
         cboLocGiangVien.DataSource = _giangVien.ToList();
         cboLocGiangVien.DisplayMember = "HoTen";
         cboLocGiangVien.ValueMember = "GiangVienId";
+    }
+
+    private void HandleGiangVienChanged()
+    {
+        var selectedMain = GetSelectedId(cboGiangVien);
+        var selectedFilter = GetSelectedId(cboLocGiangVien);
+
+        LoadLookups();
+
+        if (selectedMain.HasValue)
+        {
+            cboGiangVien.SelectedValue = selectedMain.Value;
+        }
+
+        if (selectedFilter.HasValue)
+        {
+            cboLocGiangVien.SelectedValue = selectedFilter.Value;
+        }
+
+        UpdateLichCaNhan();
+    }
+
+    private static int? GetSelectedId(ComboBox combo)
+    {
+        if (combo.SelectedValue == null)
+        {
+            return null;
+        }
+
+        if (combo.SelectedValue is int value)
+        {
+            return value;
+        }
+
+        return int.TryParse(combo.SelectedValue.ToString(), out var parsed) ? parsed : null;
     }
 
     private void LoadData()

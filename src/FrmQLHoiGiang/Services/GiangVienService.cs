@@ -7,6 +7,8 @@ public class GiangVienService
 {
     private readonly GiangVienRepository _repository = new();
 
+    public event Action? Changed;
+
     public List<GiangVien> GetGiangVien() => _repository.GetAll();
 
     public void Save(GiangVien entity)
@@ -19,7 +21,13 @@ public class GiangVienService
         {
             _repository.Update(entity);
         }
+
+        Changed?.Invoke();
     }
 
-    public void Delete(int giangVienId) => _repository.Delete(giangVienId);
+    public void Delete(int giangVienId)
+    {
+        _repository.Delete(giangVienId);
+        Changed?.Invoke();
+    }
 }

@@ -30,6 +30,7 @@ public partial class UcHoiGiang : UserControl
         LoadLookups();
         cboGiangVien.SelectedIndexChanged += (_, _) => UpdateGiangVienInfo();
         LoadHoiGiang();
+        AppServices.GiangVien.Changed += HandleGiangVienChanged;
     }
 
     private void btnRefreshHoiGiang_Click(object sender, EventArgs e)
@@ -68,6 +69,43 @@ public partial class UcHoiGiang : UserControl
         cboCapThucHien.Items.Clear();
         cboCapThucHien.Items.AddRange(new object[] { "Hoc vien", "Cap Bo" });
         cboCapThucHien.SelectedIndex = 0;
+    }
+
+    private void HandleGiangVienChanged()
+    {
+        var selectedMain = GetSelectedId(cboGiangVien);
+        var memberCombos = new[] { cboThanhVien1, cboThanhVien2, cboThanhVien3, cboThanhVien4, cboThanhVien5 };
+        var selectedMembers = memberCombos.ToDictionary(combo => combo, GetSelectedId);
+
+        _giangVien.Clear();
+        _giangVien.AddRange(AppServices.GiangVien.GetGiangVien());
+        cboGiangVien.DataSource = _giangVien.ToList();
+        cboGiangVien.DisplayMember = "HoTen";
+        cboGiangVien.ValueMember = "GiangVienId";
+
+        var gvSource = _giangVien.Select(g => new { g.GiangVienId, g.HoTen }).ToList();
+        foreach (var combo in memberCombos)
+        {
+            combo.DataSource = gvSource.ToList();
+            combo.DisplayMember = "HoTen";
+            combo.ValueMember = "GiangVienId";
+        }
+
+        if (selectedMain.HasValue)
+        {
+            cboGiangVien.SelectedValue = selectedMain.Value;
+        }
+
+        foreach (var combo in memberCombos)
+        {
+            var value = selectedMembers[combo];
+            if (value.HasValue)
+            {
+                combo.SelectedValue = value.Value;
+            }
+        }
+
+        UpdateGiangVienInfo();
     }
 
     private void LoadHoiGiang()
