@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -67,16 +68,8 @@ public partial class UcHoiGiang : UserControl
             return;
         }
 
-        var confirm = new SiticoneMessageDialog
-        {
-            Caption = "Xac nhan",
-            Text = $"Xoa bai hoi giang {_selected.TenBai}?",
-            Parent = FindForm(),
-            Buttons = MessageDialogButtons.YesNo,
-            Icon = MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() != DialogResult.Yes)
+        var confirmed = DialogHelper.Confirm(FindForm(), $"Xoa bai hoi giang {_selected.TenBai}?");
+        if (!confirmed)
         {
             return;
         }
@@ -303,13 +296,19 @@ public partial class UcHoiGiang : UserControl
 
     private void ShowMessage(string message, MessageDialogIcon icon = MessageDialogIcon.Warning)
     {
-        dialog.Caption = "Thong bao";
-        dialog.Icon = icon;
-        dialog.Text = message;
-        dialog.Show();
-    }
+        var mapped = MessageBoxIcon.Warning;
+        if (icon == MessageDialogIcon.Information)
+        {
+            mapped = MessageBoxIcon.Information;
+        }
+        else if (icon == MessageDialogIcon.Error)
+        {
+            mapped = MessageBoxIcon.Error;
+        }
 
-    private void gridHoiGiang_CellClick(object sender, DataGridViewCellEventArgs e)
+        MessageBox.Show(FindForm(), message, "Thong bao", MessageBoxButtons.OK, mapped);
+    }
+private void gridHoiGiang_CellClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0 || e.RowIndex >= _hoiGiang.Count)
         {

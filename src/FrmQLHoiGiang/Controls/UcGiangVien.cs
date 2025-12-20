@@ -1,5 +1,6 @@
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -142,7 +143,7 @@ public partial class UcGiangVien : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtMaSo.Text) || string.IsNullOrWhiteSpace(txtHoTen.Text))
         {
-            messageDialog.Show("Vui lòng nhập Mã số và Họ tên.");
+            DialogHelper.ShowWarning(FindForm(), "Vui lòng nhập Mã số và Họ tên.");
             return;
         }
 
@@ -175,7 +176,7 @@ public partial class UcGiangVien : UserControl
         }
         catch (Exception ex)
         {
-            messageDialog.Show($"Không thể lưu giảng viên: {ex.Message}");
+            DialogHelper.ShowError(FindForm(), $"Không thể lưu giảng viên: {ex.Message}");
         }
     }
 
@@ -183,19 +184,10 @@ public partial class UcGiangVien : UserControl
     {
         if (_current == null)
         {
-            messageDialog.Show("Chọn một giảng viên để xóa.");
+            DialogHelper.ShowWarning(FindForm(), "Chọn một giảng viên để xóa.");
             return;
-        }
-
-        var confirm = new SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Bạn chắc chắn muốn xóa {_current.HoTen}?",
-            Buttons = MessageDialogButtons.YesNo,
-            Icon = MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() == DialogResult.Yes)
+        }        var confirmed = DialogHelper.Confirm(FindForm(), $"Ban chac chan muon xoa {_current.HoTen}?");
+        if (confirmed)
         {
             try
             {
@@ -204,10 +196,10 @@ public partial class UcGiangVien : UserControl
             }
             catch (Exception ex)
             {
-                messageDialog.Show($"Không thể xóa: {ex.Message}");
+                DialogHelper.ShowError(FindForm(), $"Khong the xoa: {ex.Message}");
             }
         }
-    }
+}
 
     private void SetQueQuanFields(string? queQuan)
     {

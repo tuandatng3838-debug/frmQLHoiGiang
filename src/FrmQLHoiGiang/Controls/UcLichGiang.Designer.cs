@@ -189,7 +189,7 @@ partial class UcLichGiang
         dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
         gridLichGiang.DefaultCellStyle = dataGridViewCellStyle3;
         gridLichGiang.GridColor = Color.FromArgb(231, 229, 255);
-        gridLichGiang.Location = new Point(18, 86);
+        gridLichGiang.Location = new Point(13, 59);
         gridLichGiang.Margin = new Padding(3, 4, 3, 4);
         gridLichGiang.MultiSelect = false;
         gridLichGiang.Name = "gridLichGiang";

@@ -1,6 +1,7 @@
 using System.Linq;
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -157,13 +158,19 @@ public partial class UcLichGiang : UserControl
 
     private void ShowMessage(string message, MessageDialogIcon icon = MessageDialogIcon.Warning)
     {
-        dialog.Caption = "Thong bao";
-        dialog.Icon = icon;
-        dialog.Text = message;
-        dialog.Show();
-    }
+        var mapped = MessageBoxIcon.Warning;
+        if (icon == MessageDialogIcon.Information)
+        {
+            mapped = MessageBoxIcon.Information;
+        }
+        else if (icon == MessageDialogIcon.Error)
+        {
+            mapped = MessageBoxIcon.Error;
+        }
 
-    private void btnLuu_Click(object sender, EventArgs e)
+        MessageBox.Show(FindForm(), message, "Thong bao", MessageBoxButtons.OK, mapped);
+    }
+private void btnLuu_Click(object sender, EventArgs e)
     {
         if (cboGiangVien.SelectedValue == null || string.IsNullOrWhiteSpace(txtTenMon.Text))
         {
@@ -215,23 +222,13 @@ public partial class UcLichGiang : UserControl
         {
             ShowMessage("Si so khong hop le.");
             return;
-        }
-
-        var confirm = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Xóa lịch dạy {_current.TenMon}?",
-            Parent = FindForm(),
-            Buttons = Siticone.Desktop.UI.WinForms.MessageDialogButtons.YesNo,
-            Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() == DialogResult.Yes)
+        }        var confirmed = DialogHelper.Confirm(FindForm(), $"Xoa lich day {_current.TenMon}?");
+        if (confirmed)
         {
             AppServices.LichGiang.Delete(_current.LichGiangId);
             LoadData();
         }
-    }
+}
 
     private void btnLamMoi_Click(object sender, EventArgs e)
     {

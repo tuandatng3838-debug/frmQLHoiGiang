@@ -1,5 +1,6 @@
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -78,7 +79,7 @@ public partial class UcDonVi : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtTenDonVi.Text) || cboKhoa.SelectedValue == null)
         {
-            dialog.Show("Vui lòng nhập tên bộ môn và chọn khoa.");
+            DialogHelper.ShowWarning(FindForm(), "Vui lòng nhập tên bộ môn và chọn khoa.");
             return;
         }
 
@@ -94,8 +95,7 @@ public partial class UcDonVi : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Icon = MessageDialogIcon.Error;
-            dialog.Show($"Không thể lưu bộ môn: {ex.Message}");
+            DialogHelper.ShowWarning(FindForm(), $"Không thể lưu bộ môn: {ex.Message}");
         }
     }
 
@@ -103,19 +103,12 @@ public partial class UcDonVi : UserControl
     {
         if (_current == null)
         {
-            dialog.Show("Chọn bộ môn cần xóa.");
+            DialogHelper.ShowWarning(FindForm(), "Chọn bộ môn cần xóa.");
             return;
         }
 
-        var confirm = new SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Xóa bộ môn {_current.Name}?",
-            Buttons = MessageDialogButtons.YesNo,
-            Icon = MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() != DialogResult.Yes)
+        var confirmed = DialogHelper.Confirm(FindForm(), "Xac nhan xoa?");
+        if (!confirmed)
         {
             return;
         }
@@ -128,8 +121,7 @@ public partial class UcDonVi : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Icon = MessageDialogIcon.Error;
-            dialog.Show($"Không thể xóa: {ex.Message}");
+            DialogHelper.ShowWarning(FindForm(), $"Không thể xóa: {ex.Message}");
         }
     }
 }

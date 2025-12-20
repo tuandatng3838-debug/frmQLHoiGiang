@@ -1,5 +1,6 @@
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -68,7 +69,7 @@ public partial class UcKhoa : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtTenKhoa.Text))
         {
-            dialog.Show("Vui lòng nhập tên khoa.");
+            DialogHelper.ShowWarning(FindForm(), "Vui lòng nhập tên khoa.");
             return;
         }
 
@@ -84,8 +85,7 @@ public partial class UcKhoa : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Icon = MessageDialogIcon.Error;
-            dialog.Show($"Không thể lưu khoa: {ex.Message}");
+            DialogHelper.ShowWarning(FindForm(), $"Không thể lưu khoa: {ex.Message}");
         }
     }
 
@@ -93,19 +93,12 @@ public partial class UcKhoa : UserControl
     {
         if (_current == null)
         {
-            dialog.Show("Chọn khoa cần xóa.");
+            DialogHelper.ShowWarning(FindForm(), "Chọn khoa cần xóa.");
             return;
         }
 
-        var confirm = new SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Xóa khoa {_current.Name}?",
-            Buttons = MessageDialogButtons.YesNo,
-            Icon = MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() != DialogResult.Yes)
+        var confirmed = DialogHelper.Confirm(FindForm(), "Xac nhan xoa?");
+        if (!confirmed)
         {
             return;
         }
@@ -119,8 +112,7 @@ public partial class UcKhoa : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Icon = MessageDialogIcon.Error;
-            dialog.Show($"Không thể xóa: {ex.Message}");
+            DialogHelper.ShowWarning(FindForm(), $"Không thể xóa: {ex.Message}");
         }
     }
 }

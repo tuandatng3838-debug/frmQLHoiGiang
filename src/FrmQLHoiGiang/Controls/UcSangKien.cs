@@ -1,6 +1,7 @@
 using System.Linq;
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -142,13 +143,19 @@ public partial class UcSangKien : UserControl
 
     private void ShowMessage(string message, MessageDialogIcon icon = MessageDialogIcon.Warning)
     {
-        dialog.Caption = "Thong bao";
-        dialog.Icon = icon;
-        dialog.Text = message;
-        dialog.Show();
-    }
+        var mapped = MessageBoxIcon.Warning;
+        if (icon == MessageDialogIcon.Information)
+        {
+            mapped = MessageBoxIcon.Information;
+        }
+        else if (icon == MessageDialogIcon.Error)
+        {
+            mapped = MessageBoxIcon.Error;
+        }
 
-    private void btnLamMoi_Click(object sender, EventArgs e)
+        MessageBox.Show(FindForm(), message, "Thong bao", MessageBoxButtons.OK, mapped);
+    }
+private void btnLamMoi_Click(object sender, EventArgs e)
     {
         LoadData();
     }
@@ -194,23 +201,13 @@ public partial class UcSangKien : UserControl
         {
             ShowMessage("Chon sang kien can xoa.");
             return;
-        }
-
-        var confirm = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Xóa sáng kiến {_current.TenSangKien}?",
-            Parent = FindForm(),
-            Buttons = Siticone.Desktop.UI.WinForms.MessageDialogButtons.YesNo,
-            Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() == DialogResult.Yes)
+        }        var confirmed = DialogHelper.Confirm(FindForm(), $"Xoa sang kien {_current.TenSangKien}?");
+        if (confirmed)
         {
             AppServices.SangKien.Delete(_current.SangKienId);
             LoadData();
         }
-    }
+}
 
     private void panelRight_Paint(object sender, PaintEventArgs e)
     {
