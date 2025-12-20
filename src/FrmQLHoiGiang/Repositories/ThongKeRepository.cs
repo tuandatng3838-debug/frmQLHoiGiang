@@ -11,15 +11,16 @@ public class ThongKeRepository : RepositoryBase
             SELECT gv.HoTen, SUM(l.SoTiet) AS TongTiet
             FROM LichGiang l
             INNER JOIN GiangVien gv ON l.GiangVienId = gv.GiangVienId
-            WHERE l.NamHoc = @NamHoc
+            WHERE l.NamHoc = @NamHoc OR l.NamHoc LIKE @NamHocLike
             GROUP BY gv.HoTen
             ORDER BY gv.HoTen
             """;
+        var namHocLike = $"%{namHoc}%";
         return Query(sql, reader => new TietDayTheoGiangVienDto
         {
             GiangVien = reader.GetString(0),
             TongTiet = reader.GetInt32(1)
-        }, new SqlParameter("@NamHoc", namHoc));
+        }, new SqlParameter("@NamHoc", namHoc), new SqlParameter("@NamHocLike", namHocLike));
     }
 
     public List<TietDayTheoKhoaDto> GetTietDayTheoKhoa(string namHoc)
@@ -30,15 +31,16 @@ public class ThongKeRepository : RepositoryBase
             INNER JOIN GiangVien gv ON l.GiangVienId = gv.GiangVienId
             INNER JOIN DonVi d ON gv.DonViId = d.DonViId
             INNER JOIN Khoa k ON d.KhoaId = k.KhoaId
-            WHERE l.NamHoc = @NamHoc
+            WHERE l.NamHoc = @NamHoc OR l.NamHoc LIKE @NamHocLike
             GROUP BY k.TenKhoa
             ORDER BY k.TenKhoa
             """;
+        var namHocLike = $"%{namHoc}%";
         return Query(sql, reader => new TietDayTheoKhoaDto
         {
             Khoa = reader.GetString(0),
             TongTiet = reader.GetInt32(1)
-        }, new SqlParameter("@NamHoc", namHoc));
+        }, new SqlParameter("@NamHoc", namHoc), new SqlParameter("@NamHocLike", namHocLike));
     }
 
     public List<SangKienTheoGiangVienDto> GetSangKienTheoGiangVien()
@@ -99,6 +101,11 @@ public class ThongKeRepository : RepositoryBase
 
     public List<TongHopHoiGiangDto> GetTongHopHoiGiang(string nam)
     {
+        if (!TryParseYear(nam, out var year))
+        {
+            return new List<TongHopHoiGiangDto>();
+        }
+
         const string sql = """
             SELECT bhg.CapThucHien, COUNT(*) AS SoBai
             FROM BaiHoiGiang bhg
@@ -109,7 +116,24 @@ public class ThongKeRepository : RepositoryBase
         {
             CapThucHien = reader.GetString(0),
             SoBai = reader.GetInt32(1)
-        }, new SqlParameter("@Nam", int.Parse(nam)));
+        }, new SqlParameter("@Nam", year));
+    }
+
+    private static bool TryParseYear(string value, out int year)
+    {
+        if (int.TryParse(value, out year))
+        {
+            return true;
+        }
+
+        var parts = value.Split('-', '–', '—');
+        if (parts.Length > 0 && int.TryParse(parts[0].Trim(), out year))
+        {
+            return true;
+        }
+
+        year = 0;
+        return false;
     }
 
     private List<T> Query<T>(string sql, Func<SqlDataReader, T> map, params SqlParameter[] parameters)

@@ -99,7 +99,7 @@ partial class FrmLogin
         // label3
         // 
         label3.AutoSize = true;
-        label3.Font = new Font("Segoe UI", 12F);
+        label3.Font = new Font("Segoe UI", 16F);
         label3.ForeColor = Color.FromArgb(64, 64, 64);
         label3.Location = new Point(49, 134);
         label3.Name = "label3";
@@ -155,7 +155,7 @@ partial class FrmLogin
         btnLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
         btnLogin.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
         btnLogin.FillColor = Color.FromArgb(31, 122, 224);
-        btnLogin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        btnLogin.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnLogin.ForeColor = Color.White;
         btnLogin.Location = new Point(27, 285);
         btnLogin.Margin = new Padding(3, 4, 3, 4);
@@ -175,7 +175,7 @@ partial class FrmLogin
         txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
         txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
         txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-        txtPassword.Font = new Font("Segoe UI", 10F);
+        txtPassword.Font = new Font("Segoe UI", 16F);
         txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
         txtPassword.Location = new Point(28, 184);
         txtPassword.Margin = new Padding(3, 6, 3, 6);
@@ -197,7 +197,7 @@ partial class FrmLogin
         txtUsername.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
         txtUsername.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
         txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-        txtUsername.Font = new Font("Segoe UI", 10F);
+        txtUsername.Font = new Font("Segoe UI", 16F);
         txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
         txtUsername.Location = new Point(27, 92);
         txtUsername.Margin = new Padding(3, 6, 3, 6);

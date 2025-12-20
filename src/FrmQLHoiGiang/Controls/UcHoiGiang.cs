@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -11,26 +12,35 @@ public partial class UcHoiGiang : UserControl
 {
     private readonly BindingSource _bindingHoiGiang = new();
     private readonly List<GiangVien> _giangVien = new();
+    private readonly List<LookupItem> _hocPhan = new();
     private readonly List<LookupItem> _capBac = new();
     private readonly List<LookupItem> _chucDanh = new();
     private readonly List<DonVi> _donVi = new();
-    private readonly SiticoneTextBox[] _practiceBoxes;
     private List<BaiHoiGiang> _hoiGiang = new();
     private BaiHoiGiang? _selected;
+    private bool _suppressHocPhanTextChange;
 
-    private SiticoneTextBox[] PracticeScoreBoxes => _practiceBoxes;
+    private SiticoneTextBox[] PracticeScoreBoxes =>
+        new[] { txtDiemThanhVien1, txtDiemThanhVien2, txtDiemThanhVien3, txtDiemThanhVien4, txtDiemThanhVien5 };
 
     public UcHoiGiang()
     {
         InitializeComponent();
         txtDiemThucHanh.ReadOnly = true;
-        _practiceBoxes = CreatePracticeInputs();
         gridHoiGiang.AutoGenerateColumns = false;
         gridHoiGiang.DataSource = _bindingHoiGiang;
+        cboHocPhan.DropDownStyle = ComboBoxStyle.DropDown;
         LoadLookups();
         cboGiangVien.SelectedIndexChanged += (_, _) => UpdateGiangVienInfo();
+        cboHocPhan.TextChanged += cboHocPhan_TextChanged;
         LoadHoiGiang();
         AppServices.GiangVien.Changed += HandleGiangVienChanged;
+    }
+
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        dialog.Parent = FindForm();
     }
 
     private void btnRefreshHoiGiang_Click(object sender, EventArgs e)
@@ -46,7 +56,9 @@ public partial class UcHoiGiang : UserControl
         cboGiangVien.DisplayMember = "HoTen";
         cboGiangVien.ValueMember = "GiangVienId";
 
-        cboHocPhan.DataSource = AppServices.Lookup.GetHocPhan();
+        _hocPhan.Clear();
+        _hocPhan.AddRange(AppServices.Lookup.GetHocPhan());
+        cboHocPhan.DataSource = _hocPhan.ToList();
         cboHocPhan.DisplayMember = "Name";
         cboHocPhan.ValueMember = "Id";
 
@@ -71,57 +83,13 @@ public partial class UcHoiGiang : UserControl
         cboCapThucHien.SelectedIndex = 0;
     }
 
-    private void HandleGiangVienChanged()
-    {
-        var selectedMain = GetSelectedId(cboGiangVien);
-        var memberCombos = new[] { cboThanhVien1, cboThanhVien2, cboThanhVien3, cboThanhVien4, cboThanhVien5 };
-        var selectedMembers = memberCombos.ToDictionary(combo => combo, GetSelectedId);
-
-        _giangVien.Clear();
-        _giangVien.AddRange(AppServices.GiangVien.GetGiangVien());
-        cboGiangVien.DataSource = _giangVien.ToList();
-        cboGiangVien.DisplayMember = "HoTen";
-        cboGiangVien.ValueMember = "GiangVienId";
-
-        var gvSource = _giangVien.Select(g => new { g.GiangVienId, g.HoTen }).ToList();
-        foreach (var combo in memberCombos)
-        {
-            combo.DataSource = gvSource.ToList();
-            combo.DisplayMember = "HoTen";
-            combo.ValueMember = "GiangVienId";
-        }
-
-        if (selectedMain.HasValue)
-        {
-            cboGiangVien.SelectedValue = selectedMain.Value;
-        }
-
-        foreach (var combo in memberCombos)
-        {
-            var value = selectedMembers[combo];
-            if (value.HasValue)
-            {
-                combo.SelectedValue = value.Value;
-            }
-        }
-
-        UpdateGiangVienInfo();
-    }
-
     private void LoadHoiGiang()
     {
         _hoiGiang = AppServices.HoiGiang.GetBaiHoiGiang();
         _bindingHoiGiang.DataSource = _hoiGiang;
         BindHoiGiangCombos();
-        if (_hoiGiang.Count > 0)
-        {
-            gridHoiGiang.Rows[0].Selected = true;
-            FillHoiGiangForm(_hoiGiang[0]);
-        }
-        else
-        {
-            ClearHoiGiangForm();
-        }
+        ClearHoiGiangForm();
+        gridHoiGiang.ClearSelection();
     }
 
     private void BindHoiGiangCombos()
@@ -133,6 +101,37 @@ public partial class UcHoiGiang : UserControl
         cboKetQuaBai.DataSource = _hoiGiang.Select(b => new { b.BaiHoiGiangId, b.TenBai }).ToList();
         cboKetQuaBai.DisplayMember = "TenBai";
         cboKetQuaBai.ValueMember = "BaiHoiGiangId";
+    }
+
+    private void cboHocPhan_TextChanged(object? sender, EventArgs e)
+    {
+        if (_suppressHocPhanTextChange)
+        {
+            return;
+        }
+
+        var text = cboHocPhan.Text.Trim();
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return;
+        }
+
+        var match = _hocPhan.FirstOrDefault(h =>
+            string.Equals(h.Name, text, StringComparison.OrdinalIgnoreCase));
+        if (match == null)
+        {
+            return;
+        }
+
+        var currentId = GetSelectedId(cboHocPhan);
+        if (currentId == match.Id)
+        {
+            return;
+        }
+
+        _suppressHocPhanTextChange = true;
+        cboHocPhan.SelectedValue = match.Id;
+        _suppressHocPhanTextChange = false;
     }
 
     private void FillHoiGiangForm(BaiHoiGiang entity)
@@ -164,11 +163,16 @@ public partial class UcHoiGiang : UserControl
         txtLop.Text = string.Empty;
         dtThoiGian.Value = DateTime.Now;
         cboCapThucHien.SelectedIndex = 0;
+        cboHocPhan.SelectedIndex = -1;
+        cboHocPhan.Text = string.Empty;
         btnLuuHoiGiang.Text = "Them moi";
         btnLuuHoiGiang.FillColor = Color.FromArgb(31, 122, 224);
         txtGiangVienDonVi.Text = string.Empty;
         txtGiangVienCapBac.Text = string.Empty;
         txtGiangVienChucDanh.Text = string.Empty;
+        txtGiangVienEmail.Text = string.Empty;
+        txtGiangVienDienThoai.Text = string.Empty;
+        txtGiangVienNgaySinh.Text = string.Empty;
     }
 
     private void UpdateGiangVienInfo()
@@ -178,6 +182,9 @@ public partial class UcHoiGiang : UserControl
             txtGiangVienDonVi.Text = "";
             txtGiangVienCapBac.Text = "";
             txtGiangVienChucDanh.Text = "";
+            txtGiangVienEmail.Text = "";
+            txtGiangVienDienThoai.Text = "";
+            txtGiangVienNgaySinh.Text = "";
             return;
         }
 
@@ -187,15 +194,40 @@ public partial class UcHoiGiang : UserControl
             txtGiangVienDonVi.Text = "";
             txtGiangVienCapBac.Text = "";
             txtGiangVienChucDanh.Text = "";
+            txtGiangVienEmail.Text = "";
+            txtGiangVienDienThoai.Text = "";
+            txtGiangVienNgaySinh.Text = "";
             return;
         }
 
         txtGiangVienDonVi.Text = _donVi.FirstOrDefault(d => d.Id == gv.DonViId)?.Name ?? string.Empty;
         txtGiangVienCapBac.Text = _capBac.FirstOrDefault(c => c.Id == gv.CapBacId)?.Name ?? string.Empty;
         txtGiangVienChucDanh.Text = _chucDanh.FirstOrDefault(c => c.Id == gv.ChucDanhId)?.Name ?? string.Empty;
+        txtGiangVienEmail.Text = gv.Email ?? string.Empty;
+        txtGiangVienDienThoai.Text = gv.SoDienThoai ?? string.Empty;
+        txtGiangVienNgaySinh.Text = FormatNgaySinh(gv.NgaySinh);
     }
 
-    private void gridHoiGiang_CellClick(object sender, DataGridViewCellEventArgs e)
+    private static string FormatNgaySinh(DateTime ngaySinh)
+    {
+        return ngaySinh == default ? string.Empty : ngaySinh.ToString("dd/MM/yyyy");
+    }
+
+    private void ShowMessage(string message, MessageDialogIcon icon = MessageDialogIcon.Warning)
+    {
+        var mapped = MessageBoxIcon.Warning;
+        if (icon == MessageDialogIcon.Information)
+        {
+            mapped = MessageBoxIcon.Information;
+        }
+        else if (icon == MessageDialogIcon.Error)
+        {
+            mapped = MessageBoxIcon.Error;
+        }
+
+        MessageBox.Show(FindForm(), message, "Thong bao", MessageBoxButtons.OK, mapped);
+    }
+private void gridHoiGiang_CellClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.RowIndex < 0 || e.RowIndex >= _hoiGiang.Count)
         {
@@ -209,8 +241,7 @@ public partial class UcHoiGiang : UserControl
     {
         if (cboGiangVien.SelectedValue == null || string.IsNullOrWhiteSpace(txtTenBai.Text))
         {
-            dialog.Text = "Chon giang vien va nhap ten bai.";
-            dialog.Show();
+            ShowMessage("Chon giang vien va nhap ten bai.");
             return;
         }
 
@@ -221,7 +252,12 @@ public partial class UcHoiGiang : UserControl
         entity.DonViId = selectedGv.DonViId;
         entity.ChucDanhId = selectedGv.ChucDanhId;
         entity.TenBai = txtTenBai.Text.Trim();
-        entity.HocPhanId = GetSelectedId(cboHocPhan);
+        entity.HocPhanId = GetHocPhanIdFromInput();
+        if (!string.IsNullOrWhiteSpace(cboHocPhan.Text) && !entity.HocPhanId.HasValue)
+        {
+            ShowMessage("Hoc phan khong ton tai. Vui long chon dung ten hoc phan.");
+            return;
+        }
         entity.LopThucHien = txtLop.Text.Trim();
         entity.ThoiGian = dtThoiGian.Value;
         entity.CapThucHien = cboCapThucHien.SelectedItem?.ToString() ?? "Hoc vien";
@@ -235,8 +271,7 @@ public partial class UcHoiGiang : UserControl
         }
         catch (Exception ex)
         {
-            dialog.Text = $"Khong the luu bai hoi giang: {ex.Message}";
-            dialog.Show();
+            ShowMessage($"Khong the luu bai hoi giang: {ex.Message}", MessageDialogIcon.Error);
         }
     }
 
@@ -287,8 +322,7 @@ public partial class UcHoiGiang : UserControl
     {
         if (cboHoiDongBai.SelectedValue == null)
         {
-            dialog.Text = "Chon bai hoi giang truoc khi gan hoi dong.";
-            dialog.Show();
+            ShowMessage("Chon bai hoi giang truoc khi gan hoi dong.");
             return;
         }
 
@@ -303,16 +337,14 @@ public partial class UcHoiGiang : UserControl
 
         if (selections.Any(x => x.Combo.SelectedValue == null))
         {
-            dialog.Text = "Can du 5 thanh vien theo co cau.";
-            dialog.Show();
+            ShowMessage("Can du 5 thanh vien theo co cau.");
             return;
         }
 
         var selectedIds = selections.Select(x => (int)x.Combo.SelectedValue!).ToList();
         if (selectedIds.Distinct().Count() != selectedIds.Count)
         {
-            dialog.Text = "Moi thanh vien chi duoc chon mot lan.";
-            dialog.Show();
+            ShowMessage("Moi thanh vien chi duoc chon mot lan.");
             return;
         }
 
@@ -335,15 +367,11 @@ public partial class UcHoiGiang : UserControl
         try
         {
             AppServices.HoiGiang.SaveHoiDong(hoiDong);
-            dialog.Icon = MessageDialogIcon.Information;
-            dialog.Text = "Da luu hoi dong.";
-            dialog.Show();
+            ShowMessage("Da luu hoi dong.", MessageDialogIcon.Information);
         }
         catch (Exception ex)
         {
-            dialog.Icon = MessageDialogIcon.Error;
-            dialog.Text = $"Khong the luu hoi dong: {ex.Message}";
-            dialog.Show();
+            ShowMessage($"Khong the luu hoi dong: {ex.Message}", MessageDialogIcon.Error);
         }
     }
 
@@ -382,8 +410,7 @@ public partial class UcHoiGiang : UserControl
         if (!decimal.TryParse(txtDiemHieuBiet.Text, out var hieuBiet) ||
             !decimal.TryParse(txtDiemHoSo.Text, out var hoSo))
         {
-            dialog.Text = "Diem hien biet va ho so khong hop le.";
-            dialog.Show();
+            ShowMessage("Diem hien biet va ho so khong hop le.");
             return;
         }
 
@@ -422,8 +449,7 @@ public partial class UcHoiGiang : UserControl
         {
             if (!decimal.TryParse(box.Text, out var diem))
             {
-                dialog.Text = "Nhap diem cho moi thanh vien hoi dong.";
-                dialog.Show();
+                ShowMessage("Nhap diem cho moi thanh vien hoi dong.");
                 return false;
             }
 
@@ -438,8 +464,7 @@ public partial class UcHoiGiang : UserControl
     {
         if (cboKetQuaBai.SelectedValue == null)
         {
-            dialog.Text = "Chon bai hoi giang.";
-            dialog.Show();
+            ShowMessage("Chon bai hoi giang.");
             return;
         }
 
@@ -448,8 +473,7 @@ public partial class UcHoiGiang : UserControl
             !decimal.TryParse(txtDiemThucHanh.Text, out var thucHanh) ||
             !decimal.TryParse(txtTongDiem.Text, out var tong))
         {
-            dialog.Text = "Vui long tinh diem truoc khi luu.";
-            dialog.Show();
+            ShowMessage("Vui long tinh diem truoc khi luu.");
             return;
         }
 
@@ -467,16 +491,12 @@ public partial class UcHoiGiang : UserControl
         try
         {
             AppServices.HoiGiang.SaveKetQua(ketQua);
-            dialog.Icon = MessageDialogIcon.Information;
-            dialog.Text = "Da luu ket qua.";
-            dialog.Show();
+            ShowMessage("Da luu ket qua.", MessageDialogIcon.Information);
             LoadHoiGiang();
         }
         catch (Exception ex)
         {
-            dialog.Icon = MessageDialogIcon.Error;
-            dialog.Text = $"Khong the luu ket qua: {ex.Message}";
-            dialog.Show();
+            ShowMessage($"Khong the luu ket qua: {ex.Message}", MessageDialogIcon.Error);
         }
     }
 
@@ -495,24 +515,17 @@ public partial class UcHoiGiang : UserControl
         return int.TryParse(combo.SelectedValue.ToString(), out var parsed) ? parsed : null;
     }
 
-    private SiticoneTextBox[] CreatePracticeInputs()
+    private int? GetHocPhanIdFromInput()
     {
-        var boxes = new SiticoneTextBox[5];
-        for (var i = 0; i < boxes.Length; i++)
+        var text = cboHocPhan.Text.Trim();
+        if (string.IsNullOrWhiteSpace(text))
         {
-            var box = new SiticoneTextBox
-            {
-                Name = $"txtDiemThanhVien{i + 1}",
-                BorderRadius = 8,
-                PlaceholderText = $"Diem TV {i + 1}",
-                Size = new Size(232, 45),
-                Location = new Point(270, 95 + (53 * i))
-            };
-            tabKetQua.Controls.Add(box);
-            boxes[i] = box; 
+            return null;
         }
 
-        return boxes;
+        var match = _hocPhan.FirstOrDefault(h =>
+            string.Equals(h.Name, text, StringComparison.OrdinalIgnoreCase));
+        return match?.Id;
     }
 
     private void gridHoiGiang_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -526,6 +539,26 @@ public partial class UcHoiGiang : UserControl
     }
 
     private void panelLeft_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void panelRight_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void tabKetQua_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void cboHocPhan_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void txtGiangVienDonVi_TextChanged(object sender, EventArgs e)
     {
 
     }

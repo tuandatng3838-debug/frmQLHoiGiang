@@ -49,3 +49,5 @@ healthchecksdb
 
 # Windows
 Thumbs.db
+/src/FrmQLHoiGiang/App.config
+/src/FrmQLHoiGiang/Forms/FrmLogin.cs

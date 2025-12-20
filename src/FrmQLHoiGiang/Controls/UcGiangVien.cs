@@ -1,5 +1,6 @@
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
 using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
@@ -21,9 +22,15 @@ public partial class UcGiangVien : UserControl
         LoadData();
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        messageDialog.Parent = FindForm();
+    }
+
     private void LoadLookups()
     {
-        cboDonVi.DataSource = AppServices.Lookup.GetDonVi();
+        cboDonVi.DataSource = AppServices.Lookup.GetKhoa();
         cboDonVi.DisplayMember = "Name";
         cboDonVi.ValueMember = "Id";
 
@@ -113,7 +120,7 @@ public partial class UcGiangVien : UserControl
         SelectComboValue(cboChucDanh, entity.ChucDanhId);
         SelectComboValue(cboHocHam, entity.HocHamId);
         SelectComboValue(cboHocVi, entity.HocViId);
-        SelectComboValue(cboDonVi, entity.DonViId);
+        SelectComboValue(cboDonVi, entity.KhoaId);
         txtChucVu.Text = entity.ChucVu ?? string.Empty;
         txtLinhVuc.Text = entity.LinhVucChuyenMon ?? string.Empty;
         txtNamDayGioi.Text = entity.NamGanNhatDayGioi?.ToString() ?? string.Empty;
@@ -136,8 +143,7 @@ public partial class UcGiangVien : UserControl
     {
         if (string.IsNullOrWhiteSpace(txtMaSo.Text) || string.IsNullOrWhiteSpace(txtHoTen.Text))
         {
-            messageDialog.Text = "Vui lòng nhập Mã số và Họ tên.";
-            messageDialog.Show();
+            DialogHelper.ShowWarning(FindForm(), "Vui lòng nhập Mã số và Họ tên.");
             return;
         }
 
@@ -158,7 +164,7 @@ public partial class UcGiangVien : UserControl
         entity.ChucDanhId = GetSelectedId(cboChucDanh);
         entity.HocHamId = GetSelectedId(cboHocHam);
         entity.HocViId = GetSelectedId(cboHocVi);
-        entity.DonViId = GetSelectedId(cboDonVi);
+        entity.KhoaId = GetSelectedId(cboDonVi);
         entity.ChucVu = txtChucVu.Text.Trim();
         entity.LinhVucChuyenMon = txtLinhVuc.Text.Trim();
         entity.NamGanNhatDayGioi = int.TryParse(txtNamDayGioi.Text, out var nam) ? nam : null;
@@ -170,8 +176,7 @@ public partial class UcGiangVien : UserControl
         }
         catch (Exception ex)
         {
-            messageDialog.Text = $"Không thể lưu giảng viên: {ex.Message}";
-            messageDialog.Show();
+            DialogHelper.ShowError(FindForm(), $"Không thể lưu giảng viên: {ex.Message}");
         }
     }
 
@@ -179,20 +184,10 @@ public partial class UcGiangVien : UserControl
     {
         if (_current == null)
         {
-            messageDialog.Text = "Chọn một giảng viên để xóa.";
-            messageDialog.Show();
+            DialogHelper.ShowWarning(FindForm(), "Chọn một giảng viên để xóa.");
             return;
-        }
-
-        var confirm = new SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Bạn chắc chắn muốn xóa {_current.HoTen}?",
-            Buttons = MessageDialogButtons.YesNo,
-            Icon = MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() == DialogResult.Yes)
+        }        var confirmed = DialogHelper.Confirm(FindForm(), $"Ban chac chan muon xoa {_current.HoTen}?");
+        if (confirmed)
         {
             try
             {
@@ -201,11 +196,10 @@ public partial class UcGiangVien : UserControl
             }
             catch (Exception ex)
             {
-                messageDialog.Text = $"Không thể xóa: {ex.Message}";
-                messageDialog.Show();
+                DialogHelper.ShowError(FindForm(), $"Khong the xoa: {ex.Message}");
             }
         }
-    }
+}
 
     private void SetQueQuanFields(string? queQuan)
     {
@@ -227,6 +221,7 @@ public partial class UcGiangVien : UserControl
             txtQueQuanTinh.Text = parts[1].Trim();
         }
     }
+
 
     private string? BuildQueQuan()
     {

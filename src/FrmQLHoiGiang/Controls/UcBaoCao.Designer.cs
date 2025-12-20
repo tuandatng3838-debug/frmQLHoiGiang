@@ -86,7 +86,7 @@ partial class UcBaoCao
         // 
         btnTaiBaoCao.BorderRadius = 8;
         btnTaiBaoCao.FillColor = Color.FromArgb(31, 122, 224);
-        btnTaiBaoCao.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        btnTaiBaoCao.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnTaiBaoCao.ForeColor = Color.White;
         btnTaiBaoCao.Location = new Point(247, 22);
         btnTaiBaoCao.Margin = new Padding(3, 4, 3, 4);
@@ -100,7 +100,7 @@ partial class UcBaoCao
         // 
         txtNamHoc.BorderRadius = 8;
         txtNamHoc.DefaultText = "";
-        txtNamHoc.Font = new Font("Segoe UI", 9F);
+        txtNamHoc.Font = new Font("Segoe UI", 16F);
         txtNamHoc.Location = new Point(18, 22);
         txtNamHoc.Margin = new Padding(5, 6, 5, 6);
         txtNamHoc.Name = "txtNamHoc";
@@ -161,7 +161,7 @@ partial class UcBaoCao
         gridTietGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
         dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle2.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle2.ForeColor = Color.White;
         dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
@@ -170,7 +170,7 @@ partial class UcBaoCao
         gridTietGV.ColumnHeadersHeight = 36;
         dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle3.BackColor = Color.White;
-        dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle3.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -196,14 +196,14 @@ partial class UcBaoCao
         gridTietGV.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridTietGV.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridTietGV.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridTietGV.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridTietGV.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridTietGV.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridTietGV.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridTietGV.ThemeStyle.HeaderStyle.Height = 36;
         gridTietGV.ThemeStyle.ReadOnly = true;
         gridTietGV.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridTietGV.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridTietGV.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridTietGV.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridTietGV.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridTietGV.ThemeStyle.RowsStyle.Height = 32;
         gridTietGV.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
@@ -218,7 +218,7 @@ partial class UcBaoCao
         gridTietKhoa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
         dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle5.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle5.ForeColor = Color.White;
         dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
@@ -227,7 +227,7 @@ partial class UcBaoCao
         gridTietKhoa.ColumnHeadersHeight = 36;
         dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle6.BackColor = Color.White;
-        dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle6.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -253,14 +253,14 @@ partial class UcBaoCao
         gridTietKhoa.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridTietKhoa.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridTietKhoa.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridTietKhoa.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridTietKhoa.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridTietKhoa.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridTietKhoa.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridTietKhoa.ThemeStyle.HeaderStyle.Height = 36;
         gridTietKhoa.ThemeStyle.ReadOnly = true;
         gridTietKhoa.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridTietKhoa.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridTietKhoa.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridTietKhoa.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridTietKhoa.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridTietKhoa.ThemeStyle.RowsStyle.Height = 32;
         gridTietKhoa.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
@@ -286,7 +286,7 @@ partial class UcBaoCao
         gridSangKien.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
         dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle8.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle8.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle8.ForeColor = Color.White;
         dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
@@ -295,7 +295,7 @@ partial class UcBaoCao
         gridSangKien.ColumnHeadersHeight = 36;
         dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle9.BackColor = Color.White;
-        dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle9.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle9.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -321,14 +321,14 @@ partial class UcBaoCao
         gridSangKien.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridSangKien.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridSangKien.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridSangKien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridSangKien.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridSangKien.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridSangKien.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridSangKien.ThemeStyle.HeaderStyle.Height = 36;
         gridSangKien.ThemeStyle.ReadOnly = true;
         gridSangKien.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridSangKien.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridSangKien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridSangKien.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridSangKien.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridSangKien.ThemeStyle.RowsStyle.Height = 32;
         gridSangKien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
@@ -354,7 +354,7 @@ partial class UcBaoCao
         gridGiaiThuong.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
         dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle11.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle11.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle11.ForeColor = Color.White;
         dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
@@ -363,7 +363,7 @@ partial class UcBaoCao
         gridGiaiThuong.ColumnHeadersHeight = 36;
         dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle12.BackColor = Color.White;
-        dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle12.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle12.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle12.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -389,14 +389,14 @@ partial class UcBaoCao
         gridGiaiThuong.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridGiaiThuong.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridGiaiThuong.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridGiaiThuong.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridGiaiThuong.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridGiaiThuong.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridGiaiThuong.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridGiaiThuong.ThemeStyle.HeaderStyle.Height = 36;
         gridGiaiThuong.ThemeStyle.ReadOnly = true;
         gridGiaiThuong.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridGiaiThuong.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridGiaiThuong.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridGiaiThuong.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridGiaiThuong.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridGiaiThuong.ThemeStyle.RowsStyle.Height = 32;
         gridGiaiThuong.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
@@ -422,7 +422,7 @@ partial class UcBaoCao
         gridHoiDong.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
         dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle14.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle14.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle14.ForeColor = Color.White;
         dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
@@ -431,7 +431,7 @@ partial class UcBaoCao
         gridHoiDong.ColumnHeadersHeight = 36;
         dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle15.BackColor = Color.White;
-        dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle15.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle15.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -457,14 +457,14 @@ partial class UcBaoCao
         gridHoiDong.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridHoiDong.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridHoiDong.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridHoiDong.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridHoiDong.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridHoiDong.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridHoiDong.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridHoiDong.ThemeStyle.HeaderStyle.Height = 36;
         gridHoiDong.ThemeStyle.ReadOnly = true;
         gridHoiDong.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridHoiDong.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridHoiDong.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridHoiDong.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridHoiDong.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridHoiDong.ThemeStyle.RowsStyle.Height = 32;
         gridHoiDong.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
@@ -490,7 +490,7 @@ partial class UcBaoCao
         gridHoiGiang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
         dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle17.BackColor = Color.FromArgb(100, 88, 255);
-        dataGridViewCellStyle17.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle17.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle17.ForeColor = Color.White;
         dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
         dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
@@ -499,7 +499,7 @@ partial class UcBaoCao
         gridHoiGiang.ColumnHeadersHeight = 36;
         dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle18.BackColor = Color.White;
-        dataGridViewCellStyle18.Font = new Font("Segoe UI", 9F);
+        dataGridViewCellStyle18.Font = new Font("Segoe UI", 16F);
         dataGridViewCellStyle18.ForeColor = Color.FromArgb(71, 69, 94);
         dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(231, 229, 255);
         dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -525,14 +525,14 @@ partial class UcBaoCao
         gridHoiGiang.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
         gridHoiGiang.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
         gridHoiGiang.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-        gridHoiGiang.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+        gridHoiGiang.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 16F);
         gridHoiGiang.ThemeStyle.HeaderStyle.ForeColor = Color.White;
         gridHoiGiang.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
         gridHoiGiang.ThemeStyle.HeaderStyle.Height = 36;
         gridHoiGiang.ThemeStyle.ReadOnly = true;
         gridHoiGiang.ThemeStyle.RowsStyle.BackColor = Color.White;
         gridHoiGiang.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-        gridHoiGiang.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+        gridHoiGiang.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 16F);
         gridHoiGiang.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
         gridHoiGiang.ThemeStyle.RowsStyle.Height = 32;
         gridHoiGiang.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);

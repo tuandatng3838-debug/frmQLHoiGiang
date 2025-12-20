@@ -1,5 +1,8 @@
+using System.Linq;
 using FrmQLHoiGiang.Models;
 using FrmQLHoiGiang.Services;
+using FrmQLHoiGiang.Ui;
+using Siticone.Desktop.UI.WinForms;
 
 namespace FrmQLHoiGiang.Controls;
 
@@ -16,8 +19,15 @@ public partial class UcLichGiang : UserControl
         gridLichGiang.AutoGenerateColumns = false;
         gridLichGiang.DataSource = _binding;
         LoadLookups();
+        cboGiangVien.SelectedIndexChanged += (_, _) => UpdateGiangVienInfo();
         LoadData();
         AppServices.GiangVien.Changed += HandleGiangVienChanged;
+    }
+
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        dialog.Parent = FindForm();
     }
 
     private void LoadLookups()
@@ -50,6 +60,7 @@ public partial class UcLichGiang : UserControl
         }
 
         UpdateLichCaNhan();
+        UpdateGiangVienInfo();
     }
 
     private static int? GetSelectedId(ComboBox combo)
@@ -89,6 +100,7 @@ public partial class UcLichGiang : UserControl
         btnHuy.Visible = false;
         btnLuu.FillColor = Color.FromArgb(31, 122, 224);
         btnLuu.Text = "Thêm mới";
+        UpdateGiangVienInfo();
     }
 
     private void gridLichGiang_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -112,14 +124,57 @@ public partial class UcLichGiang : UserControl
         btnHuy.Visible = true;
         btnLuu.FillColor = Color.SeaGreen;
         btnLuu.Text = "Cập nhật";
+        UpdateGiangVienInfo();
     }
 
-    private void btnLuu_Click(object sender, EventArgs e)
+    private void UpdateGiangVienInfo()
+    {
+        if (cboGiangVien.SelectedValue is not int id)
+        {
+            txtGiangVienEmail.Text = string.Empty;
+            txtGiangVienDienThoai.Text = string.Empty;
+            txtGiangVienNgaySinh.Text = string.Empty;
+            return;
+        }
+
+        var gv = _giangVien.FirstOrDefault(item => item.GiangVienId == id);
+        if (gv == null)
+        {
+            txtGiangVienEmail.Text = string.Empty;
+            txtGiangVienDienThoai.Text = string.Empty;
+            txtGiangVienNgaySinh.Text = string.Empty;
+            return;
+        }
+
+        txtGiangVienEmail.Text = gv.Email ?? string.Empty;
+        txtGiangVienDienThoai.Text = gv.SoDienThoai ?? string.Empty;
+        txtGiangVienNgaySinh.Text = FormatNgaySinh(gv.NgaySinh);
+    }
+
+    private static string FormatNgaySinh(DateTime ngaySinh)
+    {
+        return ngaySinh == default ? string.Empty : ngaySinh.ToString("dd/MM/yyyy");
+    }
+
+    private void ShowMessage(string message, MessageDialogIcon icon = MessageDialogIcon.Warning)
+    {
+        var mapped = MessageBoxIcon.Warning;
+        if (icon == MessageDialogIcon.Information)
+        {
+            mapped = MessageBoxIcon.Information;
+        }
+        else if (icon == MessageDialogIcon.Error)
+        {
+            mapped = MessageBoxIcon.Error;
+        }
+
+        MessageBox.Show(FindForm(), message, "Thong bao", MessageBoxButtons.OK, mapped);
+    }
+private void btnLuu_Click(object sender, EventArgs e)
     {
         if (cboGiangVien.SelectedValue == null || string.IsNullOrWhiteSpace(txtTenMon.Text))
         {
-            dialog.Text = "Chọn giảng viên và nhập tên môn.";
-            dialog.Show();
+            ShowMessage("Chon giang vien va nhap ten mon.");
             return;
         }
 
@@ -133,15 +188,13 @@ public partial class UcLichGiang : UserControl
         entity.PhongHoc = txtPhong.Text.Trim();
         if (!int.TryParse(txtSoTiet.Text, out var soTiet))
         {
-            dialog.Text = "Số tiết không hợp lệ.";
-            dialog.Show();
+            ShowMessage("So tiet khong hop le.");
             return;
         }
 
         if (!int.TryParse(txtSiSo.Text, out var siSo))
         {
-            dialog.Text = "Sĩ số không hợp lệ.";
-            dialog.Show();
+            ShowMessage("Si so khong hop le.");
             return;
         }
 
@@ -151,8 +204,7 @@ public partial class UcLichGiang : UserControl
         var result = AppServices.LichGiang.Save(entity);
         if (!result.Success)
         {
-            dialog.Text = result.Error ?? "Không thể lưu.";
-            dialog.Show();
+            ShowMessage(result.Error ?? "Khong the luu.", MessageDialogIcon.Error);
             return;
         }
 
@@ -168,25 +220,15 @@ public partial class UcLichGiang : UserControl
     {
         if (_current == null)
         {
-            dialog.Text = "Chọn lịch cần xóa.";
-            dialog.Show();
+            ShowMessage("Si so khong hop le.");
             return;
-        }
-
-        var confirm = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog
-        {
-            Caption = "Xác nhận",
-            Text = $"Xóa lịch dạy {_current.TenMon}?",
-            Buttons = Siticone.Desktop.UI.WinForms.MessageDialogButtons.YesNo,
-            Icon = Siticone.Desktop.UI.WinForms.MessageDialogIcon.Warning
-        };
-
-        if (confirm.Show() == DialogResult.Yes)
+        }        var confirmed = DialogHelper.Confirm(FindForm(), $"Xoa lich day {_current.TenMon}?");
+        if (confirmed)
         {
             AppServices.LichGiang.Delete(_current.LichGiangId);
             LoadData();
         }
-    }
+}
 
     private void btnLamMoi_Click(object sender, EventArgs e)
     {
@@ -218,6 +260,11 @@ public partial class UcLichGiang : UserControl
     }
 
     private void panelRight_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void cboLocGiangVien_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }

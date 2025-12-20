@@ -9,7 +9,7 @@ public class GiangVienRepository : RepositoryBase
     {
         var sql = """
             SELECT GiangVienId, MaSo, HoTen, GioiTinh, NgaySinh, QueQuan, DanToc, TonGiao,
-                   SoDienThoai, Email, TrinhDoCMId, TrinhDoLLCTId, DonViId, ChucVu,
+                   SoDienThoai, Email, TrinhDoCMId, TrinhDoLLCTId, DonViId, KhoaId, ChucVu,
                    CapBacId, HeSoLuong, ChucDanhId, HocHamId, HocViId, LinhVucChuyenMon,
                    NamGanNhatDayGioi
             FROM GiangVien
@@ -41,12 +41,12 @@ public class GiangVienRepository : RepositoryBase
     {
         var sql = """
             INSERT INTO GiangVien (MaSo, HoTen, GioiTinh, NgaySinh, QueQuan, DanToc, TonGiao,
-                                   SoDienThoai, Email, TrinhDoCMId, TrinhDoLLCTId, DonViId, ChucVu,
+                                   SoDienThoai, Email, TrinhDoCMId, TrinhDoLLCTId, DonViId, KhoaId, ChucVu,
                                    CapBacId, HeSoLuong, ChucDanhId, HocHamId, HocViId, LinhVucChuyenMon,
                                    NamGanNhatDayGioi)
             OUTPUT INSERTED.GiangVienId
             VALUES (@MaSo, @HoTen, @GioiTinh, @NgaySinh, @QueQuan, @DanToc, @TonGiao, @SoDienThoai,
-                    @Email, @TrinhDoCMId, @TrinhDoLLCTId, @DonViId, @ChucVu, @CapBacId, @HeSoLuong,
+                    @Email, @TrinhDoCMId, @TrinhDoLLCTId, @DonViId, @KhoaId, @ChucVu, @CapBacId, @HeSoLuong,
                     @ChucDanhId, @HocHamId, @HocViId, @LinhVucChuyenMon, @NamGanNhatDayGioi)
             """;
         using var conn = OpenConnection();
@@ -62,6 +62,7 @@ public class GiangVienRepository : RepositoryBase
             SET MaSo=@MaSo, HoTen=@HoTen, GioiTinh=@GioiTinh, NgaySinh=@NgaySinh,
                 QueQuan=@QueQuan, DanToc=@DanToc, TonGiao=@TonGiao, SoDienThoai=@SoDienThoai,
                 Email=@Email, TrinhDoCMId=@TrinhDoCMId, TrinhDoLLCTId=@TrinhDoLLCTId, DonViId=@DonViId,
+                KhoaId=@KhoaId,
                 ChucVu=@ChucVu, CapBacId=@CapBacId, HeSoLuong=@HeSoLuong, ChucDanhId=@ChucDanhId,
                 HocHamId=@HocHamId, HocViId=@HocViId, LinhVucChuyenMon=@LinhVucChuyenMon,
                 NamGanNhatDayGioi=@NamGanNhatDayGioi
@@ -97,6 +98,7 @@ public class GiangVienRepository : RepositoryBase
         cmd.Parameters.AddWithValue("@TrinhDoCMId", (object?)entity.TrinhDoCMId ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@TrinhDoLLCTId", (object?)entity.TrinhDoLLCTId ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@DonViId", (object?)entity.DonViId ?? DBNull.Value);
+        cmd.Parameters.AddWithValue("@KhoaId", (object?)entity.KhoaId ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@ChucVu", (object?)entity.ChucVu ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@CapBacId", (object?)entity.CapBacId ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@HeSoLuong", (object?)entity.HeSoLuong ?? DBNull.Value);
@@ -122,6 +124,7 @@ public class GiangVienRepository : RepositoryBase
         TrinhDoCMId = reader["TrinhDoCMId"] as int?,
         TrinhDoLLCTId = reader["TrinhDoLLCTId"] as int?,
         DonViId = reader["DonViId"] as int?,
+        KhoaId = reader["KhoaId"] as int?,
         ChucVu = reader["ChucVu"] as string,
         CapBacId = reader["CapBacId"] as int?,
         HeSoLuong = reader["HeSoLuong"] as decimal?,

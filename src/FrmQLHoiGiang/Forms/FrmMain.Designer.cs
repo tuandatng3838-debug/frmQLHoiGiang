@@ -32,6 +32,8 @@ partial class FrmMain
         siticoneBorderlessForm1 = new Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm(components);
         panelMenu = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         btnGiangVien = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+        btnKhoa = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+        btnBoMon = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         btnSangKien = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         btnThongKe = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         btnLichGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -59,7 +61,10 @@ partial class FrmMain
         // panelMenu
         // 
         panelMenu.BackColor = Color.White;
+        panelMenu.AutoScroll = true;
         panelMenu.Controls.Add(btnGiangVien);
+        panelMenu.Controls.Add(btnKhoa);
+        panelMenu.Controls.Add(btnBoMon);
         panelMenu.Controls.Add(btnSangKien);
         panelMenu.Controls.Add(btnThongKe);
         panelMenu.Controls.Add(btnLichGiang);
@@ -81,7 +86,7 @@ partial class FrmMain
         btnGiangVien.Checked = true;
         btnGiangVien.CustomBorderColor = Color.Turquoise;
         btnGiangVien.FillColor = Color.White;
-        btnGiangVien.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+        btnGiangVien.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnGiangVien.ForeColor = Color.FromArgb(64, 64, 64);
         btnGiangVien.Location = new Point(0, 113);
         btnGiangVien.Margin = new Padding(3, 4, 3, 4);
@@ -92,12 +97,44 @@ partial class FrmMain
         btnGiangVien.Text = "Cán bộ - giảng viên";
         btnGiangVien.Click += btnGiangVien_Click;
         // 
+        // btnKhoa
+        // 
+        btnKhoa.BackColor = SystemColors.MenuHighlight;
+        btnKhoa.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+        btnKhoa.FillColor = Color.White;
+        btnKhoa.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        btnKhoa.ForeColor = Color.FromArgb(64, 64, 64);
+        btnKhoa.Location = new Point(0, 804);
+        btnKhoa.Margin = new Padding(3, 4, 3, 4);
+        btnKhoa.Name = "btnKhoa";
+        btnKhoa.Size = new Size(265, 140);
+        btnKhoa.TabIndex = 5;
+        btnKhoa.Tag = "KHOA";
+        btnKhoa.Text = "Khoa";
+        btnKhoa.Click += btnKhoa_Click;
+        // 
+        // btnBoMon
+        // 
+        btnBoMon.BackColor = SystemColors.MenuHighlight;
+        btnBoMon.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
+        btnBoMon.FillColor = Color.White;
+        btnBoMon.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        btnBoMon.ForeColor = Color.FromArgb(64, 64, 64);
+        btnBoMon.Location = new Point(0, 944);
+        btnBoMon.Margin = new Padding(3, 4, 3, 4);
+        btnBoMon.Name = "btnBoMon";
+        btnBoMon.Size = new Size(265, 140);
+        btnBoMon.TabIndex = 5;
+        btnBoMon.Tag = "BM";
+        btnBoMon.Text = "Bộ môn";
+        btnBoMon.Click += btnBoMon_Click;
+        // 
         // btnSangKien
         // 
         btnSangKien.BackColor = SystemColors.MenuHighlight;
         btnSangKien.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
         btnSangKien.FillColor = Color.White;
-        btnSangKien.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+        btnSangKien.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnSangKien.ForeColor = Color.FromArgb(64, 64, 64);
         btnSangKien.Location = new Point(0, 389);
         btnSangKien.Margin = new Padding(3, 4, 3, 4);
@@ -113,7 +150,7 @@ partial class FrmMain
         btnThongKe.BackColor = SystemColors.MenuHighlight;
         btnThongKe.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
         btnThongKe.FillColor = Color.White;
-        btnThongKe.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+        btnThongKe.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnThongKe.ForeColor = Color.FromArgb(64, 64, 64);
         btnThongKe.Location = new Point(0, 664);
         btnThongKe.Margin = new Padding(3, 4, 3, 4);
@@ -129,7 +166,7 @@ partial class FrmMain
         btnLichGiang.BackColor = SystemColors.MenuHighlight;
         btnLichGiang.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
         btnLichGiang.FillColor = Color.White;
-        btnLichGiang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+        btnLichGiang.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnLichGiang.ForeColor = Color.FromArgb(64, 64, 64);
         btnLichGiang.Location = new Point(0, 527);
         btnLichGiang.Margin = new Padding(3, 4, 3, 4);
@@ -145,7 +182,7 @@ partial class FrmMain
         btnHoiGiang.BackColor = SystemColors.MenuHighlight;
         btnHoiGiang.ButtonMode = Siticone.Desktop.UI.WinForms.Enums.ButtonMode.RadioButton;
         btnHoiGiang.FillColor = Color.White;
-        btnHoiGiang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+        btnHoiGiang.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         btnHoiGiang.ForeColor = Color.FromArgb(64, 64, 64);
         btnHoiGiang.Location = new Point(0, 253);
         btnHoiGiang.Margin = new Padding(3, 4, 3, 4);
@@ -216,7 +253,7 @@ partial class FrmMain
         // lblUser
         // 
         lblUser.AutoSize = true;
-        lblUser.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        lblUser.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
         lblUser.ForeColor = Color.FromArgb(31, 122, 224);
         lblUser.Location = new Point(0, 16);
         lblUser.Margin = new Padding(0, 16, 13, 0);
@@ -241,7 +278,7 @@ partial class FrmMain
         // 
         panelContainer.Dock = DockStyle.Fill;
         panelContainer.FillColor = Color.White;
-        panelContainer.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
+        panelContainer.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point, 163);
         panelContainer.Location = new Point(265, 105);
         panelContainer.Margin = new Padding(3, 4, 3, 4);
         panelContainer.Name = "panelContainer";
@@ -279,6 +316,8 @@ partial class FrmMain
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnLichGiang;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnSangKien;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnHoiGiang;
+    private Siticone.Desktop.UI.WinForms.SiticoneButton btnBoMon;
+    private Siticone.Desktop.UI.WinForms.SiticoneButton btnKhoa;
     private Siticone.Desktop.UI.WinForms.SiticoneButton btnGiangVien;
     private Siticone.Desktop.UI.WinForms.SiticonePanel panelHeader;
     private FlowLayoutPanel flowHeaderTools;
