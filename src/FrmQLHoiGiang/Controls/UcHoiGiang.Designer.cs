@@ -24,10 +24,6 @@ partial class UcHoiGiang
         panelLeft = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         btnRefreshHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneButton();
         gridHoiGiang = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-        colTenBai = new DataGridViewTextBoxColumn();
-        colGiangVien = new DataGridViewTextBoxColumn();
-        colThoiGian = new DataGridViewTextBoxColumn();
-        colCap = new DataGridViewTextBoxColumn();
         panelRight = new Siticone.Desktop.UI.WinForms.SiticonePanel();
         tabMain = new TabControl();
         tabDangKy = new TabPage();
@@ -63,6 +59,10 @@ partial class UcHoiGiang
         cboKetQuaBai = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
         dialog = new Siticone.Desktop.UI.WinForms.SiticoneMessageDialog();
         layoutMain = new TableLayoutPanel();
+        colTenBai = new DataGridViewTextBoxColumn();
+        colGiangVien = new DataGridViewTextBoxColumn();
+        colThoiGian = new DataGridViewTextBoxColumn();
+        colCap = new DataGridViewTextBoxColumn();
         panelLeft.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)gridHoiGiang).BeginInit();
         panelRight.SuspendLayout();
@@ -143,7 +143,7 @@ partial class UcHoiGiang
         gridHoiGiang.RowHeadersVisible = false;
         gridHoiGiang.RowHeadersWidth = 62;
         gridHoiGiang.RowTemplate.Height = 32;
-        gridHoiGiang.Size = new Size(1075, 736);
+        gridHoiGiang.Size = new Size(1039, 736);
         gridHoiGiang.TabIndex = 0;
         gridHoiGiang.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
         gridHoiGiang.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -168,38 +168,6 @@ partial class UcHoiGiang
         gridHoiGiang.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
         gridHoiGiang.CellClick += gridHoiGiang_CellClick;
         gridHoiGiang.CellContentClick += gridHoiGiang_CellContentClick;
-        // 
-        // colTenBai
-        // 
-        colTenBai.DataPropertyName = "TenBai";
-        colTenBai.HeaderText = "TÊN BÀI";
-        colTenBai.MinimumWidth = 8;
-        colTenBai.Name = "colTenBai";
-        colTenBai.ReadOnly = true;
-        // 
-        // colGiangVien
-        // 
-        colGiangVien.DataPropertyName = "GiangVien";
-        colGiangVien.HeaderText = "GIẢNG VIÊN";
-        colGiangVien.MinimumWidth = 8;
-        colGiangVien.Name = "colGiangVien";
-        colGiangVien.ReadOnly = true;
-        // 
-        // colThoiGian
-        // 
-        colThoiGian.DataPropertyName = "ThoiGian";
-        colThoiGian.HeaderText = "THỜI GIAN";
-        colThoiGian.MinimumWidth = 8;
-        colThoiGian.Name = "colThoiGian";
-        colThoiGian.ReadOnly = true;
-        // 
-        // colCap
-        // 
-        colCap.DataPropertyName = "CapThucHien";
-        colCap.HeaderText = "CẤP";
-        colCap.MinimumWidth = 8;
-        colCap.Name = "colCap";
-        colCap.ReadOnly = true;
         // 
         // panelRight
         // 
@@ -734,6 +702,38 @@ partial class UcHoiGiang
         layoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
         layoutMain.Size = new Size(1737, 854);
         layoutMain.TabIndex = 3;
+        // 
+        // colTenBai
+        // 
+        colTenBai.DataPropertyName = "TenBai";
+        colTenBai.HeaderText = "TÊN BÀI";
+        colTenBai.MinimumWidth = 50;
+        colTenBai.Name = "colTenBai";
+        colTenBai.ReadOnly = true;
+        // 
+        // colGiangVien
+        // 
+        colGiangVien.DataPropertyName = "GiangVien";
+        colGiangVien.HeaderText = "GIẢNG VIÊN";
+        colGiangVien.MinimumWidth = 50;
+        colGiangVien.Name = "colGiangVien";
+        colGiangVien.ReadOnly = true;
+        // 
+        // colThoiGian
+        // 
+        colThoiGian.DataPropertyName = "ThoiGian";
+        colThoiGian.HeaderText = "THỜI GIAN";
+        colThoiGian.MinimumWidth = 50;
+        colThoiGian.Name = "colThoiGian";
+        colThoiGian.ReadOnly = true;
+        // 
+        // colCap
+        // 
+        colCap.DataPropertyName = "CapThucHien";
+        colCap.HeaderText = "CẤP";
+        colCap.MinimumWidth = 50;
+        colCap.Name = "colCap";
+        colCap.ReadOnly = true;
         // 
         // UcHoiGiang
         // 
